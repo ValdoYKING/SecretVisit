@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width">
+
+ <title>Solo Administradores</title>
+
+ <script type="module" src="lib/js/ejecuta.js"></script>
+ <script type="module" src="lib/js/muestraError.js"></script>
+ <script type="module" src="./js/const/ROL_ADMINISTRADOR.js"></script>
+ <script type="module" src="./js/custom/mi-nav.js"></script>
+ <script type="module" src="./js/Sesion.js"></script>
+
+</head>
+
+<body onload="ejecuta('srv/srvSesion.php')
+  .then(objeto => {
+   const sesion = new Sesion(objeto)
+   if (sesion.rolIds.has(ROL_ADMINISTRADOR)) {
+    nav.sesion = sesion
+    main.hidden = false
+   } else {
+    location.href = 'index.html'
+   }
+  })
+  .catch(muestraError)">
+
+ <mi-nav id="nav"></mi-nav>
+
+ <main id="main" hidden>
+
+  <h1>Solo Administradores</h1>
+
+  <p>Hola.</p>
+
+  <p>
+   <button type="button" onclick="ejecuta('srv/srvSaludoCliente.php')
+     .then(saludo => alert(saludo))
+     .catch(muestraError)">
+    Ejecuta servicio
+   </button>
+  </p>
+
+ </main>
+
+</body>
+
+</html>
