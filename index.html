@@ -3,12 +3,12 @@
 
 <head>
 
- <meta charset="UTF-8">
- <meta name="viewport" content="width=device-width">
-   <script type="module" src="lib/js/ejecuta.js"></script>
-   <script type="module" src="lib/js/muestraError.js"></script>
-   <script type="module" src="./js/custom/mi-nav.js"></script>
-   <script type="module" src="./js/Sesion.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width">
+  <script type="module" src="lib/js/ejecuta.js"></script>
+  <script type="module" src="lib/js/muestraError.js"></script>
+  <script type="module" src="./js/custom/mi-nav.js"></script>
+  <script type="module" src="./js/Sesion.js"></script>
 
 
 
@@ -24,53 +24,217 @@
       }
     }
   </script>
-   <title>Autenticación</title>
+  <title>Autenticación</title>
 </head>
- 
-<body onload="ejecuta('srv/srvSesion.php')
+
+<!-- <body onload="ejecuta('srv/srvSesion.php')
   .then(objeto => {
    const sesion = new Sesion(objeto)
    nav.sesion = sesion
   })
-  .catch(muestraError)">
+  .catch(muestraError)"> -->
 
- <mi-nav id="nav"></mi-nav>
-  <div class="flex flex-col items-center
-      justify-center h-screen">
-  <h1 class="text-4xl font-bold text-black mb-10 uppercase">
-  Secret <span class="text-purple-700" >Visit</span>
-  </h1>
- <p class="text-2xl mb-10 font-bold text-black uppercase" >Iniciar <span class="text-purple-700">Sesión</p>   
-  <div class="container flex flex-col items-center w-full mx-auto" >
-    <label  for="email" class="text-black font-bold mb-2 uppercase"
-      >Ingresa tu correo electronico</label>
-    <input type="text"
-        class="bg-purple-100 border-2 bg-purple-600 rounded-lg p-2 mb-10 text-center text-white 
-        w-2/6 m-2"
-      placeholder="Correo electronico" id="email" name="email" required>
-    </input>
-    </label >
-      <label class="text-black font-bold mb-2 uppercase" for="password"
-         
-        >Ingresa tu contraseña</label>
-      <input type="text" placeholder="Contraseña" class="bg-purple-600 text-white border-2
-          text-center
-        border-purple-500 rounded-lg p-2 mb-10 w-2/6 m-2"id="password" name="password" required>
-    </label>
-      <button class="bg-purple-900 text-white px-4 py-2 mt-4 rounded-xl  w-1/6 m-2" id="btnIniciarSesion"
-        >
-        Entrar
-      </button>
-        <a href="index.html" class="text-purple-700 text-center text-sm mt-2">
-          Olvide mi contraseña
-        </a>
-    <a href="register.html"class="text-purple-700 text-center text-sm mt-2">
-      No tienes cuenta? 
-      <span class="text-purple-900">
-      Registrate
-    </a>
+<body>
+  <mi-nav id="nav"></mi-nav>
+  <div class="flex flex-col items-center justify-start h-screen mx-2">
+    <h1 class="text-4xl font-bold text-black mb-10 uppercase">
+      Secret <span class="text-purple-700">Visit</span>
+    </h1>
+    <div class="flex flex-col items-center justify-start w-full">
+      <p class="text-xl item-center justify-center font-bold text-black uppercase mb-4"> Mis cuestionarios</p>
+    </div>
+    <div class="
+      flex flex-col  md:flex-col lg:flex-col xl:flex-row
+    w-full sm:w-full md:w-full p-4 items-start  rounded-lg container
+      justify-start">
+      <div class=" w-1/8  m-4">
+        <div class="flex text-center justify-start ">
+          <p class="text-xl font-bold text-black uppercase ">Menu</p>
+        </div>
+        <ul class=" items-start justify-start flex flex-row
+          md:flex-row lg:flex-row xl:flex-col items-start justify-start">
+          <li class="my-2">
+          <a href="#" class="text-black font-bold hover:text-black-800 p-2 hover:bg-purple-100  hover:rounded-lg">Cuestionarios</a>
+          </li>
+          <li class="my-2">
+            <a href="#" class="text-black font-bold hover:text-black-800 p-2 hover:bg-purple-100  hover:rounded-lg">Resultados</a>
+          </li>
+          <li class="my-2">
+            <a href="#" class="text-black font-bold hover:text-black-800 p-2 hover:bg-purple-100  hover:rounded-lg">Estadisticas</a>
+          </li>
+        </ul>
+      </div>
+      <section class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10">
+
+        <div class="border rounded-lg shadow-2xl w-full  sm:w-full md:w-full p-4 items-center justify-center">
+          <div class="flex flex-row items-center  justify-center">
+            <img
+              src="https://media.istockphoto.com/id/1338942955/vector/three-linear-chat-speech-message-bubbles-with-question-marks-forum-icon-communication.jpg?s=612x612&w=0&k=20&c=7lJeE-k1GLf6zCYrKB6rtZuwC9HVS_PjXNNgUym81NE="
+              alt="Cuestionario" class=" rounded-lg w-1/2  p-4">
+            <div class="flex flex-col m-2">
+              <p class="text-black  font-bold">Cuestionario 1</p>
+              <p class="text-sm text-purple-800 font-bold">10 <span class="text-black"> preguntas</span></p>
+              <p class="text-sm text-purple-800  font-bold">23 <span class="text-black">minutos restantes</span></p>
+              <button class="bg-purple-800 text-white px-4 py-2 mt-4 rounded-xl
+                    flex flex-row items-center justify-center mx-auto w-full
+                    hover:bg-purple-700">Responder</button>
+            </div>
+          </div>
+        </div>
+        <div class="border rounded-lg shadow-2xl w-full  sm:w-full md:w-full p-4 items-center justify-center">
+          <div class="flex flex-row items-center  justify-center">
+            <img
+              src="https://media.istockphoto.com/id/1338942955/vector/three-linear-chat-speech-message-bubbles-with-question-marks-forum-icon-communication.jpg?s=612x612&w=0&k=20&c=7lJeE-k1GLf6zCYrKB6rtZuwC9HVS_PjXNNgUym81NE="
+              alt="Cuestionario" class=" rounded-lg w-1/2  p-4">
+            <div class="flex flex-col m-2">
+              <p class="text-black  font-bold">Cuestionario 1</p>
+              <p class="text-sm text-purple-800 font-bold">10 <span class="text-black"> preguntas</span></p>
+              <p class="text-sm text-purple-800  font-bold">23 <span class="text-black">minutos restantes</span></p>
+              <button class="bg-purple-800 text-white px-4 py-2 mt-4 rounded-xl
+                            flex flex-row items-center justify-center mx-auto w-full
+                            hover:bg-purple-700">Responder</button>
+            </div>
+          </div>
+        </div>
+        <div class="border rounded-lg shadow-2xl w-full  sm:w-full md:w-full p-4 items-center justify-center">
+          <div class="flex flex-row items-center  justify-center">
+            <img
+              src="https://media.istockphoto.com/id/1338942955/vector/three-linear-chat-speech-message-bubbles-with-question-marks-forum-icon-communication.jpg?s=612x612&w=0&k=20&c=7lJeE-k1GLf6zCYrKB6rtZuwC9HVS_PjXNNgUym81NE="
+              alt="Cuestionario" class=" rounded-lg w-1/2  p-4">
+            <div class="flex flex-col m-2">
+              <p class="text-black  font-bold">Cuestionario 1</p>
+              <p class="text-sm text-purple-800 font-bold">10 <span class="text-black"> preguntas</span></p>
+              <p class="text-sm text-purple-800  font-bold">23 <span class="text-black">minutos restantes</span></p>
+              <button class="bg-purple-800 text-white px-4 py-2 mt-4 rounded-xl
+                            flex flex-row items-center justify-center mx-auto w-full
+                            hover:bg-purple-700">Responder</button>
+            </div>
+          </div>
+        </div>
+        <div class="border rounded-lg shadow-2xl w-full  sm:w-full md:w-full p-4 items-center justify-center">
+          <div class="flex flex-row items-center  justify-center">
+            <img
+              src="https://media.istockphoto.com/id/1338942955/vector/three-linear-chat-speech-message-bubbles-with-question-marks-forum-icon-communication.jpg?s=612x612&w=0&k=20&c=7lJeE-k1GLf6zCYrKB6rtZuwC9HVS_PjXNNgUym81NE="
+              alt="Cuestionario" class=" rounded-lg w-1/2  p-4">
+            <div class="flex flex-col m-2">
+              <p class="text-black  font-bold">Cuestionario 1</p>
+              <p class="text-sm text-purple-800 font-bold">10 <span class="text-black"> preguntas</span></p>
+              <p class="text-sm text-purple-800  font-bold">23 <span class="text-black">minutos restantes</span></p>
+              <button class="bg-purple-800 text-white px-4 py-2 mt-4 rounded-xl
+                            flex flex-row items-center justify-center mx-auto w-full
+                            hover:bg-purple-700">Responder</button>
+            </div>
+          </div>
+        </div>
+        <div class="border rounded-lg shadow-2xl w-full  sm:w-full md:w-full p-4 items-center justify-center">
+          <div class="flex flex-row items-center  justify-center">
+            <img
+              src="https://media.istockphoto.com/id/1338942955/vector/three-linear-chat-speech-message-bubbles-with-question-marks-forum-icon-communication.jpg?s=612x612&w=0&k=20&c=7lJeE-k1GLf6zCYrKB6rtZuwC9HVS_PjXNNgUym81NE="
+              alt="Cuestionario" class=" rounded-lg w-1/2  p-4">
+            <div class="flex flex-col m-2">
+              <p class="text-black  font-bold">Cuestionario 1</p>
+              <p class="text-sm text-purple-800 font-bold">10 <span class="text-black"> preguntas</span></p>
+              <p class="text-sm text-purple-800  font-bold">23 <span class="text-black">minutos restantes</span></p>
+              <button class="bg-purple-800 text-white px-4 py-2 mt-4 rounded-xl
+                            flex flex-row items-center justify-center mx-auto w-full
+                            hover:bg-purple-700">Responder</button>
+            </div>
+          </div>
+        </div>
+        <div class="border rounded-lg shadow-2xl w-full  sm:w-full md:w-full p-4 items-center justify-center">
+          <div class="flex flex-row items-center  justify-center">
+            <img
+              src="https://media.istockphoto.com/id/1338942955/vector/three-linear-chat-speech-message-bubbles-with-question-marks-forum-icon-communication.jpg?s=612x612&w=0&k=20&c=7lJeE-k1GLf6zCYrKB6rtZuwC9HVS_PjXNNgUym81NE="
+              alt="Cuestionario" class=" rounded-lg w-1/2  p-4">
+            <div class="flex flex-col m-2">
+              <p class="text-black  font-bold">Cuestionario 1</p>
+              <p class="text-sm text-purple-800 font-bold">10 <span class="text-black"> preguntas</span></p>
+              <p class="text-sm text-purple-800  font-bold">23 <span class="text-black">minutos restantes</span></p>
+              <button class="bg-purple-800 text-white px-4 py-2 mt-4 rounded-xl
+                            flex flex-row items-center justify-center mx-auto w-full
+                            hover:bg-purple-700">Responder</button>
+            </div>
+          </div>
+        </div>
+        <div class="border rounded-lg shadow-2xl w-full  sm:w-full md:w-full p-4 items-center justify-center">
+          <div class="flex flex-row items-center  justify-center">
+            <img
+              src="https://media.istockphoto.com/id/1338942955/vector/three-linear-chat-speech-message-bubbles-with-question-marks-forum-icon-communication.jpg?s=612x612&w=0&k=20&c=7lJeE-k1GLf6zCYrKB6rtZuwC9HVS_PjXNNgUym81NE="
+              alt="Cuestionario" class=" rounded-lg w-1/2  p-4">
+            <div class="flex flex-col m-2">
+              <p class="text-black  font-bold">Cuestionario 1</p>
+              <p class="text-sm text-purple-800 font-bold">10 <span class="text-black"> preguntas</span></p>
+              <p class="text-sm text-purple-800  font-bold">23 <span class="text-black">minutos restantes</span></p>
+              <button class="bg-purple-800 text-white px-4 py-2 mt-4 rounded-xl
+                            flex flex-row items-center justify-center mx-auto w-full
+                            hover:bg-purple-700">Responder</button>
+            </div>
+          </div>
+        </div>
+        <div class="border rounded-lg shadow-2xl w-full  sm:w-full md:w-full p-4 items-center justify-center">
+          <div class="flex flex-row items-center  justify-center">
+            <img
+              src="https://media.istockphoto.com/id/1338942955/vector/three-linear-chat-speech-message-bubbles-with-question-marks-forum-icon-communication.jpg?s=612x612&w=0&k=20&c=7lJeE-k1GLf6zCYrKB6rtZuwC9HVS_PjXNNgUym81NE="
+              alt="Cuestionario" class=" rounded-lg w-1/2  p-4">
+            <div class="flex flex-col m-2">
+              <p class="text-black  font-bold">Cuestionario 1</p>
+              <p class="text-sm text-purple-800 font-bold">10 <span class="text-black"> preguntas</span></p>
+              <p class="text-sm text-purple-800  font-bold">23 <span class="text-black">minutos restantes</span></p>
+              <button class="bg-purple-800 text-white px-4 py-2 mt-4 rounded-xl
+                            flex flex-row items-center justify-center mx-auto w-full
+                            hover:bg-purple-700">Responder</button>
+            </div>
+          </div>
+        </div>
+        <div class="border rounded-lg shadow-2xl w-full  sm:w-full md:w-full p-4 items-center justify-center">
+          <div class="flex flex-row items-center  justify-center">
+            <img
+              src="https://media.istockphoto.com/id/1338942955/vector/three-linear-chat-speech-message-bubbles-with-question-marks-forum-icon-communication.jpg?s=612x612&w=0&k=20&c=7lJeE-k1GLf6zCYrKB6rtZuwC9HVS_PjXNNgUym81NE="
+              alt="Cuestionario" class=" rounded-lg w-1/2  p-4">
+            <div class="flex flex-col m-2">
+              <p class="text-black  font-bold">Cuestionario 1</p>
+              <p class="text-sm text-purple-800 font-bold">10 <span class="text-black"> preguntas</span></p>
+              <p class="text-sm text-purple-800  font-bold">23 <span class="text-black">minutos restantes</span></p>
+              <button class="bg-purple-800 text-white px-4 py-2 mt-4 rounded-xl
+                            flex flex-row items-center justify-center mx-auto w-full
+                            hover:bg-purple-700">Responder</button>
+            </div>
+          </div>
+        </div>
+        <div class="border rounded-lg shadow-2xl w-full  sm:w-full md:w-full p-4 items-center justify-center">
+          <div class="flex flex-row items-center  justify-center">
+            <img
+              src="https://media.istockphoto.com/id/1338942955/vector/three-linear-chat-speech-message-bubbles-with-question-marks-forum-icon-communication.jpg?s=612x612&w=0&k=20&c=7lJeE-k1GLf6zCYrKB6rtZuwC9HVS_PjXNNgUym81NE="
+              alt="Cuestionario" class=" rounded-lg w-1/2  p-4">
+            <div class="flex flex-col m-2">
+              <p class="text-black  font-bold">Cuestionario 1</p>
+              <p class="text-sm text-purple-800 font-bold">10 <span class="text-black"> preguntas</span></p>
+              <p class="text-sm text-purple-800  font-bold">23 <span class="text-black">minutos restantes</span></p>
+              <button class="bg-purple-800 text-white px-4 py-2 mt-4 rounded-xl
+                            flex flex-row items-center justify-center mx-auto w-full
+                            hover:bg-purple-700">Responder</button>
+            </div>
+          </div>
+        </div>
+        <div class="border rounded-lg shadow-2xl w-full  sm:w-full md:w-full p-4 items-center justify-center">
+          <div class="flex flex-row items-center  justify-center">
+            <img
+              src="https://media.istockphoto.com/id/1338942955/vector/three-linear-chat-speech-message-bubbles-with-question-marks-forum-icon-communication.jpg?s=612x612&w=0&k=20&c=7lJeE-k1GLf6zCYrKB6rtZuwC9HVS_PjXNNgUym81NE="
+              alt="Cuestionario" class=" rounded-lg w-1/2  p-4">
+            <div class="flex flex-col m-2">
+              <p class="text-black  font-bold">Cuestionario 1</p>
+              <p class="text-sm text-purple-800 font-bold">10 <span class="text-black"> preguntas</span></p>
+              <p class="text-sm text-purple-800  font-bold">23 <span class="text-black">minutos restantes</span></p>
+              <button class="bg-purple-800 text-white px-4 py-2 mt-4 rounded-xl
+                            flex flex-row items-center justify-center mx-auto w-full
+                            hover:bg-purple-700">Responder</button>
+            </div>
+          </div>
+        </div>
+
+      </section>
+    </div>
   </div>
-     </div>
 </body>
 
 </html>
