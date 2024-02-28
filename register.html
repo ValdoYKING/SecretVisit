@@ -2,16 +2,12 @@
 <html lang="es">
 
 <head>
-
- <meta charset="UTF-8">
- <meta name="viewport" content="width=device-width">
-   <script type="module" src="lib/js/ejecuta.js"></script>
-   <script type="module" src="lib/js/muestraError.js"></script>
-   <script type="module" src="./js/custom/mi-nav.js"></script>
-   <script type="module" src="./js/Sesion.js"></script>
-
-
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width">
+  <script type="module" src="lib/js/ejecuta.js"></script>
+  <script type="module" src="lib/js/muestraError.js"></script>
+  <script type="module" src="./js/custom/mi-nav.js"></script>
+  <script type="module" src="./js/Sesion.js"></script>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -24,9 +20,9 @@
       }
     }
   </script>
-   <title>Registarme</title>
+  <title>Registarme</title>
 </head>
- 
+
 <body onload="ejecuta('srv/srvSesion.php')
   .then(objeto => {
    const sesion = new Sesion(objeto)
@@ -34,59 +30,52 @@
   })
   .catch(muestraError)">
 
- <mi-nav id="nav"></mi-nav>
-  <div class="flex flex-row items-center
-      justify-center h-screen">
-  
-    <div class="flex flex-col justify-center">
- <p class="text-2xl mb-10 font-bold text-black uppercase" >Crear  <span class="text-purple-700">Cuenta</p>   
-  <div class="container flex flex-col items-center w-full mx-auto" >
-    <label  for="name" class="text-black font-bold mb-2 uppercase text-start"
-      >Ingresa tu nombre</label>
-    <input type="text"
-        class="bg-purple-100 border-2 bg-purple-600 rounded-lg p-2 mb-10 text-center text-white 
-        w-full m-2"
-      placeholder="Ingresa tu nombre" id="name" name="name" required>
-    </input>
-  
-    <label  for="email" class="text-black font-bold mb-2 uppercase text-start"
-      >Ingresa tu correo electronico</label>
-    <input type="text"
-        class="bg-purple-100 border-2 bg-purple-600 rounded-lg p-2 mb-10 text-center text-white 
-        w-full m-2"
-      placeholder="Correo electronico" id="email" name="email" required>
-    </input>
-      <label class="text-black font-bold mb-2 uppercase text-start" for="password"
-         
-        >Ingresa tu contraseña   </label >
-      <input type="text" placeholder="Contraseña" class="bg-purple-600 text-white border-2
-          text-center
-        border-purple-500 rounded-lg p-2 mb-10 w-full m-2"id="password" name="password" required>
-   
-    <label class="text-black font-bold mb-2 uppercase text-center" for="password" >Re- Ingresa tu contraseña
-      <input type="text" placeholder="Repite tu Contraseña" class="bg-purple-600 text-white border-2
-          text-center border-purple-500 rounded-lg p-2 mb-10 w-full m-2"id="password" name="password" required>
-    </label>
-      <button class="bg-purple-900 text-white px-4 py-2 mt-4 rounded-xl  w-full m-2" id="btnIniciarSesion"
-        >
-        Entrar
-      </button>
-        <a href="index.html" class="text-purple-700 text-center text-sm mt-2">
-          Olvide mi contraseña
-        </a>
-    <a href="index.html"class="text-purple-700 text-center text-sm mt-2">
-    Iniciar 
-      <span class="text-purple-900">
-      Sesión
-     
-    </a>
-  </div>
-     </div>
-    <h1 class="text-4xl font-bold text-black mb-10 uppercase ml-40">
-      Secret
-    Secret <span class="text-purple-700" >Visit</span>
+  <mi-nav id="nav"></mi-nav>
+  <div class="flex flex-col items-center justify-center  h-screen
+    sm:flex-row-reverse sm:justify-around sm:items-center mx-10">
+    <h1 class="text-5xl font-bold text-black mb-10 uppercase "> Secret <span class="text-purple-700">Visit</span>
     </h1>
-     </div>
+    <div class="border rounded-lg shadow-xl  w-full  mx-10 w-1/2 sm:w-full  md:w-1/2 lg:w-1/2  p-10">
+      <form class="container flex flex-col items-start justify-start  md:w-full mx-auto  sm:w-full ">
+        <p class="text-4xl mb-10 font-bold text-black uppercase">Crear <span class="text-purple-700">Cuenta</p>
+        <label for="name" class="text-black font-bold mb-2 uppercase text-start ">Ingresa tu nombre</label>
+        <input type="text" class="bg-purple-100 border-2 bg-purple-600 rounded-lg p-2 mb-10 text-center text-white  focus:outline focus:ring-2 focus:ring-purple-600 focus:border-white
+        w-full m-2" placeholder="Ingresa tu nombre" id="name" name="name" required>
+        </input>
+
+        <label for="email" class="text-black font-bold mb-2 uppercase text-start">Ingresa tu correo electronico</label>
+        <input type="text" class="bg-purple-100 border-2 
+        focus:outline focus:ring-2 focus:ring-purple-600 focus:border-white
+        bg-purple-600 rounded-lg p-2 mb-10 text-center text-white 
+        w-full m-2" placeholder="Correo electronico" id="email" name="email" required>
+        </input>
+        <label class="text-black font-bold mb-2 uppercase text-start" for="password">Ingresa tu contraseña </label>
+        <input type="text" placeholder="Contraseña" class="bg-purple-600 text-white border-2
+          text-center    focus:outline focus:ring-2 focus:ring-purple-600 focus:border-white
+        border-purple-500 rounded-lg p-2 mb-10 w-full m-2" id="password" name="password" required>
+
+        <label class="text-black font-bold mb-2 uppercase text-start" for="password">
+          Repite tu contraseña</label>
+        <input type="text" placeholder="Repite tu Contraseña" class="bg-purple-600 text-white border-2
+          text-center    focus:outline focus:ring-2 focus:ring-purple-600 focus:border-white
+        border-purple-500 rounded-lg p-2 mb-10 w-full m-2" id="password" name="password" required>
+
+        <button class="bg-purple-600 text-white px-4 py-2 mt-4 rounded-xl  mx-auto
+             hover:text-purple-600 hover:bg-white hover:border-purple-300 border-2
+              focus:outline focus:ring-2 focus:ring-purple-600 focus:border-white
+            w-1/2 m-2" id="btnIniciarSesion">
+          Entrar
+        </button>
+        <div class="flex flex-col items-center justify-center
+        text-center text-sm mt-2 items-center mx-auto">
+          <p class="text-black">¿Ya tienes una cuenta?</p>
+          <a href="login.html" class="text-purple-700">Inicia sesión</a>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  </div>
 </body>
 
 </html>
