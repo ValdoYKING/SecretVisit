@@ -5,16 +5,28 @@
 
  <meta charset="UTF-8">
  <meta name="viewport" content="width=device-width">
+   <script type="module" src="lib/js/ejecuta.js"></script>
+   <script type="module" src="lib/js/muestraError.js"></script>
+   <script type="module" src="./js/custom/mi-nav.js"></script>
+   <script type="module" src="./js/Sesion.js"></script>
 
- <title>Autenticación</title>
 
- <script type="module" src="lib/js/ejecuta.js"></script>
- <script type="module" src="lib/js/muestraError.js"></script>
- <script type="module" src="./js/custom/mi-nav.js"></script>
- <script type="module" src="./js/Sesion.js"></script>
 
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            clifford: '#da373d',
+          }
+        }
+      }
+    }
+  </script>
+   <title>Autenticación</title>
 </head>
-
+ 
 <body onload="ejecuta('srv/srvSesion.php')
   .then(objeto => {
    const sesion = new Sesion(objeto)
@@ -23,11 +35,42 @@
   .catch(muestraError)">
 
  <mi-nav id="nav"></mi-nav>
-
- <h1>Autenticación</h1>
-
- <p>Bienvenid@.</p>
-
+  <div class="flex flex-col items-center
+      justify-center h-screen">
+  <h1 class="text-4xl font-bold text-black mb-10 uppercase">
+  Secret <span class="text-purple-700" >Visit</span>
+  </h1>
+ <p class="text-2xl mb-10 font-bold text-black uppercase" >Iniciar <span class="text-purple-700">Sesión</p>   
+  <div class="container flex flex-col items-center w-full mx-auto" >
+    <label  for="email" class="text-black font-bold mb-2 uppercase"
+      >Ingresa tu correo electronico</label>
+    <input type="text"
+        class="bg-purple-100 border-2 bg-purple-600 rounded-lg p-2 mb-10 text-center text-white 
+        w-2/6 m-2"
+      placeholder="Correo electronico" id="email" name="email" required>
+    </input>
+    </label >
+      <label class="text-black font-bold mb-2 uppercase" for="password"
+         
+        >Ingresa tu contraseña</label>
+      <input type="text" placeholder="Contraseña" class="bg-purple-600 text-white border-2
+          text-center
+        border-purple-500 rounded-lg p-2 mb-10 w-2/6 m-2"id="password" name="password" required>
+    </label>
+      <button class="bg-purple-900 text-white px-4 py-2 mt-4 rounded-xl  w-1/6 m-2" id="btnIniciarSesion"
+        >
+        Entrar
+      </button>
+        <a href="index.html" class="text-purple-700 text-center text-sm mt-2">
+          Olvide mi contraseña
+        </a>
+    <a href="register.html"class="text-purple-700 text-center text-sm mt-2">
+      No tienes cuenta? 
+      <span class="text-purple-900">
+      Registrate
+    </a>
+  </div>
+     </div>
 </body>
 
 </html>
