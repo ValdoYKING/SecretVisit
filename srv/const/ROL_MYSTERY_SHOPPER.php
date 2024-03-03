@@ -1,3 +1,3 @@
 <?php
 
-const ROL_MYSTERY_SHOPPER = "mysteryShopper";
+const ROL_MYSTERY_SHOPPER = "Mystery Shopper";

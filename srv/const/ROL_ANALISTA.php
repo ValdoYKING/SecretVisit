@@ -1,3 +1,3 @@
 <?php
 
-const ROL_ANALISTA = "analista";
+const ROL_ANALISTA = "Analista";
