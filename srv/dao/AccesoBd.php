@@ -51,12 +51,6 @@ class AccesoBd
    );
    rolAgrega($administrador);
 
-   /* $cliente = new Rol(
-    id: ROL_CLIENTE,
-    descripcion: "Realiza compras."
-   );
-   rolAgrega($cliente); */
-
     $mysteryShopper = new Rol(
      id: ROL_MYSTERY_SHOPPER,
      descripcion: "Evalúa la calidad de la atención."
@@ -68,16 +62,6 @@ class AccesoBd
      descripcion: "Evalua y crea encuestas"
     );
     rolAgrega($analista);
-
-   /* $usuario = usuarioBuscaCue("pepito");
-   if (!$usuario) {
-    $usuario = new Usuario(
-     cue: "pepito",
-     match: "cuentos",
-     roles: [$cliente]
-    );
-    usuarioAgrega($usuario);
-   } */
 
    $usuario = usuarioBuscaCue("adminPixel");
     if (!$usuario) {
@@ -109,15 +93,6 @@ class AccesoBd
     usuarioAgrega($usuario);
    }
 
-   /* $usuario = usuarioBuscaCue("bebe");
-   if (!$usuario) {
-    $usuario = new Usuario(
-     cue: "bebe",
-     match: "saurio",
-     roles: [$administrador, $cliente]
-    );
-    usuarioAgrega($usuario);
-   } */
   }
  }
 }

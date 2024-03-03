@@ -3,75 +3,94 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width">
     <title>Registro</title>
+
+    <script type="module" src="./js/custom/mi-nav.js"></script>
+    <script type="module" src="lib/js/ejecuta.js"></script>
+    <script type="module" src="lib/js/submitForma.js"></script>
+    <script type="module" src="lib/js/muestraError.js"></script>
+    <script type="module" src="./js/Sesion.js"></script>
 </head>
 
-<body>
-    <h1>Registro de Usuario</h1>
-    
-    <form id="registroForm" onsubmit="submitForm(event)">
-        <div>
-            <label for="cue">CUE:</label>
-            <input type="text" id="cue" name="cue" required>
-        </div>
-        <div>
-            <label for="match">Contraseña:</label>
-            <input type="password" id="match" name="match" required>
-        </div>
-        <div>
-            <label for="confirmarMatch">Confirmar Contraseña:</label>
-            <input type="password" id="confirmarMatch" name="confirmarMatch" required>
-        </div>
-        <div>
-            <label for="rol">Rol:</label>
-            <select id="rol" name="rol" required>
-                <option value="">Seleccionar Rol</option>
-                <option value="Mystery Shopper">Mystery Shopper</option>
-                <option value="Analista">Analista</option>
-            </select>
-        </div>
-        <button type="submit">Registrarse</button>
+<body onload="ejecuta('srv/srvSesion.php')
+  .then(objeto => {
+   const sesion = new Sesion(objeto)
+   if (sesion.cue === '') {
+    nav.sesion = sesion
+    registro.hidden = false
+   } else {
+    location.href = 'perfil.html'
+   }
+  })
+  .catch(muestraError)">
+
+    <mi-nav id="nav"></mi-nav>
+
+    <form id="registro" hidden onsubmit="submitForma('srv/srvRegistro.php', event, registro)
+   .then(json => location.href = 'perfil.html')
+   .catch(muestraError)">
+
+        <h1>Registro de Usuario</h1>
+
+        <p>
+            <label>
+                Cue
+                <input name="cue">
+            </label>
+        </p>
+
+        <p>
+            <label>
+                Contraseña
+                <input type="password" name="match">
+            </label>
+        </p>
+
+        <p>
+            <label>
+                Confirmar Contraseña
+                <input type="password" name="confirmarMatch">
+            </label>
+        </p>
+
+        <p>
+            <label>
+                Rol
+                <select name="rol">
+                    <option value="">Seleccionar Rol</option>
+                    <option value="Mystery Shopper">Mystery Shopper</option>
+                    <option value="Analista">Analista</option>
+                </select>
+            </label>
+        </p>
+
+        <p><button type="submit">Registrarse</button></p>
+
     </form>
 
+    <p>
+        <a id="login" hidden href="login.html">Iniciar sesión</a>
+        <button type="button" id="logout" hidden onclick="ejecuta('srv/srvLogout.php')
+    .then(json => location.reload())
+    .catch(muestraError)">
+            Terminar sesión
+        </button>
+    </p>
+
     <script>
-        async function submitForm(event) {
-            event.preventDefault();
-
-            const form = event.target;
-            const cue = form.elements.cue.value;
-            const match = form.elements.match.value;
-            const confirmarMatch = form.elements.confirmarMatch.value;
-            const rol = form.elements.rol.value;
-
-            if (match !== confirmarMatch) {
-                alert("Las contraseñas no coinciden.");
-                return;
-            }
-
-            try {
-                const response = await fetch('srv/srvRegistro.php', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ cue, match, rol })
-                });
-
-                if (!response.ok) {
-                    throw new Error('Error al registrar usuario.');
-                }
-
-                const data = await response.json();
-                alert('Usuario registrado correctamente.');
-                // Redirigir a otra página si es necesario
-                // window.location.href = 'perfil.html';
-            } catch (error) {
-                console.error(error);
-                alert('Error al registrar usuario.');
+        // Función para verificar si mostrar el formulario de registro
+        function mostrarFormularioRegistro() {
+            const sesion = JSON.parse(localStorage.getItem('sesion'));
+            if (!sesion || !sesion.cue) {
+                document.getElementById('registro').hidden = false;
             }
         }
+
+        // Llamar a la función al cargar la página
+        mostrarFormularioRegistro();
     </script>
+
 </body>
 
 </html>
