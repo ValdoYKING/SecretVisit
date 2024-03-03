@@ -35,4 +35,12 @@ function bdCrea(PDO $con)
      FOREIGN KEY (ROL_ID) REFERENCES ROL(ROL_ID)
    )'
  );
+$con->exec(
+  'CREATE TABLE IF NOT EXISTS PREGUNTAS (
+  ID_PREGUNTA INTEGER NOT NULL,
+  PREGUNTA TEXT NOT NULL,
+  )'
+  );
+  
 }
+

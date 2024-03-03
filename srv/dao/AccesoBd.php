@@ -55,6 +55,12 @@ class AccesoBd
    );
    rolAgrega($cliente);
 
+    $pregunta = new Pregunta(
+      id: 0,
+      pregunta: "¿Qué es PHP?"
+    ):
+      preuntaAgregar($con, $pregunta);
+
    $usuario = usuarioBuscaCue("pepito");
    if (!$usuario) {
     $usuario = new Usuario(
