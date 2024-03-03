@@ -32,16 +32,29 @@ ejecuta(function () {
         throw new Exception("El usuario ya está registrado.");
     }
 
+
+    $mysteryShopper = new Rol(
+        id: ROL_MYSTERY_SHOPPER,
+        descripcion: "Evalúa la calidad de la atención."
+    );
+
+    $analista = new Rol(
+        id: ROL_ANALISTA,
+        descripcion: "Evalua y crea encuestas"
+    );
+
     // Si el usuario no existe, crea un nuevo objeto Usuario con los datos del formulario
     $usuarioNuevo = new Usuario($cue, $match, [], 0);
 
     // Agrega el rol correspondiente al usuario según el valor recibido del formulario
+
+
     switch ($rol) {
         case "Mystery Shopper":
-            $usuarioNuevo->roles = ["Mystery Shopper"];
+            $usuarioNuevo->roles = [$mysteryShopper];
             break;
         case "Analista":
-            $usuarioNuevo->roles = ["Analista"];
+            $usuarioNuevo->roles = [$analista];
             break;
         default:
             throw new Exception("Rol inválido.");
