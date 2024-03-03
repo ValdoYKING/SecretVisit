@@ -51,11 +51,11 @@ class AccesoBd
    );
    rolAgrega($administrador);
 
-   $cliente = new Rol(
+   /* $cliente = new Rol(
     id: ROL_CLIENTE,
     descripcion: "Realiza compras."
    );
-   rolAgrega($cliente);
+   rolAgrega($cliente); */
 
     $mysteryShopper = new Rol(
      id: ROL_MYSTERY_SHOPPER,
@@ -69,7 +69,7 @@ class AccesoBd
     );
     rolAgrega($analista);
 
-   $usuario = usuarioBuscaCue("pepito");
+   /* $usuario = usuarioBuscaCue("pepito");
    if (!$usuario) {
     $usuario = new Usuario(
      cue: "pepito",
@@ -77,19 +77,39 @@ class AccesoBd
      roles: [$cliente]
     );
     usuarioAgrega($usuario);
-   }
+   } */
 
-   $usuario = usuarioBuscaCue("susana");
+   $usuario = usuarioBuscaCue("adminPixel");
+    if (!$usuario) {
+     $usuario = new Usuario(
+      cue: "adminPixel",
+      match: "pikosy99*",
+      roles: [$administrador]
+     );
+     usuarioAgrega($usuario);
+    }
+
+    $usuario = usuarioBuscaCue("rodolfo");
+    if (!$usuario) {
+     $usuario = new Usuario(
+      cue: "rodolfo",
+      match: "encuesta#2",
+      roles: [$analista]
+     );
+     usuarioAgrega($usuario);
+    }
+
+   $usuario = usuarioBuscaCue("alberto");
    if (!$usuario) {
     $usuario = new Usuario(
-     cue: "susana",
-     match: "alegria",
-     roles: [$administrador]
+     cue: "alberto",
+     match: "pregutas99*",
+     roles: [$mysteryShopper]
     );
     usuarioAgrega($usuario);
    }
 
-   $usuario = usuarioBuscaCue("bebe");
+   /* $usuario = usuarioBuscaCue("bebe");
    if (!$usuario) {
     $usuario = new Usuario(
      cue: "bebe",
@@ -97,7 +117,7 @@ class AccesoBd
      roles: [$administrador, $cliente]
     );
     usuarioAgrega($usuario);
-   }
+   } */
   }
  }
 }
