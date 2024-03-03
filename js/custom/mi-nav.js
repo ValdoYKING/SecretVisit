@@ -2,6 +2,8 @@ import { htmlentities } from "../../lib/js/htmlentities.js"
 import { Sesion } from "../Sesion.js"
 import { ROL_ADMINISTRADOR } from "../const/ROL_ADMINISTRADOR.js"
 import { ROL_CLIENTE } from "../const/ROL_CLIENTE.js"
+import { ROL_MYSTERY_SHOPPER } from "../const/ROL_MYSTERY_SHOPPER.js"
+import { ROL_ANALISTA } from "../const/ROL_ANALISTA.js"
 
 export class MiNav extends HTMLElement {
 
@@ -57,6 +59,18 @@ export class MiNav extends HTMLElement {
  hipervinculosCliente(rolIds) {
   return rolIds.has(ROL_CLIENTE) ?
    /* html */ `<li><a href="cliente.html">Para clientes</a></li>`
+   : ""
+ }
+
+ hipervinculosMysteryShopper(rolIds) {
+    return rolIds.has(ROL_MYSTERY_SHOPPER) ?
+     /* html */ `<li><a href="mystery-shopper.html">Para mystery shoppers</a></li>`
+     : ""  
+ }
+
+ hipervinculosAnalista(rolIds) {
+  return rolIds.has(ROL_ANALISTA) ?
+   /* html */ `<li><a href="analista.html">Para analistas</a></li>`
    : ""
  }
 }

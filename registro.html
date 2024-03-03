@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro</title>
+</head>
+
+<body>
+    <h1>Registro de Usuario</h1>
+    
+    <form id="registroForm" onsubmit="submitForm(event)">
+        <div>
+            <label for="cue">CUE:</label>
+            <input type="text" id="cue" name="cue" required>
+        </div>
+        <div>
+            <label for="match">Contraseña:</label>
+            <input type="password" id="match" name="match" required>
+        </div>
+        <div>
+            <label for="confirmarMatch">Confirmar Contraseña:</label>
+            <input type="password" id="confirmarMatch" name="confirmarMatch" required>
+        </div>
+        <div>
+            <label for="rol">Rol:</label>
+            <select id="rol" name="rol" required>
+                <option value="">Seleccionar Rol</option>
+                <option value="mystery_shopper">Mystery Shopper</option>
+                <option value="analista">Analista</option>
+            </select>
+        </div>
+        <button type="submit">Registrarse</button>
+    </form>
+
+    <script>
+        async function submitForm(event) {
+            event.preventDefault();
+
+            const form = event.target;
+            const cue = form.elements.cue.value;
+            const match = form.elements.match.value;
+            const confirmarMatch = form.elements.confirmarMatch.value;
+            const rol = form.elements.rol.value;
+
+            if (match !== confirmarMatch) {
+                alert("Las contraseñas no coinciden.");
+                return;
+            }
+
+            try {
+                const response = await fetch('srv/srvRegistro.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ cue, match, rol })
+                });
+
+                if (!response.ok) {
+                    throw new Error('Error al registrar usuario.');
+                }
+
+                const data = await response.json();
+                alert('Usuario registrado correctamente.');
+                // Redirigir a otra página si es necesario
+                // window.location.href = 'perfil.html';
+            } catch (error) {
+                console.error(error);
+                alert('Error al registrar usuario.');
+            }
+        }
+    </script>
+</body>
+
+</html>
