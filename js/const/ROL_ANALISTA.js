@@ -1,3 +1,3 @@
 export const ANALISTA = 'ANALISTA';
 
-window["ROL_ANALISTA"] = ANALISTA
+window["ROL_ANALISTA"] = ROL_ANALISTA
