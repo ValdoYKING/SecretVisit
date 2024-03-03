@@ -38,10 +38,10 @@ ejecuta(function () {
     // Agrega el rol correspondiente al usuario según el valor recibido del formulario
     switch ($rol) {
         case "Mystery Shopper":
-            $usuarioNuevo->roles = [ROL_MYSTERY_SHOPPER];
+            $usuarioNuevo->roles = ["Mystery Shopper"];
             break;
         case "Analista":
-            $usuarioNuevo->roles = [ROL_ANALISTA];
+            $usuarioNuevo->roles = ["Analista"];
             break;
         default:
             throw new Exception("Rol inválido.");
