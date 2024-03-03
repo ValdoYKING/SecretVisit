@@ -32,7 +32,6 @@ export class MiNav extends HTMLElement {
   const rolIds = sesion.rolIds
   let innerHTML = /* html */ `<li><a href="index.html">Inicio</a></li>`
   innerHTML += this.hipervinculosAdmin(rolIds)
-  innerHTML += this.hipervinculosCliente(rolIds)
   innerHTML += this.hipervinculosMysteryShopper(rolIds)
   innerHTML += this.hipervinculosAnalista(rolIds)
   const cueHtml = htmlentities(cue)
