@@ -2,6 +2,8 @@
 
 require_once __DIR__ . "/../const/ROL_CLIENTE.php";
 require_once __DIR__ . "/../const/ROL_ADMINISTRADOR.php";
+require_once __DIR__ . "/../const/ROL_MYSTERY_SHOPPER.php";
+require_once __DIR__ . "/../const/ROL_ANALISTA.php";
 require_once __DIR__ . "/../modelo/Rol.php";
 require_once __DIR__ . "/../modelo/Usuario.php";
 require_once __DIR__ . "/bdCrea.php";
@@ -28,7 +30,7 @@ class AccesoBd
  {
   return new PDO(
    // cadena de conexión
-   "sqlite:srvaut.db",
+   "sqlite:srvPixel.db",
    // usuario
    null,
    // contraseña
@@ -54,6 +56,18 @@ class AccesoBd
     descripcion: "Realiza compras."
    );
    rolAgrega($cliente);
+
+    $mysteryShopper = new Rol(
+     id: ROL_MYSTERY_SHOPPER,
+     descripcion: "Evalúa la calidad de la atención."
+    );
+    rolAgrega($mysteryShopper);
+
+    $analista = new Rol(
+     id: ROL_ANALISTA,
+     descripcion: "Evalua y crea encuestas"
+    );
+    rolAgrega($analista);
 
    $usuario = usuarioBuscaCue("pepito");
    if (!$usuario) {
