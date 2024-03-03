@@ -19,7 +19,7 @@
 <body onload="ejecuta('srv/srvSesion.php')
   .then(objeto => {
    const sesion = new Sesion(objeto)
-   if (sesion.rolIds.has(ROL_CLIENTE)) {
+   if (sesion.rolIds.has(ROL_ANALISTA)) {
     nav.sesion = sesion
     main.hidden = false
    } else {
