@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width">
+   <script type="module" src="lib/js/ejecuta.js"></script>
+   <script type="module" src="lib/js/muestraError.js"></script>
+   <script type="module" src="./js/custom/mi-nav.js"></script>
+   <script type="module" src="./js/Sesion.js"></script>
+
+
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            clifford: '#da373d',
+          }
+        }
+      }
+    }
+  </script>
+   <title>Creacion de Cuestionario</title>
+</head>
+
+<body onload="ejecuta('srv/srvSesion.php')
+  .then(objeto => {
+   const sesion = new Sesion(objeto)
+   nav.sesion = sesion
+  })
+  .catch(muestraError)">
+
+ <mi-nav id="nav"></mi-nav>
+  <div class="flex flex-row items-center
+      justify-center h-screen">
+
+    <div class="flex flex-col justify-center">
+ <p class="text-2xl mb-10 font-bold text-black uppercase" >Crear un   <span class="text-purple-700">Cuestionario</p>   
+  <div class="container flex flex-col items-center w-full mx-auto" >
+    <label  for="name" class="text-black font-bold mb-2 uppercase text-start"
+      >Seleciones las preguntas</label>
+    <div> 
+    <select name="" id="">
+      <option value="1">Pregunta 1</option>
+      <option value="2">Pregunta 2</option>
+      <option value="3">Pregunta 3</option>
+      <option value="4">Pregunta 4</option>
+      <option value="5">Pregunta 5</option>
+
+      <!-- COnectarlo cn mmla base de datos -->
+      
+    </select>
+    </div>
+
+      <button class="bg-purple-900 text-white px-4 py-2 mt-4 rounded-xl  w-full m-2" id="btnCrearCuestionario"
+        >
+        Crear
+      </button>
+  </div>
+     </div>
+    <h1 class="text-4xl font-bold text-black mb-10 uppercase ml-40">
+      
+    Secret <span class="text-purple-700" >Visit</span>
+    </h1>
+     </div>
+</body>
+
+</html>
