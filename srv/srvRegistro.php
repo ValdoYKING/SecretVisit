@@ -33,7 +33,7 @@ ejecuta(function () {
     }
 
 
-    /* $mysteryShopper = new Rol(
+    $mysteryShopper = new Rol(
         id: ROL_MYSTERY_SHOPPER,
         descripcion: "Evalúa la calidad de la atención."
     );
@@ -41,10 +41,7 @@ ejecuta(function () {
     $analista = new Rol(
         id: ROL_ANALISTA,
         descripcion: "Evalua y crea encuestas"
-    ); */
-
-    $mysteryShopper = new Rol(ROL_MYSTERY_SHOPPER, "Evalúa la calidad de la atención.");
-    $analista = new Rol(ROL_ANALISTA, "Evalua y crea encuestas");
+    );
 
     // Si el usuario no existe, crea un nuevo objeto Usuario con los datos del formulario
     $usuarioNuevo = new Usuario($cue, $match, [], 0);
