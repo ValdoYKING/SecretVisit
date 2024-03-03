@@ -1,0 +1,1 @@
+export const MYSTERY_SHOPPER = 'MYSTERY_SHOPPER';
