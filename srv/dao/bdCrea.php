@@ -92,9 +92,6 @@ $con->exec(
   PREGUNTA TEXT NOT NULL,
   )'
   );
-<<<<<<< Updated upstream
-  
-=======
 
   $con->exec(
     'CREATE TABLE IF NOT EXISTS ENCUESTA (
@@ -133,6 +130,5 @@ $con->exec(
     )'
   );
 
->>>>>>> Stashed changes
 }
 
