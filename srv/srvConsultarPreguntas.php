@@ -1,7 +1,7 @@
 <?php
 
 require_once __DIR__ . "/../lib/php/ejecuta.php";
-require_once __DIR__ . "/../lib/php/consultarPregunta.php";
+require_once __DIR__ . "/dao/consultarPregunta.php";
 
 ejecuta(function (){
   $lista = consultarPregunta();
@@ -14,7 +14,7 @@ ejecuta(function (){
   $render .= 
   '<th> $id</th>
   <td> $pregunta</td>
-  <td> <input type="checkbox"></td> '; 
+  <td> <input type="checkbox"></td>' ; 
   }
 
   return $render;
