@@ -39,12 +39,10 @@
 
       </tr>
     </thead>
-    <tbody>
-      <tr>
-        <th>1</th>
-        <td>¿Cuál es tu nombre?</td>
-        <td> <input type="checkbox"></td>
-      </tr>
+    <tbody onload="ejecuta(fetch('srv/srvConsultarPreguntas.php'))
+    .then(render => muestraInnerHtml(lista, render))
+    .catch(muestraError)">
+  
     </tbody>
 
   </table>
