@@ -11,6 +11,9 @@ require_once __DIR__ . "/usuarioBuscaCue.php";
 require_once __DIR__ . "/usuarioAgrega.php";
 require_once __DIR__ . "/rolConsulta.php";
 require_once __DIR__ . "/rolAgrega.php";
+require_once __DIR__ . "/cuentaPregunta.php";
+
+
 
 class AccesoBd
 {
@@ -63,11 +66,18 @@ class AccesoBd
     );
     rolAgrega($analista);
 
-    $pregunta = new Pregunta(
-      id: 0,
-      pregunta: "¿Qué es PHP?"
-    );
-    preguntaAgregar($pregunta);
+    $preguntas = cuentaPregunta();
+    if($preguntas === 0){
+      preguntaAgregar(
+        new Pregunta(
+          pregunta: "¿Qué calificacion le das al servicio de la compañia?")
+      );
+      preguntaAgregar(
+        new Pregunta(
+          pregunta: "¿Qué calificacion das a los precios de los productos?"
+        )
+      );
+    }
 
    $usuario = usuarioBuscaCue("adminPixel");
     if (!$usuario) {
