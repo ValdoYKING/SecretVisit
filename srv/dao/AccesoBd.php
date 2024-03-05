@@ -63,11 +63,11 @@ class AccesoBd
     );
     rolAgrega($analista);
 
-    $pregunta = new Pregunta(
+    /* $pregunta = new Pregunta(
       id: 0,
       pregunta: "¿Qué es PHP?"
     ):
-      preuntaAgregar($con, $pregunta);
+      preuntaAgregar($con, $pregunta); */
 
    $usuario = usuarioBuscaCue("adminPixel");
     if (!$usuario) {

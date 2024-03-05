@@ -2,81 +2,99 @@
 <html lang="es">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width">
-  <script type="module" src="lib/js/ejecuta.js"></script>
-  <script type="module" src="lib/js/muestraError.js"></script>
-  <script type="module" src="./js/custom/mi-nav.js"></script>
-  <script type="module" src="./js/Sesion.js"></script>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            clifford: '#da373d',
-          }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Registarme</title>
+    <script type="module" src="lib/js/ejecuta.js"></script>
+    <script type="module" src="lib/js/muestraError.js"></script>
+    <script type="module" src="./js/custom/mi-nav.js"></script>
+    <script type="module" src="./js/Sesion.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Aquí puedes agregar estilos adicionales si es necesario */
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        clifford: '#da373d',
+                    }
+                }
+            }
         }
-      }
-    }
-  </script>
-  <title>Registarme</title>
+    </script>
 </head>
-
 <body onload="ejecuta('srv/srvSesion.php')
   .then(objeto => {
    const sesion = new Sesion(objeto)
-   nav.sesion = sesion
+   if (sesion.cue === '') {
+    nav.sesion = sesion
+    registro.hidden = false
+   } else {
+    location.href = 'perfil.html'
+   }
   })
   .catch(muestraError)">
 
-  <mi-nav id="nav"></mi-nav>
-  <div class="flex flex-col items-center
-    justify-center  h-screen
-    sm:flex-row-reverse sm:justify-around sm:items-center mx-10">
-    <h1 class="text-5xl font-bold text-black mb-10 uppercase "> Secret <span class="text-purple-700">Visit</span>
-    </h1>
-    <div class="border rounded-lg shadow-xl  w-full  mx-10 w-1/2 sm:w-full  md:w-1/2 lg:w-1/2  p-10">
-      <form class="container flex flex-col items-start justify-start  md:w-full mx-auto  sm:w-full ">
-        <p class="text-4xl mb-10 font-bold text-black uppercase">Crear <span class="text-purple-700">Cuenta</p>
-        <label for="name" class="text-black font-bold mb-2 uppercase text-start ">Ingresa tu nombre</label>
-        <input type="text" class="bg-purple-100 border-2 bg-purple-600 rounded-lg p-2 mb-10 text-center text-white  focus:outline focus:ring-2 focus:ring-purple-600 focus:border-white
-        w-full m-2" placeholder="Ingresa tu nombre" id="name" name="name" required>
-        </input>
+    <mi-nav id="nav"></mi-nav>
+    <div class="flex flex-col items-center justify-center h-screen sm:flex-row-reverse sm:justify-around sm:items-center mx-10">
+        <h1 class="text-5xl font-bold text-black mb-10 uppercase "> Secret <span class="text-purple-700">Visit</span>
+        </h1>
+        <div class="border rounded-lg shadow-xl w-full mx-10 w-1/2 sm:w-full md:w-1/2 lg:w-1/2 p-10">
+            <form id="registro" hidden onsubmit="submitForma('srv/srvRegistro.php', event, registro)
+            .then(json => location.href = 'perfil.html')
+            .catch(muestraError)" class="container flex flex-col items-start justify-start md:w-full mx-auto sm:w-full ">
+                <p class="text-4xl mb-10 font-bold text-black uppercase">Crear <span class="text-purple-700">Cuenta</span></p>
+                <label for="name" class="text-black font-bold mb-2 uppercase text-start ">Ingresa tu nombre</label>
+                <input type="text" class="bg-purple-100 border-2 bg-purple-600 rounded-lg p-2 mb-10 text-center text-white focus:outline focus:ring-2 focus:ring-purple-600 focus:border-white w-full m-2" placeholder="Ingresa tu nombre" id="name" name="name" required>
+                <label for="email" class="text-black font-bold mb-2 uppercase text-start">Ingresa tu correo electronico</label>
+                <input type="text" class="bg-purple-100 border-2 focus:outline focus:ring-2 focus:ring-purple-600 focus:border-white bg-purple-600 rounded-lg p-2 mb-10 text-center text-white w-full m-2" placeholder="Correo electronico" id="email" name="email">
+                <label class="text-black font-bold mb-2 uppercase text-start" for="password">Ingresa tu contraseña </label>
+                <input type="password" placeholder="Contraseña" class="bg-purple-600 text-white border-2 text-center focus:outline focus:ring-2 focus:ring-purple-600 focus:border-white border-purple-500 rounded-lg p-2 mb-10 w-full m-2" id="password" name="match" required>
+                <label class="text-black font-bold mb-2 uppercase text-start" for="confirmPassword">Repite tu contraseña</label>
+                <input type="password" placeholder="Repite tu Contraseña" class="bg-purple-600 text-white border-2 text-center focus:outline focus:ring-2 focus:ring-purple-600 focus:border-white border-purple-500 rounded-lg p-2 mb-10 w-full m-2" id="confirmPassword" name="confirmarMatch" required>
+                <label>
+                  Rol
+                  <select name="rol">
+                      <option value="">Seleccionar Rol</option>
+                      <option value="Mystery Shopper">Mystery Shopper</option>
+                      <option value="Analista">Analista</option>
+                  </select>
+                </label>
+                <button type="submit" class="bg-purple-600 text-white px-4 py-2 mt-4 rounded-xl mx-auto hover:text-purple-600 hover:bg-white hover:border-purple-300 border-2 focus:outline focus:ring-2 focus:ring-purple-600 focus:border-white w-1/2 m-2" id="btnIniciarSesion">
+                  Registrarse
+                </button>
+                <div class="flex flex-col items-center justify-center text-center text-sm mt-2 items-center mx-auto">
+                    <p class="text-black">¿Ya tienes una cuenta?</p>
+                    <a href="login.html" class="text-purple-700">Inicia sesión</a>
+                </div>
+            </form>
 
-        <label for="email" class="text-black font-bold mb-2 uppercase text-start">Ingresa tu correo electronico</label>
-        <input type="text" class="bg-purple-100 border-2 
-        focus:outline focus:ring-2 focus:ring-purple-600 focus:border-white
-        bg-purple-600 rounded-lg p-2 mb-10 text-center text-white 
-        w-full m-2" placeholder="Correo electronico" id="email" name="email" required>
-        </input>
-        <label class="text-black font-bold mb-2 uppercase text-start" for="password">Ingresa tu contraseña </label>
-        <input type="text" placeholder="Contraseña" class="bg-purple-600 text-white border-2
-          text-center    focus:outline focus:ring-2 focus:ring-purple-600 focus:border-white
-        border-purple-500 rounded-lg p-2 mb-10 w-full m-2" id="password" name="password" required>
-
-        <label class="text-black font-bold mb-2 uppercase text-start" for="password">
-          Repite tu contraseña</label>
-        <input type="text" placeholder="Repite tu Contraseña" class="bg-purple-600 text-white border-2
-          text-center    focus:outline focus:ring-2 focus:ring-purple-600 focus:border-white
-        border-purple-500 rounded-lg p-2 mb-10 w-full m-2" id="password" name="password" required>
-
-        <button class="bg-purple-600 text-white px-4 py-2 mt-4 rounded-xl  mx-auto
-             hover:text-purple-600 hover:bg-white hover:border-purple-300 border-2
-              focus:outline focus:ring-2 focus:ring-purple-600 focus:border-white
-            w-1/2 m-2" id="btnIniciarSesion">
-          Entrar
-        </button>
-        <div class="flex flex-col items-center justify-center
-        text-center text-sm mt-2 items-center mx-auto">
-          <p class="text-black">¿Ya tienes una cuenta?</p>
-          <a href="login.html" class="text-purple-700">Inicia sesión</a>
+            <p>
+              <a id="login" hidden href="login.html">Iniciar sesión</a>
+              <button type="button" id="logout" hidden onclick="ejecuta('srv/srvLogout.php')
+          .then(json => location.reload())
+          .catch(muestraError)">
+                  Terminar sesión
+              </button>
+          </p>
+      
+          <script>
+              // Función para verificar si mostrar el formulario de registro
+              function mostrarFormularioRegistro() {
+                  const sesion = JSON.parse(localStorage.getItem('sesion'));
+                  if (!sesion || !sesion.cue) {
+                      document.getElementById('registro').hidden = false;
+                  }
+              }
+      
+              // Llamar a la función al cargar la página
+              mostrarFormularioRegistro();
+          </script>
         </div>
-      </form>
     </div>
-  </div>
 
-  </div>
 </body>
 
 </html>

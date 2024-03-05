@@ -17,6 +17,7 @@ ejecuta(function () {
 
     $cue = trim(leeTexto("cue"));
     $match = leeTexto("match");
+    $correo = leeTexto("correo");
     $confirmarMatch = leeTexto("confirmarMatch");
     $rol = leeTexto("rol");
 
@@ -44,7 +45,8 @@ ejecuta(function () {
     );
 
     // Si el usuario no existe, crea un nuevo objeto Usuario con los datos del formulario
-    $usuarioNuevo = new Usuario($cue, $match, [], 0);
+    /* $usuarioNuevo = new Usuario($cue, $match, [], 0); */
+    $usuarioNuevo = new Usuario($cue, $match, [], $correo, 0);
 
     // Agrega el rol correspondiente al usuario según el valor recibido del formulario
 

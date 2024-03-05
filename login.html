@@ -26,9 +26,7 @@
 
  <mi-nav id="nav"></mi-nav>
 
- <h1>Iniciar Sesión</h1>
-
- <form id="login" hidden onsubmit="submitForma('srv/srvLogin.php', event, login)
+ <form id="login" onsubmit="submitForma('srv/srvLogin.php', event, login)
    .then(json => location.href = 'perfil.html')
    .catch(muestraError)">
 

@@ -11,12 +11,13 @@ function usuarioAgrega(Usuario $modelo)
  $con->beginTransaction();
  $stmt = $con->prepare(
   "INSERT INTO USUARIO
-    (USU_CUE, USU_MATCH)
+    (USU_CUE, USU_MATCH,USU_CORREO)
    VALUES
     (:cue, :match)"
  );
  $stmt->execute([
   ":cue" => $modelo->cue,
+  ":correo" => $modelo->correo,
   ":match" => password_hash($modelo->match, PASSWORD_DEFAULT)
  ]);
  /* Si usas una secuencia para generar el id,
