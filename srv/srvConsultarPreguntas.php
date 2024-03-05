@@ -11,6 +11,11 @@ ejecuta(function (){
     $id = htmlentities($modelo->id);
     $pregunta = htmlentities($modelo->pregunta);
 
-  $ren
+  $render .= 
+  '<th> $id</th>
+  <td> $pregunta</td>
+  <td> <input type="checkbox"></td> '; 
   }
-}
+
+  return $render;
+} );
