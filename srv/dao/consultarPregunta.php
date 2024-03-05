@@ -4,8 +4,8 @@ require_once __DIR__ . "/../../lib/php/recibeFetchAll.php";
 require_once __DIR__ . "/../modelo/Pregunta.php";
 require_once __DIR__ . "/AccesoBd.php";
 
-/** @return Rol[] */
-function consultarPregunta()
+/** @return Preguntas[] */
+function consultarPregunta():array
 {
  $con = AccesoBd::getCon();
  $stmt = $con->query(
