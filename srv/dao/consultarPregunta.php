@@ -11,7 +11,7 @@ function consultarPregunta():array
  $stmt = $con->query(
   "SELECT
     PRE_ID
-    PRE_RESPUESTA
+    PRE_PREGUNTA
    FROM PREGUNTA
    ORDER BY PRE_ID"
  );
