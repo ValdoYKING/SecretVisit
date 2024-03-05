@@ -4,7 +4,7 @@ require_once __DIR__ . "/../../lib/php/recibeFetchAll.php";
 require_once __DIR__ . "/../modelo/Pregunta.php";
 require_once __DIR__ . "/AccesoBd.php";
 
-/** @return Preguntas[] */
+/** @return Pregunta[] */
 function consultarPregunta():array
 {
  $con = AccesoBd::getCon();
@@ -17,7 +17,7 @@ function consultarPregunta():array
  );
  $resultado = $stmt->fetchAll(
   PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE,
-  Rol::class
+  Pregunta::class
  );
  return recibeFetchAll($resultado);
 }

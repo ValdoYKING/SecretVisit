@@ -6,12 +6,14 @@ require_once __DIR__ . "/../const/ROL_MYSTERY_SHOPPER.php";
 require_once __DIR__ . "/../const/ROL_ANALISTA.php";
 require_once __DIR__ . "/../modelo/Rol.php";
 require_once __DIR__ . "/../modelo/Usuario.php";
+require_once __DIR__ . "/../modelo/Pregunta.php";
 require_once __DIR__ . "/bdCrea.php";
 require_once __DIR__ . "/usuarioBuscaCue.php";
 require_once __DIR__ . "/usuarioAgrega.php";
 require_once __DIR__ . "/rolConsulta.php";
 require_once __DIR__ . "/rolAgrega.php";
 require_once __DIR__ . "/cuentaPregunta.php";
+require_once __DIR__ . "/agregarPregunta.php";
 
 
 
@@ -68,11 +70,11 @@ class AccesoBd
 
     $preguntas = cuentaPregunta();
     if($preguntas === 0){
-      preguntaAgregar(
+      agregarPregunta(
         new Pregunta(
           pregunta: "¿Qué calificacion le das al servicio de la compañia?")
       );
-      preguntaAgregar(
+      agregarPregunta(
         new Pregunta(
           pregunta: "¿Qué calificacion das a los precios de los productos?"
         )
