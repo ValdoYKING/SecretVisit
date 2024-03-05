@@ -66,8 +66,8 @@ class AccesoBd
     $pregunta = new Pregunta(
       id: 0,
       pregunta: "¿Qué es PHP?"
-    ):
-      preuntaAgregar($con, $pregunta);
+    );
+    preguntaAgregar($pregunta);
 
    $usuario = usuarioBuscaCue("adminPixel");
     if (!$usuario) {
