@@ -12,9 +12,9 @@ ejecuta(function (){
     $pregunta = htmlentities($modelo->PRE_PREGUNTA);
 
   $render .= 
-  '<th> $id</th>
-  <td> $pregunta</td>
-  <td> <input type="checkbox"></td>' ; 
+  "<th> {$id} </th>
+  <td> {$pregunta} </td>
+  <td> <input type='checkbox'></td>" ; 
   }
 
   return $render;
