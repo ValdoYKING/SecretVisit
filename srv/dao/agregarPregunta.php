@@ -22,4 +22,5 @@ function agregarPregunta(Pregunta $modelo)
   * pasa como parámetro de lastInsertId el
   * nombre de dicha secuencia. */
   $modelo->id = $con->lastInsertId();
+  $con->commit();
 }

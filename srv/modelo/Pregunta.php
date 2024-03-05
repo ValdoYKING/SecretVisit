@@ -13,8 +13,6 @@ class Pregunta
 
     public function valida()
     {
-      if ($this->id === 0)
-        throw new Exception("Falta el id");
       if ($this->pregunta === "")
         throw new Exception("Faltala la pregunta.");
     }

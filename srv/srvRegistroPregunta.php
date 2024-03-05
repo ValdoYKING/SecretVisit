@@ -10,7 +10,7 @@ ejecuta(function () {
     $pre = trim(leeTexto("apregunta"));
 
     // crea un nuevo objeto Usuario con los datos del formulario
-    $pregunNuevo = new Pregunta($pre,0);
+    $pregunNuevo = new Pregunta(0,$pre);
 
 
 
