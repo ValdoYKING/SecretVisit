@@ -64,12 +64,5 @@ function bdCrea(PDO $con)
             FOREIGN KEY (PRE_ID) REFERENCES PREGUNTA(PRE_ID)
         )'
     );
-
-    $con->exec(
-        'CREATE TABLE IF NOT EXISTS PREGUNTAS (
-            ID_PREGUNTA INTEGER PRIMARY KEY,
-            PREGUNTA TEXT NOT NULL
-        )'
-    );
 }
 ?>
