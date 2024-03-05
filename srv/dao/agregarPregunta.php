@@ -11,7 +11,7 @@ function agregarPregunta(Preguntas $modelo)
  $con->beginTransaction();
  $stmt = $con->prepare(
   "INSERT INTO PREGUNTA
-    (PRE_RESPUESTA)
+    (PRE_PREGUNTA)
    VALUES
     (:apregunta)"
  );
