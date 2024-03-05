@@ -23,7 +23,7 @@
 
   <div>
       <h1>Crear Cuestionario</h1>
-  <form action="" method="post">
+  <form >
     <div>  
     <div>
       Numero de preguntas: <input type="number" id="numPreguntas" name="numPreguntas" min="1">
@@ -59,29 +59,23 @@
 
 
 
-  <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
+
+ 
         <div class="modal-header">
           <h1 class="modal-title fs-5" id="exampleModalLabel">Que pregunta deseas ingresar</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form id="apregunta" onsubmit="submitForma('srv/srvRegistroPregunta.php', event, Cpregunta)
-          .then(json => location.href = 'creaCuestionario.html')
+          <form id="apregunta" onsubmit="submitForma('srv/srvRegistroPregunta.php', event, apregunta)
+          .then(modelo => location.href = 'creaCuestionario.html')
             .catch(muestraError)">
             <label>Pregunta #</label>
             <input type="text" name="apregunta">
           </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-primary">Agregar Pregunta </button>
+          <button type="submit">Agregar Pregunta </button>
         </div>
-      </div>
-    </div>
-  </div>
+
 
 
 </body>
