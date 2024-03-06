@@ -24,7 +24,7 @@
       }
     }
   </script>
-  <title>Autenticación</title>
+  <title>Inicio</title>
 </head>
 
 <!-- <body onload="ejecuta('srv/srvSesion.php')
@@ -34,278 +34,198 @@
   })
   .catch(muestraError)"> -->
 
-<body>
+<body class="">
   <mi-nav id="nav"></mi-nav>
-  <button data-drawer-target="default-sidebar" data-drawer-toggle="default-sidebar" aria-controls="default-sidebar"
-    type="button"
-    class="inline-flex items-center p-2 mt-2 ms-3 text-sm text-white-500 rounded-lg sm:hidden hover:bg-white-100 focus:outline-none focus:ring-2 focus:ring-white-200 dark:text-white-400 dark:hover:bg-white-700 dark:focus:ring-white-500">
-    <span class="sr-only">Open sidebar</span>
-    <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-      <path clip-rule="evenodd" fill-rule="evenodd"
-        d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z">
-      </path>
-    </svg>
-  </button>
-
-  <aside id="default-sidebar"
-    class="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0"
-    aria-label="Sidebar">
-    <div class="h-full px-3 py-4 overflow-y-auto bg-purple-500
- bg-purple-700">
-      <ul class="space-y-2 font-medium">
-        <li>
-          <a href="#"
-            class="flex items-center p-2 text-white-900 rounded-lg text-white hover:bg-white-100 dark:hover:bg-white-700 group">
-            <span class="ms-3 text-4xl">Secret Visit</span>
-          </a>
-        </li>
-        <li>
-          <a href="#"
-            class="flex items-center p-2 text-white-900 rounded-lg text-white hover:bg-white-100 dark:hover:bg-white-700 group">
-            <svg
-              class="flex-shrink-0 w-5 h-5 text-white-500 transition duration-75 dark:text-white-400 group-hover:text-white-900 dark:group-hover:text-white"
-              aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 18">
-              <path
-                d="M6.143 0H1.857A1.857 1.857 0 0 0 0 1.857v4.286C0 7.169.831 8 1.857 8h4.286A1.857 1.857 0 0 0 8 6.143V1.857A1.857 1.857 0 0 0 6.143 0Zm10 0h-4.286A1.857 1.857 0 0 0 10 1.857v4.286C10 7.169 10.831 8 11.857 8h4.286A1.857 1.857 0 0 0 18 6.143V1.857A1.857 1.857 0 0 0 16.143 0Zm-10 10H1.857A1.857 1.857 0 0 0 0 11.857v4.286C0 17.169.831 18 1.857 18h4.286A1.857 1.857 0 0 0 8 16.143v-4.286A1.857 1.857 0 0 0 6.143 10Zm10 0h-4.286A1.857 1.857 0 0 0 10 11.857v4.286c0 1.026.831 1.857 1.857 1.857h4.286A1.857 1.857 0 0 0 18 16.143v-4.286A1.857 1.857 0 0 0 16.143 10Z" />
-            </svg>
-            <span class="flex-1 ms-3 white space-nowrap">Inicio</span>
-
-          </a>
-        </li>
-        <li>
-          <a href="#"
-            class="flex items-center p-2 text-white-900 rounded-lg text-white hover:bg-white-100 hover:bg-white-700 group">
-            <svg
-              class="flex-shrink-0 w-5 h-5 text-white-500 transition duration-75 text-white-400 group-hover:text-white-900 group-hover:text-white"
-              aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-              <path
-                d="m17.418 3.623-.018-.008a6.713 6.713 0 0 0-2.4-.569V2h1a1 1 0 1 0 0-2h-2a1 1 0 0 0-1 1v2H9.89A6.977 6.977 0 0 1 12 8v5h-2V8A5 5 0 1 0 0 8v6a1 1 0 0 0 1 1h8v4a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-4h6a1 1 0 0 0 1-1V8a5 5 0 0 0-2.582-4.377ZM6 12H4a1 1 0 0 1 0-2h2a1 1 0 0 1 0 2Z" />
-            </svg>
-            <span class="flex-1 ms-3 whitespace-nowrap">Notificaciones</span>
-
-          </a>
-        </li>
-        <li>
-          <a href="#"
-            class="flex items-center p-2 text-white-900 rounded-lg text-white hover:bg-white-100 hover:bg-white-700 group">
-            <svg
-              class="flex-shrink-0 w-5 h-5 text-white-500 transition duration-75 text-white-400 group-hover:text-white-900 group-hover:text-white"
-              aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 18">
-              <path
-                d="M14 2a3.963 3.963 0 0 0-1.4.267 6.439 6.439 0 0 1-1.331 6.638A4 4 0 1 0 14 2Zm1 9h-1.264A6.957 6.957 0 0 1 15 15v2a2.97 2.97 0 0 1-.184 1H19a1 1 0 0 0 1-1v-1a5.006 5.006 0 0 0-5-5ZM6.5 9a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9ZM8 10H5a5.006 5.006 0 0 0-5 5v2a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-2a5.006 5.006 0 0 0-5-5Z" />
-            </svg>
-            <span class="flex-1 ms-3 whitespace-nowrap">Mi perfil</span>
-          </a>
-        </li>
-        <li>
-          <a href="#"
-            class="flex items-center p-2 text-white-900 rounded-lg text-white hover:bg-white-100 hover:bg-white-700 group">
-            <svg
-              class="flex-shrink-0 w-5 h-5 text-white-500 transition duration-75 text-white-400 group-hover:text-white-900 group-hover:text-white"
-              aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 20">
-              <path
-                d="M17 5.923A1 1 0 0 0 16 5h-3V4a4 4 0 1 0-8 0v1H2a1 1 0 0 0-1 .923L.086 17.846A2 2 0 0 0 2.08 20h13.84a2 2 0 0 0 1.994-2.153L17 5.923ZM7 9a1 1 0 0 1-2 0V7h2v2Zm0-5a2 2 0 1 1 4 0v1H7V4Zm6 5a1 1 0 1 1-2 0V7h2v2Z" />
-            </svg>
-            <span class="flex-1 ms-3 whitespace-nowrap">Mis recompensas</span>
-          </a>
-        </li>
-        <li>
-          <a href="#"
-            class="flex items-center p-2 text-white-900 rounded-lg text-white hover:bg-white-100 hover:bg-white-700 group">
-            <svg
-              class="flex-shrink-0 w-5 h-5 text-white-500 transition duration-75 text-white-400 group-hover:text-white-900 group-hover:text-white"
-              aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 16">
-              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M1 8h11m0 0L8 4m4 4-4 4m4-11h3a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-3" />
-            </svg>
-            <span class="flex-1 ms-3 whitespace-nowrap">Sign In</span>
-          </a>
-        </li>
-        <li>
-          <a href="#"
-            class="flex items-center p-2 text-white-900 rounded-lg text-white hover:bg-white-100 hover:bg-white-700 group">
-            <svg
-              class="flex-shrink-0 w-5 h-5 text-white-500 transition duration-75 text-white-400 group-hover:text-white-900 group-hover:text-white"
-              aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-              <path d="M5 5V.13a2.96 2.96 0 0 0-1.293.749L.879 3.707A2.96 2.96 0 0 0 .13 5H5Z" />
-              <path
-                d="M6.737 11.061a2.961 2.961 0 0 1 .81-1.515l6.117-6.116A4.839 4.839 0 0 1 16 2.141V2a1.97 1.97 0 0 0-1.933-2H7v5a2 2 0 0 1-2 2H0v11a1.969 1.969 0 0 0 1.933 2h12.134A1.97 1.97 0 0 0 16 18v-3.093l-1.546 1.546c-.413.413-.94.695-1.513.81l-3.4.679a2.947 2.947 0 0 1-1.85-.227 2.96 2.96 0 0 1-1.635-3.257l.681-3.397Z" />
-              <path
-                d="M8.961 16a.93.93 0 0 0 .189-.019l3.4-.679a.961.961 0 0 0 .49-.263l6.118-6.117a2.884 2.884 0 0 0-4.079-4.078l-6.117 6.117a.96.96 0 0 0-.263.491l-.679 3.4A.961.961 0 0 0 8.961 16Zm7.477-9.8a.958.958 0 0 1 .68-.281.961.961 0 0 1 .682 1.644l-.315.315-1.36-1.36.313-.318Zm-5.911 5.911 4.236-4.236 1.359 1.359-4.236 4.237-1.7.339.341-1.699Z" />
-            </svg>
-            <span class="flex-1 ms-3 whitespace-nowrap">Sign Up</span>
-          </a>
-        </li>
-      </ul>
-    </div>
-  </aside>
-
-  <div class="p-4 sm:ml-64">
-    <div class="p-4 border-white-200  border-dashed rounded-lg dark:border-white-700 shadow-xl my-2">
-      <p class="text-4xl text-white-400 dark:text-white-500 uppercase font-bold">
-        Crea una nueva <span class="text-white-500 text-purple-500">visita secreta</span>
+ 
+  <hr class="border-t-2 w-3/4 border-gray-200 mx-auto ">
+  <div class="container mx-auto w-1/2  mt-20">
+    <h1 class="text-8xl uppercase font-bold text-start">
+      Secret <span class="text-purple-500 ">Visit</span>
+      <p class="text-3xl text-end text-semibold ">
+        Manten tu producto a la altura de tus clientes
       </p>
-      <form id="form" class="mt-4" action="srv/srcCompany.php" method="POST">
-        <div class="justify-between mt-4 ">
-          <div class="grid grid-cols-4 gap-10 ">
-            <div class="w-full block ">
-              <label for="name" class="block text-sm font-medium text-white-700 dark:text-white-200">Nombre de la
-                empresa</label>
-              <input type="text" name="name" id="name"
-                class="mt-1 focus:ring-white-500 focus:border-white-500 
-                bg-purple-500 h-10 block w-full text-white shadow-sm sm:text-sm border-white-300 rounded-md w-full required ">
-            </div>
-            <div>
-              <label for="numberQ" class="block text-sm font-medium text-white-700 dark:text-white-200">Numero de
-                preguntas</label>
-              <input type="number" name="numberQ" id="numberQ"
-                class="mt-1 focus:ring-white-500 focus:border-white-500 
-                      text-white    bg-purple-500 h-10 block w-full shadow-sm sm:text-sm border-white-300 rounded-md w-full">
-            </div>
-            <div class="">
-              <label for="reward" class="block text-sm font-medium text-white-700 dark:text-white-200">Ingrese la
-                recompena en %</label>
-              <input type="number" name="reward" id="reward"
-                class="mt-1 focus:ring-white-500 focus:border-white-500 
-                   text-white bg-purple-500 h-10 block w-full shadow-sm sm:text-sm border-white-300 rounded-md w-full m-4">
-            </div>
+    </h1>
+    <hr class="border-t-4 w-3/4 border-purple-400 mx-auto ">
+  </div>
+  <div class="grid grid-cols-1 mt-10 w-3/4 mx-auto sm:grid-cols-1 md:grid-cols-3">
+    <div class="flex flex-col  col-span-2  text-start w-full mx-auto ">
+      <img
+        src="https://empresas.infoempleo.com/hrtrends/media/2023/03/Empleada-contestando-cuestionario-de-analisis-de-puestos-de-trabajo.jpg"
+        alt="imagen de inicio de sesion" class="w-3/4 mx-auto rounded-md">
+      <p class="flex flex-col text-start w-full mx-auto items-center justify-center">Desde 2024
+      </p>
+    </div>
+    <div class="flex flex-col text-start w-full mx-auto items-center justify-center ">Comienza
+      con nosotros y mantén tu producto a la altura de tus clientes a través de una experiencia única y
+      personalizada.
+      </p>
+      <div class="flex flex-row  items-center justify-center">
+        <button class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded "
+          onclick="location.href='login.html'">¡Comienza ahora!</button>
+        <img src="./src/assets/circulo-de-flecha.png" alt="flecha" class="w-1/6 
+          text-purple-500  rounded-md">
+      </div>
+    </div>
 
-            <div>
-              <label for="info" class="block text-sm font-medium text-white-700 dark:text-white-200">Información
-                adicional</label>
-              <input type="text" name="info" id="info"
-                class="mt-1 focus:ring-white-500 focus:border-white-500 
-               text-white               bg-purple-500 h-10 block w-full shadow-sm sm:text-sm border-white-300 rounded-md w-full">
-            </div>
+  </div>
 
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+    <path fill="#a855f7" fill-opacity="1"
+      d="M0,288L48,272C96,256,192,224,288,197.3C384,171,480,149,576,165.3C672,181,768,235,864,250.7C960,267,1056,245,1152,250.7C1248,256,1344,288,1392,304L1440,320L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z">
+    </path>
+  </svg>
 
+  <div class="flex flex-col sm:flex-col  md:flex-row items-center justify-center container mx-auto my-10  p-8 ">
+    <img src="./src/assets/empresa1.jpeg" alt="empresa1" class="w-6/6 h-60 rounded-lg mx-4">
+    <div class="flex flex-col items-center text-start w-full mx-4">
+      <h2 class="text-3xl font-bold">¿Por qué elegirnos?</h2>
+      <p class="text-start  text-justify">
+        Somos una empresa que se dedica a la creación de experiencias únicas y
+        personalizadas para tus clientes. Nuestro objetivo es que tu producto se mantenga a la altura de tus
+        clientes y que puedas ofrecerles una experiencia única y personalizada.
+      </p>
+
+    </div>
+    <img src="./src/assets/empresa2.jpeg" alt="empresa2" class="w-full  h-60 rounded-lg mx-4">
+  </div>
+  <div class="grid grid-cols-1 mt-10 w-3/4 mx-auto sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3 space-y-8 mt-20">
+    <a href="#"
+      class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+      <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">InnovateTech Solutions</h5>
+      <p class="font-normal text-gray-700 dark:text-gray-400">Experiencia única: "Contraté los servicios de esta empresa
+        de mystery shopper y tuve una experiencia única. Su equipo
+        profesional se sumergió en el papel de clientes anónimos de manera magistral, brindándome valiosas perspectivas
+        sobre la
+        calidad del servicio al cliente en mi negocio. ¡Altamente recomendado!".</p>
+      <span class="text-sm font-semibold text-gray-900 dark:text-gray-200">- John Doe, CEO</span>
+    </a>
+
+    <a href="#"
+      class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+      <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">EcoVista Ventures</h5>
+      <p class="font-normal text-gray-700 dark:text-gray-400">"La atención a los detalles de esta empresa de mystery
+        shopper es impresionante. Sus informes detallados incluyen
+        observaciones minuciosas sobre la presentación del personal, la limpieza del lugar y la eficiencia operativa.
+        Estos
+        datos han sido fundamentales para mejorar nuestra operación."</p>
+    </a>
+    <a href="#"
+      class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+
+      <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">StellarCraft Designs</h5>
+      <p class="font-normal text-gray-700 dark:text-gray-400">"Lo que más aprecio de esta empresa es su imparcialidad.
+        Sus evaluaciones son justas y objetivas, proporcionando una
+        visión realista de la experiencia del cliente. Esto nos ha ayudado a identificar áreas de mejora sin sesgos ni
+        prejuicios.".</p>
+      <span class="text-sm font-semibold text-gray-900 dark:text-gray-200">- Jane Smith, Gerente de Operaciones</span>
+    </a>
+    <a href="#"
+      class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+
+      <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">QuantumCatalyst Innovations</h5>
+      <p class="font-normal text-gray-700 dark:text-gray-400">"En un mercado en constante cambio, esta empresa de
+        mystery shopper se destaca por su adaptabilidad y flexibilidad.
+        Pueden ajustar sus evaluaciones según nuestras necesidades específicas, lo cual es invaluable para abordar áreas
+        clave
+        de desarrollo.".</p>
+    </a>
+    <a href="#"
+      class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+      <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+        HarmonyGlobe Enterprises
+      </h5>
+      <p class="font-normal text-gray-700 dark:text-gray-400">"La retroalimentación proporcionada por esta empresa no
+        solo señala áreas de mejora, sino que también ofrece soluciones
+        constructivas. Nos han brindado sugerencias prácticas que hemos implementado con éxito, mejorando
+        significativamente
+        nuestra calidad de servicio.".
+        <span class="text-sm font-semibold text-gray-900 dark:text-gray-200">- Sarah Johnson, Gerente de Ventas</span>
+      </p>
+
+    </a>
+    <a href="#"
+      class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+
+      <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">SereneWave Solutions
+      </h5>
+      <p class="font-normal text-gray-700 dark:text-gray-400">"La empresa de mystery shopper ha demostrado un alto nivel
+        de confidencialidad y ética profesional en cada interacción.
+        Su capacidad para realizar evaluaciones de incógnito sin comprometer la integridad del proceso ha sido esencial
+        para
+        construir una relación de confianza a largo plazo.".
+        <span class="text-sm font-semibold text-gray-900 dark:text-gray-200">
+          <br> - Michael Brown, Gerente de Operaciones</span>
+      </p>
+    </a>
+  </div>
+
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+    <path fill="#a855f7" fill-opacity="1"
+      d="M0,160L0,256L240,256L240,160L480,160L480,128L720,128L720,32L960,32L960,192L1200,192L1200,160L1440,160L1440,320L1200,320L1200,320L960,320L960,320L720,320L720,320L480,320L480,320L240,320L240,320L0,320L0,320Z">
+    </path>
+  </svg>
+  <div class="w-full  my-20 h-40">
+    <h2 class="text-3xl font-bold text-center my-4">Algunas empresas que confían en nosotros</h2>
+    <div class="flex flex-row items-center justify-center">
+      <img src="https://static-cse.canva.com/blob/951768/1650logotiposqueteinspiraran.png" alt="instagram"
+        class="w-1/6 mx-4">
+      <img src="https://i.pinimg.com/236x/9a/a6/f2/9aa6f25b59f8345fa9ed3a38d8e324f7.jpg" alt="facebook"
+        class="w-1/6 mx-4">
+      <img src="https://cdn.shopify.com/shopifycloud/hatchful_web_two/bundles/0d70200090b21d6e0d3fde7eb894b303.png"
+        alt="twitter" class="w-1/6 mx-4">
+      <img src="https://cdn.pixabay.com/photo/2012/04/23/16/45/flag-38996_1280.png" alt="linkedin" class="w-1/6 mx-4">
+    </div>
+  </div>
+  <footer class="bg-white mt-60 ">
+    <div class="mx-auto bg-purple-200 px-6 py-2">
+      <div class="flex flex-col items-center">
+        <div class="flex flex-col md:flex-row md:justify-between">
+          <div class="flex-1 min-w-1/2">
+            <a href="#" class="text-xl font-bold text-gray-700 md:text-2xl uppercase">Secret<span
+                class="text-purple-500">Visit</span></a>
+            <p class="mt-2 text-sm text-gray-500">Mantén tu producto a la altura de tus clientes</p>
+          </div>
+          <div class="flex-1">
+            <p class="text-xl font-bold text-gray-700 md:text-2xl">Enlaces</p>
+            <ul class="mt-2 text-gray-600">
+              <li class="mt-2">Inicio</li>
+              <li class="mt-2">Nosotros</li>
+              <li class="mt-2">Servicios</li>
+              <li class="mt-2">Registro</li>
+              <li class="mt-2">Iniciar Sesión</li>
+            </ul>
+          </div>
+          <div class="flex-1">
+            <p class="text-xl font-bold text-gray-700 md:text-2xl">Contacto</p>
+            <ul class="mt-2 text-gray-600">
+              <li class="mt-2">
+                <p>
+                  <i class="fas fa-envelope"></i>
+                  <span class="ml-2">
+
+                    <a href="mailto:
+                    secret@email.com">
+                  </p>
+                </span>
+              </li>
+              <li class="mt-2">
+                <p>
+                  <i class="fas fa-phone-alt"></i>
+                  <span class="ml-2">
+                    <a href="tel:1234567890">
+                      1234567890
+                    </a>
+                  </span>
+                </p>
+              </li>
+            </ul>
           </div>
         </div>
-        <button class=" flex w-1/4 m-auto  
-            justify-center
-          text-center bg-cyan-600 hover:bg-white-700 text-white  rounded-lg font-bold py-2 px-4 
-          hover:bg-cyan-500
-          rounded mt-4 shadow-lg" type="submit">
-          Crear</button>
-      </form>
-    </div>
-    <div class="grid grid-cols-4 gap-4 mb-4">
-      <div
-        class="flex items-center justify-center rounded bg-white-50 h-28 bg-white shadow-lg hover:bg-purple-400 hover:text-white hover:cursor-pointer">
-        <img src="https://applicantes.com/wp-content/uploads/2023/03/crear-logotipo-empresa-financiera.jpeg"
-          alt="profile" class="w-26 h-20 rounded-full">
-        <div class="ms-4">
-          <p class="text-md font-bold text-white-400 ">Empresa 1</p>
-          <p class="text-purple-500">10 <span class="text-black  preguntas">preguntas</span>
-          <p class="text-sm text-purple-700">5 <span class="text-black">min restantes</span></p>
-          <button
-            class="flex w-full m-auto  
-            justify-center text-center bg-purple-500 hover:bg-white-700 text-white  rounded-lg font-bold rounded shadow-lg hover:bg-white hover:text-purple-400"
-            type="submit">
-            Ver</button>
-        </div>
-      </div>
-      <div
-        class="flex items-center justify-center rounded bg-white-50 h-28 bg-white shadow-lg hover:bg-purple-400 hover:text-white hover:cursor-pointer">
-        <img src="https://applicantes.com/wp-content/uploads/2023/03/crear-logotipo-empresa-financiera.jpeg"
-          alt="profile" class="w-26 h-20 rounded-full">
-        <div class="ms-4">
-          <p class="text-md font-bold text-white-400 ">Empresa 1</p>
-          <p class="text-purple-500">10 <span class="text-black  preguntas">preguntas</span>
-          <p class="text-sm text-purple-700">5 <span class="text-black">min restantes</span></p>
-          <button
-            class="flex w-full m-auto  
-                justify-center text-center bg-purple-500 hover:bg-white-700 text-white  rounded-lg font-bold rounded shadow-lg hover:bg-white hover:text-purple-400"
-            type="submit">
-            Ver</button>
-        </div>
-      </div>
-      <div
-        class="flex items-center justify-center rounded bg-white-50 h-28 bg-white shadow-lg hover:bg-purple-400 hover:text-white hover:cursor-pointer">
-        <img src="https://applicantes.com/wp-content/uploads/2023/03/crear-logotipo-empresa-financiera.jpeg"
-          alt="profile" class="w-26 h-20 rounded-full">
-        <div class="ms-4">
-          <p class="text-md font-bold text-white-400 ">Empresa 1</p>
-          <p class="text-purple-500">10 <span class="text-black  preguntas">preguntas</span>
-          <p class="text-sm text-purple-700">5 <span class="text-black">min restantes</span></p>
-          <button
-            class="flex w-full m-auto  
-                justify-center text-center bg-purple-500 hover:bg-white-700 text-white  rounded-lg font-bold rounded shadow-lg hover:bg-white hover:text-purple-400"
-            type="submit">
-            Ver</button>
-        </div>
-      </div>
-      <div
-        class="flex items-center justify-center rounded bg-white-50 h-28 bg-white shadow-lg hover:bg-purple-400 hover:text-white hover:cursor-pointer">
-        <img src="https://applicantes.com/wp-content/uploads/2023/03/crear-logotipo-empresa-financiera.jpeg"
-          alt="profile" class="w-26 h-20 rounded-full">
-        <div class="ms-4">
-          <p class="text-md font-bold text-white-400 ">Empresa 1</p>
-          <p class="text-purple-500">10 <span class="text-black  preguntas">preguntas</span>
-          <p class="text-sm text-purple-700">5 <span class="text-black">min restantes</span></p>
-          <button
-            class="flex w-full m-auto  
-                justify-center text-center bg-purple-500 hover:bg-white-700 text-white  rounded-lg font-bold rounded shadow-lg hover:bg-white hover:text-purple-400"
-            type="submit">
-            Ver</button>
-        </div>
       </div>
     </div>
-      <div class="flex items-center justify-center rounded bg-white-50 h-60 bg-white shadow-lg hover:bg-purple-400 hover:text-white hover:cursor-pointer">
-        <img src="https://applicantes.com/wp-content/uploads/2023/03/crear-logotipo-empresa-financiera.jpeg"
-          alt="profile" class="w-26 h-20 rounded-full">
-        <div class="ms-4">
-          <p class="text-md font-bold text-white-400 ">Empresa 12</p>
-          <p class="text-purple-500">10 <span class="text-black  preguntas">preguntas</span>
-          <p class="text-sm text-purple-700">5 <span class="text-black">min restantes</span></p>
-          <button
-            class="flex w-full m-auto  
-              justify-center text-center bg-purple-500 hover:bg-white-700 text-white  rounded-lg font-bold rounded shadow-lg hover:bg-white hover:text-purple-400"
-            type="submit">
-            Ver</button>
-        </div>
-      </div>
-    </div>
-    <div class="grid grid-cols-2 gap-4">
-      <div class="flex items-center justify-center rounded bg-white-50 h-28 bg-white shadow-lg">
-        <p class="text-2xl text-white-400 dark:text-white-500">
-          <svg class="w-3.5 h-3.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-            viewBox="0 0 18 18">
-            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="M9 1v16M1 9h16" />
-          </svg>
-        </p>
-      </div>
-      <div class="flex items-center justify-center rounded bg-white-50 h-28 bg-white shadow-lg">
-        <p class="text-2xl text-white-400 dark:text-white-500">
-          <svg class="w-3.5 h-3.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-            viewBox="0 0 18 18">
-            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="M9 1v16M1 9h16" />
-          </svg>
-        </p>
-      </div>
-      <div class="flex items-center justify-center rounded bg-white-50 h-28 bg-white shadow-lg">
-        <p class="text-2xl text-white-400 dark:text-white-500">
-          <svg class="w-3.5 h-3.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-            viewBox="0 0 18 18">
-            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="M9 1v16M1 9h16" />
-          </svg>
-        </p>
-      </div>
-      <div class="flex items-center justify-center rounded bg-white-50 h-28 bg-white shadow-lg">
-        <p class="text-2xl text-white-400 dark:text-white-500">
-          <svg class="w-3.5 h-3.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-            viewBox="0 0 18 18">
-            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="M9 1v16M1 9h16" />
-          </svg>
-        </p>
-      </div>
-    </div>
-  </div>
-  </div>
+  </footer>
+
+
 
 </body>
 
