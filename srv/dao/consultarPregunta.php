@@ -10,7 +10,7 @@ function consultarPregunta():array
  $con = AccesoBd::getCon();
  $stmt = $con->query(
   "SELECT
-    PRE_ID AS id
+    PRE_ID AS id,
     PRE_PREGUNTA AS pregunta
    FROM PREGUNTA
    ORDER BY PRE_ID"
