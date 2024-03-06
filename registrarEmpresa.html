@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Empresa</title>
+    <script type="module" src="lib/js/ejecuta.js"></script>
+    <script type="module" src="lib/js/muestraError.js"></script>
+     <script type="module" src="lib/js/submitForma.js"></script>
+</head>
+<body>
+    <h1>
+        EMPRESA
+    </h1>
+    <div>
+
+        <form id="Cempresa" onsubmit="submitFoma('srv/srvRegistrarEmpresa.php', event, Cempresa)
+        .then(modelo => location.href = 'consultaEmpresa.html')
+        .catch(muestraError)">
+            <label for="">Nombre de la Empresa</label>
+            <input type="text" name="nombre" id="">
+            <label for="">Direccion de la Empresa</label>
+            <input type="text" name="direccion" id="">
+            <label for="">Telefono</label>
+            <input type="tel" name="telefono" id="">
+
+            <button type="submit">Subir Empresa</button>
+        </form>
+
+    </div>
+</body>
+</html>
