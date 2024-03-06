@@ -4,14 +4,14 @@ require_once __DIR__ . "/../../lib/php/recibeFetchAll.php";
 require_once __DIR__ . "/../modelo/Pregunta.php";
 require_once __DIR__ . "/AccesoBd.php";
 
-/**@return Pregunta[] */
-function consultarPregunta():array
+/** @return Pregunta[] */
+function consultarPregunta(): array
 {
  $con = AccesoBd::getCon();
  $stmt = $con->query(
   "SELECT
-    PRE_ID AS id,
-    PRE_PREGUNTA AS pregunta
+    PRE_ID as id,
+    PRE_PREGUNTA as pregunta
    FROM PREGUNTA
    ORDER BY PRE_ID"
  );

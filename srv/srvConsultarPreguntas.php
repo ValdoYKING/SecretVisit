@@ -3,7 +3,7 @@
 require_once __DIR__ . "/../lib/php/ejecuta.php";
 require_once __DIR__ . "/dao/consultarPregunta.php";
 
-ejecuta(function (){
+ejecuta(function () {
   $lista = consultarPregunta();
   $render = "";
 
@@ -19,3 +19,5 @@ ejecuta(function (){
 
   return $render;
 } );
+
+?>
