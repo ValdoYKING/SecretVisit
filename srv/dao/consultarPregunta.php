@@ -15,7 +15,7 @@ function consultarPregunta(): array
    FROM PREGUNTA
    ORDER BY PRE_ID"
  );
- $resultado = $stmt->fetchAll(
+ $resultado = $stmt -> fetchAll(
   PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE,
   Pregunta::class
  );
