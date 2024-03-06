@@ -33,17 +33,12 @@
     <thead>
       <tr>
         <th>N° </th>
-        <th> Pregunta </th>
-        <th> Agregar a Cuestionario
-
-        </th>
-
+        <td> Pregunta </td>
+        <td> Agregar a Cuestionario</td>
       </tr>
     </thead>
     <tbody id="lista">
-  
     </tbody>
-
   </table>
   </div>  
   <button class="btn btn-success" type="button" >Crear Cuestionario </button>
@@ -51,10 +46,10 @@
   </div>
 
  
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Que pregunta deseas ingresar</h1>
-        </div>
-        <div class="modal-body">
+        
+        
+  <div class="modal-body">
+   <h1 class="modal-title fs-5" id="exampleModalLabel">Que pregunta deseas ingresar</h1>
           <form id="forma" onsubmit="submitForma('srv/srvRegistroPregunta.php', event, forma)
           .then(modelo => location.href = 'creaCuestionario.html')
             .catch(muestraError)">
