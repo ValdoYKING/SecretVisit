@@ -68,7 +68,7 @@ class AccesoBd
     );
     rolAgrega($analista);
 
-    /* if(cuentaPregunta() === 0){
+    if(cuentaPregunta() === 0){
       agregarPregunta(
         new Pregunta(
           pregunta: "¿Qué calificacion le das al servicio de la compañia?"
@@ -78,7 +78,7 @@ class AccesoBd
         new Pregunta(
           pregunta: "¿Qué calificacion das a los precios de los productos?"
         )
-      ); */
+      );
     }
 
    $usuario = usuarioBuscaCue("adminPixel");
