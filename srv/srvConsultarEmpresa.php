@@ -19,6 +19,7 @@ ejecuta(function () {
       <p class='card-text'>$telefono</p>
       <a class='btn btn-primary'> $direccion</a>
       <div> $calificacion</div>
+      <a href='registrarEmpresa.html'></a>
     </div>
   </div>
     "; 
