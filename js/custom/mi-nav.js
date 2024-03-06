@@ -14,6 +14,10 @@ const navItems = [
         url: 'servicios.html'
     },
     {
+        name: 'Crear cuestionario',
+        url: 'creaCuestionario.html'
+    },
+    {
         name: 'Registro',
         url: 'register.html'
     },
