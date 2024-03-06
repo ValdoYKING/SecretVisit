@@ -11,9 +11,12 @@ ejecuta(function () {
     $pregunta = htmlentities($it->pregunta);
 
   $render .= 
-  "<th> $id </th>
+  "<tr>
+  <th> $id </th>
   <td> $pregunta</td>
-  <td> </td>" ; 
+  <td> <input type='checkbox'></td>
+  </tr>
+  " ; 
   }
   return $render;
 });
