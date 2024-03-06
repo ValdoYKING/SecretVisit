@@ -14,9 +14,8 @@ ejecuta(function () {
   $render .= 
   "<th> $id </th>
   <td> $pregunta</td>
-  <td> <input type='checkbox'></td>" ; 
+  <td> </td>" ; 
   }
-
   return $render;
 } );
 

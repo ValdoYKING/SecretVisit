@@ -5,8 +5,10 @@ class Pregunta
     public int $id;
     public string $pregunta;
 
-    public function __construct(int $id = 0, string $pregunta = "")
-    {
+    public function __construct(
+      string $pregunta = "",
+      int $id = 0
+    ) {
       $this->id = $id;
       $this->pregunta = $pregunta;
     }

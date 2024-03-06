@@ -17,7 +17,9 @@
 
 </head>
 
-<body>
+<body onload="ejecuta(fetch('srv/srvConsultarPreguntas.php'))
+  .then(render => muestraInnerHtml(lista, render))
+  .catch(muestraError)">
 
 
 
@@ -39,9 +41,7 @@
 
       </tr>
     </thead>
-    <tbody onload="ejecuta(fetch('srv/srvConsultarPreguntas.php'))
-    .then(render => muestraInnerHtml(lista, render))
-    .catch(muestraError)">
+    <tbody>
   
     </tbody>
 
