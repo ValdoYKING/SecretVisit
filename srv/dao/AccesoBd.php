@@ -6,11 +6,16 @@ require_once __DIR__ . "/../const/ROL_MYSTERY_SHOPPER.php";
 require_once __DIR__ . "/../const/ROL_ANALISTA.php";
 require_once __DIR__ . "/../modelo/Rol.php";
 require_once __DIR__ . "/../modelo/Usuario.php";
+require_once __DIR__ . "/../modelo/Pregunta.php";
 require_once __DIR__ . "/bdCrea.php";
 require_once __DIR__ . "/usuarioBuscaCue.php";
 require_once __DIR__ . "/usuarioAgrega.php";
 require_once __DIR__ . "/rolConsulta.php";
 require_once __DIR__ . "/rolAgrega.php";
+require_once __DIR__ . "/cuentaPregunta.php";
+require_once __DIR__ . "/agregarPregunta.php";
+
+
 
 class AccesoBd
 {
@@ -63,11 +68,18 @@ class AccesoBd
     );
     rolAgrega($analista);
 
-    /* $pregunta = new Pregunta(
-      id: 0,
-      pregunta: "¿Qué es PHP?"
-    ):
-      preuntaAgregar($con, $pregunta); */
+    /* if(cuentaPregunta() === 0){
+      agregarPregunta(
+        new Pregunta(
+          pregunta: "¿Qué calificacion le das al servicio de la compañia?"
+          )
+      );
+      agregarPregunta(
+        new Pregunta(
+          pregunta: "¿Qué calificacion das a los precios de los productos?"
+        )
+      ); */
+    }
 
    $usuario = usuarioBuscaCue("adminPixel");
     if (!$usuario) {

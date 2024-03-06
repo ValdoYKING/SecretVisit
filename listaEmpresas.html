@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista</title>
+
+    <script type="module" src="lib/js/ejecuta.js"></script>
+    <script type="module" src="lib/js/muestraError.js"></script>
+    <script type="module" src="lib/js/muestraInnerHtml.js"></script>
+   
+</head>
+<body onload="ejecuta(fetch('srv/srvConsultarEmpresa.php'))
+  .then(render => muestraInnerHtml(lista , render))
+  .catch(muestraError)">
+
+
+<div id="lista">
+
+</div>
+</body>
+</html>
