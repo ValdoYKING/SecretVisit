@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width">
+  <script type="module" src="lib/js/ejecuta.js"></script>
+  <script type="module" src="lib/js/muestraError.js"></script>
+  <script type="module" src="./js/custom/mi-nav.js"></script>
+  <script type="module" src="./js/custom/footer.js"></script>
+  <script type="module" src="./js/Sesion.js"></script>
+  <script type="module" src="./src/validation.js"></script>
+
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            clifford: '#da373d',
+          }
+        }
+      }
+    }
+  </script>
+  <title>Inicio</title>
+</head>
+
+<!-- <body onload="ejecuta('srv/srvSesion.php')
+  .then(objeto => {
+   const sesion = new Sesion(objeto)
+   nav.sesion = sesion
+  })
+  .catch(muestraError)"> -->
+
+<body class="">
+  <mi-nav id="nav"></mi-nav>
+  <div class="container mx-auto w-full  mt-20">
+    <main>
+      <h1 class="text-4xl uppercase font-bold text-start">Nosotros</h1>
+      <p class="text-3xl">Secret Visit es una empresa que se dedica a la creación de experiencias únicas para tus
+        clientes.
+        Nuestro objetivo es que tu producto se mantenga a la altura de tus clientes.
+      </p>
+      <p class="text-3xl">Desde 2024, hemos trabajado con empresas de todo tipo para ayudarles a mantener su producto
+        a la altura de sus clientes.
+
+
+      </p>
+
+      <section class="grid grid-cols-1 mt-10 w-3/4 mx-auto sm:grid-cols-1 md:grid-cols-3">
+        <div class="flex flex-col  col-span-2  text-start w-full mx-auto ">
+          <div class="bg-purple-500 rounded-full w-3/4 mx-auto">
+            <img
+              src="https://img.freepik.com/vector-gratis/empresario-sosteniendo-lapiz-gran-lista-verificacion-completa-marcas-graduacion_1150-35019.jpg?size=626&ext=jpg&ga=GA1.1.117944100.1709596800&semt=sph"
+              alt="imagen de inicio de sesion" class="w-2/4 mx-auto rounded-full my-2
+
+              ">
+          </div>
+
+          </p>
+        </div>
+        <div class="flex flex-col text-start w-full mx-auto items-center justify-center text-2xl ">Comienza
+          con nosotros y mantén tu producto a la altura de tus clientes a través de una experiencia única y
+          personalizada.
+        </div>
+      </section>
+    </main>
+
+    <div class=" flex flex-col text-start w-full mx-auto items-center justify-center text-2xl ">
+      <h2 class="text-4xl uppercase font-bold text-start my-10">Cuestionarios personalizados</h2>
+      <p>En Secret Visit, nos especializamos en la creación de cuestionarios personalizados para tu empresa.
+        Nuestros cuestionarios son diseñados para que puedas obtener la información que necesitas para mantener
+        tu producto a la altura de tus clientes.
+      </p>
+      <p>Con nuestros cuestionarios, podrás obtener información sobre la experiencia de tus clientes, la calidad
+        de tu producto, y mucho más.
+      </p>
+
+    </div>
+    <section class="mt-10">
+      <h2 class="text-4xl uppercase font-bold text-start my-10">Visión</h2>
+      <p class="text-2xl">En Secret Visit, nuestra visión es convertirnos en la empresa líder en la creación de experiencias únicas para clientes. Queremos ser reconocidos por nuestra capacidad para ayudar a las empresas a mantener su producto a la altura de sus clientes a través de cuestionarios personalizados y servicios excepcionales. Nos esforzamos por ser innovadoreses y adaptarnos a las necesidades cambiantes del mercado, brindando soluciones efectivas y de calidad a nuestros clientes.</p>
+    </section>
+    <h2 class="text-4xl uppercase font-bold text-start my-10">Misión</h2>
+    <p class="text-2xl">En Secret Visit, nuestra misión es proporcionar a nuestros clientes experiencias únicas y
+      personalizadas que les permitan mantener su producto a la altura de sus clientes. Nos comprometemos a ofrecer
+      cuestionarios personalizados y servicios excepcionales que ayuden a las empresas a obtener información valiosa sobre
+      la experiencia de sus clientes y mejorar continuamente la calidad de sus productos. Trabajamos en estrecha
+      colaboración con nuestros clientes para comprender sus necesidades y brindar soluciones efectivas que impulsen su
+      éxito en el mercado.</p>
+    </section>
+
+
+    <h3 class="text-4xl uppercase font-bold text-start my-10">Unete ahora</h3>
+    <p class="text-2xl">Si quieres mantener tu producto a la altura de tus clientes, no dudes en unirte a Secret Visit. Nuestros cuestionarios personalizados y servicios excepcionales te ayudarán a obtener información valiosa sobre la experiencia de tus clientes y mejorar continuamente la calidad de tu producto. ¡Comienza ahora y mantén tu producto a la altura de tus clientes!</p>
+    <button class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded my-10 " onclick="location.href='login.html'">¡Comienza ahora!</button>
+
+      </div>
+
+  <footer id="footer"></footer>
+  
+</body>
+
+</html>

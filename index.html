@@ -3,13 +3,14 @@
 
 <head>
 
- <meta charset="UTF-8">
- <meta name="viewport" content="width=device-width">
-   <script type="module" src="lib/js/ejecuta.js"></script>
-   <script type="module" src="lib/js/muestraError.js"></script>
-   <script type="module" src="./js/custom/mi-nav.js"></script>
-   <script type="module" src="./js/Sesion.js"></script>
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width">
+  <script type="module" src="lib/js/ejecuta.js"></script>
+  <script type="module" src="lib/js/muestraError.js"></script>
+  <script type="module" src="./js/custom/mi-nav.js"></script>
+  <script type="module" src="./js/custom/footer.js"></script>
+  <script type="module" src="./js/Sesion.js"></script>
+  <script type="module" src="./src/validation.js"></script>
 
 
   <script src="https://cdn.tailwindcss.com"></script>
@@ -26,52 +27,154 @@
   </script>
    <title>Inicio</title>
 </head>
- 
-<body onload="ejecuta('srv/srvSesion.php')
+
+<!-- <body onload="ejecuta('srv/srvSesion.php')
   .then(objeto => {
    const sesion = new Sesion(objeto)
    nav.sesion = sesion
   })
-  .catch(muestraError)">
+  .catch(muestraError)"> -->
 
- <mi-nav id="nav"></mi-nav>
-  <div class="flex flex-col items-center
-      justify-center h-screen">
-  <h1 class="text-4xl font-bold text-black mb-10 uppercase">
-  Secret <span class="text-purple-700" >Visit</span>
-  </h1>
- <p class="text-2xl mb-10 font-bold text-black uppercase" >Iniciar <span class="text-purple-700">Sesión</p>   
-  <div class="container flex flex-col items-center w-full mx-auto" >
-    <label  for="email" class="text-black font-bold mb-2 uppercase"
-      >Ingresa tu correo electronico</label>
-    <input type="text"
-        class="bg-purple-100 border-2 bg-purple-600 rounded-lg p-2 mb-10 text-center text-white 
-        w-2/6 m-2"
-      placeholder="Correo electronico" id="email" name="email" required>
-    </input>
-    </label >
-      <label class="text-black font-bold mb-2 uppercase" for="password"
-         
-        >Ingresa tu contraseña</label>
-      <input type="text" placeholder="Contraseña" class="bg-purple-600 text-white border-2
-          text-center
-        border-purple-500 rounded-lg p-2 mb-10 w-2/6 m-2"id="password" name="password" required>
-    </label>
-      <button class="bg-purple-900 text-white px-4 py-2 mt-4 rounded-xl  w-1/6 m-2" id="btnIniciarSesion"
-        onsubmit(window.redirect(index.html))
-        >
-        Entrar
-      </button>
-        <a href="index.html" class="text-purple-700 text-center text-sm mt-2">
-          Olvide mi contraseña O:
-        </a>
-    <a href="register.html"class="text-purple-700 text-center text-sm mt-2">
-      No tienes cuenta? 
-      <span class="text-purple-900">
-      Registrate
+<body class="">
+  <mi-nav id="nav"></mi-nav>
+ 
+  <hr class="border-t-2 w-3/4 border-gray-200 mx-auto ">
+  <div class="container mx-auto w-1/2  mt-20">
+    <h1 class="text-8xl uppercase font-bold text-start">
+      Secret <span class="text-purple-500 ">Visit</span>
+      <p class="text-3xl text-end text-semibold ">
+        Manten tu producto a la altura de tus clientes
+      </p>
+    </h1>
+    <hr class="border-t-4 w-3/4 border-purple-400 mx-auto ">
+  </div>
+  <div class="grid grid-cols-1 mt-10 w-3/4 mx-auto sm:grid-cols-1 md:grid-cols-3">
+    <div class="flex flex-col  col-span-2  text-start w-full mx-auto ">
+      <img
+        src="https://empresas.infoempleo.com/hrtrends/media/2023/03/Empleada-contestando-cuestionario-de-analisis-de-puestos-de-trabajo.jpg"
+        alt="imagen de inicio de sesion" class="w-3/4 mx-auto rounded-md">
+      <p class="flex flex-col text-start w-full mx-auto items-center justify-center">
+      </p>
+    </div>
+    <div class="flex flex-col text-start w-full mx-auto items-center justify-center ">Comienza
+      con nosotros y mantén tu producto a la altura de tus clientes a través de una experiencia única y
+      personalizada.
+      </p>
+      <div class="flex flex-row  items-center justify-center">
+        <button class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded "
+          onclick="location.href='login.html'">¡Comienza ahora!</button>
+        <img src="./src/assets/circulo-de-flecha.png" alt="flecha" class="w-1/6 
+          text-purple-500  rounded-md">
+      </div>
+    </div>
+
+  </div>
+
+
+
+  <div class="flex flex-col sm:flex-col  md:flex-row items-center justify-center container mx-auto my-60  p-8 ">
+    <img src="./src/assets/empresa1.jpeg" alt="empresa1" class="w-6/6 h-60 rounded-lg mx-4">
+    <div class="flex flex-col items-center text-start w-full mx-4">
+      <h2 class="text-3xl font-bold">¿Por qué elegirnos?</h2>
+      <p class="text-start  text-justify">
+        Somos una empresa que se dedica a la creación de experiencias únicas y
+        personalizadas para tus clientes. Nuestro objetivo es que tu producto se mantenga a la altura de tus
+        clientes y que puedas ofrecerles una experiencia única y personalizada.
+      </p>
+
+    </div>
+    <img src="./src/assets/empresa2.jpeg" alt="empresa2" class="w-full  h-60 rounded-lg mx-4">
+  </div>
+  <div class="grid grid-cols-1 mt-10 w-3/4 mx-auto sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3 space-y-8 my-60 mt-20">
+    <a href="#"
+      class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+      <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">InnovateTech Solutions</h5>
+      <p class="font-normal text-gray-700 dark:text-gray-400">Experiencia única: "Contraté los servicios de esta empresa
+        de mystery shopper y tuve una experiencia única. Su equipo
+        profesional se sumergió en el papel de clientes anónimos de manera magistral, brindándome valiosas perspectivas
+        sobre la
+        calidad del servicio al cliente en mi negocio. ¡Altamente recomendado!".</p>
+      <span class="text-sm font-semibold text-gray-900 dark:text-gray-200">- John Doe, CEO</span>
+    </a>
+
+    <a href="#"
+      class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+      <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">EcoVista Ventures</h5>
+      <p class="font-normal text-gray-700 dark:text-gray-400">"La atención a los detalles de esta empresa de mystery
+        shopper es impresionante. Sus informes detallados incluyen
+        observaciones minuciosas sobre la presentación del personal, la limpieza del lugar y la eficiencia operativa.
+        Estos
+        datos han sido fundamentales para mejorar nuestra operación."</p>
+    </a>
+    <a href="#"
+      class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+
+      <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">StellarCraft Designs</h5>
+      <p class="font-normal text-gray-700 dark:text-gray-400">"Lo que más aprecio de esta empresa es su imparcialidad.
+        Sus evaluaciones son justas y objetivas, proporcionando una
+        visión realista de la experiencia del cliente. Esto nos ha ayudado a identificar áreas de mejora sin sesgos ni
+        prejuicios.".</p>
+      <span class="text-sm font-semibold text-gray-900 dark:text-gray-200">- Jane Smith, Gerente de Operaciones</span>
+    </a>
+    <a href="#"
+      class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+
+      <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">QuantumCatalyst Innovations</h5>
+      <p class="font-normal text-gray-700 dark:text-gray-400">"En un mercado en constante cambio, esta empresa de
+        mystery shopper se destaca por su adaptabilidad y flexibilidad.
+        Pueden ajustar sus evaluaciones según nuestras necesidades específicas, lo cual es invaluable para abordar áreas
+        clave
+        de desarrollo.".</p>
+    </a>
+    <a href="#"
+      class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+      <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+        HarmonyGlobe Enterprises
+      </h5>
+      <p class="font-normal text-gray-700 dark:text-gray-400">"La retroalimentación proporcionada por esta empresa no
+        solo señala áreas de mejora, sino que también ofrece soluciones
+        constructivas. Nos han brindado sugerencias prácticas que hemos implementado con éxito, mejorando
+        significativamente
+        nuestra calidad de servicio.".
+        <span class="text-sm font-semibold text-gray-900 dark:text-gray-200">- Sarah Johnson, Gerente de Ventas</span>
+      </p>
+
+    </a>
+    <a href="#"
+      class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+
+      <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">SereneWave Solutions
+      </h5>
+      <p class="font-normal text-gray-700 dark:text-gray-400">"La empresa de mystery shopper ha demostrado un alto nivel
+        de confidencialidad y ética profesional en cada interacción.
+        Su capacidad para realizar evaluaciones de incógnito sin comprometer la integridad del proceso ha sido esencial
+        para
+        construir una relación de confianza a largo plazo.".
+        <span class="text-sm font-semibold text-gray-900 dark:text-gray-200">
+          <br> - Michael Brown, Gerente de Operaciones</span>
+      </p>
     </a>
   </div>
-     </div>
+
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+    <path fill="#a855f7" fill-opacity="1"
+      d="M0,160L0,256L240,256L240,160L480,160L480,128L720,128L720,32L960,32L960,192L1200,192L1200,160L1440,160L1440,320L1200,320L1200,320L960,320L960,320L720,320L720,320L480,320L480,320L240,320L240,320L0,320L0,320Z">
+    </path>
+  </svg>
+  <div class="w-full  my-20 h-40 my-60">
+    <h2 class="text-3xl font-bold text-center my-4">Algunas empresas que confían en nosotros</h2>
+    <div class="flex flex-row items-center justify-center">
+      <img src="https://static-cse.canva.com/blob/951768/1650logotiposqueteinspiraran.png" alt="instagram"
+        class="w-1/6 mx-4">
+      <img src="https://i.pinimg.com/236x/9a/a6/f2/9aa6f25b59f8345fa9ed3a38d8e324f7.jpg" alt="facebook"
+        class="w-1/6 mx-4">
+      <img src="https://cdn.shopify.com/shopifycloud/hatchful_web_two/bundles/0d70200090b21d6e0d3fde7eb894b303.png"
+        alt="twitter" class="w-1/6 mx-4">
+      <img src="https://cdn.pixabay.com/photo/2012/04/23/16/45/flag-38996_1280.png" alt="linkedin" class="w-1/6 mx-4">
+    </div>
+  </div>
+<footer id="footer"></footer >
+
 </body>
 
 </html>
