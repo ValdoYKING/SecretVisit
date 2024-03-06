@@ -12,7 +12,7 @@ ejecuta(function () {
     $telefono = trim(leeTexto("telefono"));
 
     // crea un nuevo objeto Usuario con los datos del formulario
-    $nuevaEmpresa = new Empresa($nombre,$direccion,$telefono);
+    $nuevaEmpresa = new Empresa(0,$nombre,$direccion,$telefono);
 
 
 
