@@ -2,19 +2,18 @@
 
 function bdCrea(PDO $con)
 {
- $con->exec(
-  'CREATE TABLE IF NOT EXISTS USUARIO (
-    USU_ID INTEGER,
+  $con->exec(
+    'CREATE TABLE IF NOT EXISTS USUARIO (
+    USU_ID INTEGER PRIMARY KEY,
     USU_CUE TEXT NOT NULL,
+    USU_CORREO TEXT NOT NULL,
     USU_MATCH TEXT NOT NULL,
-    CONSTRAINT USU_PK
-     PRIMARY KEY(USU_ID),
     CONSTRAINT USU_CUE_UNQ
      UNIQUE(USU_CUE)
    )'
- );
- $con->exec(
-  'CREATE TABLE IF NOT EXISTS ROL (
+  );
+  $con->exec(
+    'CREATE TABLE IF NOT EXISTS ROL (
     ROL_ID TEXT,
     ROL_DESCRIPCION TEXT NOT NULL,
     CONSTRAINT ROL_PK
@@ -22,9 +21,9 @@ function bdCrea(PDO $con)
     CONSTRAINT ROL_DESCR_UNQ
      UNIQUE(ROL_DESCRIPCION)
    )'
- );
- $con->exec(
-  'CREATE TABLE IF NOT EXISTS USU_ROL (
+  );
+  $con->exec(
+    'CREATE TABLE IF NOT EXISTS USU_ROL (
     USU_ID INTEGER NOT NULL,
     ROL_ID TEXT NOT NULL,
     CONSTRAINT USU_ROL_PK
@@ -34,20 +33,20 @@ function bdCrea(PDO $con)
     CONSTRAINT USU_ROL_ROL_FK
      FOREIGN KEY (ROL_ID) REFERENCES ROL(ROL_ID)
    )'
- );
+  );
 
-    $con->exec(
-        'CREATE TABLE IF NOT EXISTS EMPRESA (
+  $con->exec(
+    'CREATE TABLE IF NOT EXISTS EMPRESA (
             EMP_ID INTEGER PRIMARY KEY,
             EMP_NOMBRE TEXT NOT NULL,
             EMP_DIRECCION TEXT NOT NULL,
             EMP_TELEFONO TEXT NOT NULL,
             EMP_CALIFICACION INTEGER NOT NULL
         )'
-    );
+  );
 
-    $con->exec(
-        'CREATE TABLE IF NOT EXISTS ENCUESTA (
+  $con->exec(
+    'CREATE TABLE IF NOT EXISTS ENCUESTA (
             ENC_ID INTEGER PRIMARY KEY,
             EMP_ID INTEGER NOT NULL,
             USU_ID INTEGER NOT NULL,
@@ -55,17 +54,17 @@ function bdCrea(PDO $con)
             FOREIGN KEY (EMP_ID) REFERENCES EMPRESA(EMP_ID),
             FOREIGN KEY (USU_ID) REFERENCES USUARIO(USU_ID)
         )'
-    );
+  );
 
-    $con->exec(
-        'CREATE TABLE IF NOT EXISTS PREGUNTA (
+  $con->exec(
+    'CREATE TABLE IF NOT EXISTS PREGUNTA (
             PRE_ID INTEGER PRIMARY KEY,
             PRE_PREGUNTA TEXT NOT NULL
         )'
-    );
+  );
 
-    $con->exec(
-        'CREATE TABLE IF NOT EXISTS ENC_PRE (
+  $con->exec(
+    'CREATE TABLE IF NOT EXISTS ENC_PRE (
             ENC_ID INTEGER NOT NULL,
             PRE_ID INTEGER NOT NULL,
             ENCPRE_RESPUESTA TEXT NOT NULL,
@@ -73,5 +72,5 @@ function bdCrea(PDO $con)
             FOREIGN KEY (ENC_ID) REFERENCES ENCUESTA(ENC_ID),
             FOREIGN KEY (PRE_ID) REFERENCES PREGUNTA(PRE_ID)
         )'
-    );
+  );
 }

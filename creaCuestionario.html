@@ -1,3 +1,14 @@
+<?php
+// Verificar la sesión y los roles del usuario
+require_once __DIR__ . "/ruta/al/scriptDeSesion.php";
+
+// Verificar si el usuario tiene la sesión activa y el rol de "Analista"
+if (!isset($_SESSION[CUE]) || !in_array("Analista", $_SESSION[ROL_IDS])) {
+    // Si no tiene sesión activa o el rol correcto, redirigir a otra página
+    header("Location: paginaDeError.php");
+    exit(); // Detener la ejecución del script
+}
+?>
 <!DOCTYPE html>
 <html lang="es">
 

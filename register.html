@@ -30,7 +30,7 @@
     nav.sesion = sesion
     registro.hidden = false
    } else {
-    location.href = 'perfil.html'
+    location.href = 'login.html'
    }
   })
   .catch(muestraError)">
@@ -42,7 +42,7 @@
     </h1>
     <div class="border rounded-lg shadow-xl  w-full  mx-10 w-1/2 sm:w-full  md:w-1/2 lg:w-1/2  p-10">
       <form id="registro" hidden onsubmit="submitForma('srv/srvRegistro.php', event, registro)
-      .then(json => location.href = 'perfil.html')
+      .then(json => location.href = 'login.html')
       .catch(muestraError)" class="container flex flex-col items-start justify-start  md:w-full mx-auto  sm:w-full ">
         <p class="text-4xl mb-10 font-bold text-black uppercase">Crear <span class="text-purple-700">Cuenta</p>
         <label for="name" class="text-black font-bold mb-2 uppercase text-start ">Ingresa tu nombre</label>
@@ -57,13 +57,13 @@
         w-full m-2" placeholder="Correo electronico" id="correo" name="correo" required>
         </input>
         <label class="text-black font-bold mb-2 uppercase text-start" for="password">Ingresa tu contraseña </label>
-        <input type="text" placeholder="Contraseña" class="bg-purple-600 text-white border-2
+        <input type="password" placeholder="Contraseña" class="bg-purple-600 text-white border-2
           text-center    focus:outline focus:ring-2 focus:ring-purple-600 focus:border-white
         border-purple-500 rounded-lg p-2 mb-10 w-full m-2" id="match" name="match" required>
 
         <label class="text-black font-bold mb-2 uppercase text-start" for="password">
           Repite tu contraseña</label>
-        <input type="text" placeholder="Repite tu Contraseña" class="bg-purple-600 text-white border-2
+        <input type="password" placeholder="Repite tu Contraseña" class="bg-purple-600 text-white border-2
           text-center    focus:outline focus:ring-2 focus:ring-purple-600 focus:border-white
         border-purple-500 rounded-lg p-2 mb-10 w-full m-2" id="confirmarMatch" name="confirmarMatch" required>
 
