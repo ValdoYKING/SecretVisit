@@ -46,7 +46,7 @@ ejecuta(function () {
 
     // Si el usuario no existe, crea un nuevo objeto Usuario con los datos del formulario
     /* $usuarioNuevo = new Usuario($cue, $match, [], 0); */
-    $usuarioNuevo = new Usuario($cue, $match, [], $correo, 0);
+    $usuarioNuevo = new Usuario($cue, $correo, $match, [], 0);
 
     // Agrega el rol correspondiente al usuario según el valor recibido del formulario
 
@@ -68,6 +68,7 @@ ejecuta(function () {
 
     return [
         "cue" => $cue,
+        "correo" => $correo,
         "rol" => $rol
     ];
 });

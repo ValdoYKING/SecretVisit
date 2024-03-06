@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width">
     <title>Registarme</title>
     <script type="module" src="lib/js/ejecuta.js"></script>
+    <script type="module" src="lib/js/submitForma.js"></script>
     <script type="module" src="lib/js/muestraError.js"></script>
     <script type="module" src="./js/custom/mi-nav.js"></script>
     <script type="module" src="./js/Sesion.js"></script>
@@ -47,13 +48,13 @@
             .catch(muestraError)" class="container flex flex-col items-start justify-start md:w-full mx-auto sm:w-full ">
                 <p class="text-4xl mb-10 font-bold text-black uppercase">Crear <span class="text-purple-700">Cuenta</span></p>
                 <label for="name" class="text-black font-bold mb-2 uppercase text-start ">Ingresa tu nombre</label>
-                <input type="text" class="bg-purple-100 border-2 bg-purple-600 rounded-lg p-2 mb-10 text-center text-white focus:outline focus:ring-2 focus:ring-purple-600 focus:border-white w-full m-2" placeholder="Ingresa tu nombre" id="name" name="name" required>
+                <input type="text" class="bg-purple-100 border-2 bg-purple-600 rounded-lg p-2 mb-10 text-center text-white focus:outline focus:ring-2 focus:ring-purple-600 focus:border-white w-full m-2" placeholder="Ingresa tu nombre" id="cue" name="cue" required>
                 <label for="email" class="text-black font-bold mb-2 uppercase text-start">Ingresa tu correo electronico</label>
-                <input type="text" class="bg-purple-100 border-2 focus:outline focus:ring-2 focus:ring-purple-600 focus:border-white bg-purple-600 rounded-lg p-2 mb-10 text-center text-white w-full m-2" placeholder="Correo electronico" id="email" name="email">
+                <input type="text" class="bg-purple-100 border-2 focus:outline focus:ring-2 focus:ring-purple-600 focus:border-white bg-purple-600 rounded-lg p-2 mb-10 text-center text-white w-full m-2" placeholder="Correo electronico" id="correo" name="correo">
                 <label class="text-black font-bold mb-2 uppercase text-start" for="password">Ingresa tu contraseña </label>
-                <input type="password" placeholder="Contraseña" class="bg-purple-600 text-white border-2 text-center focus:outline focus:ring-2 focus:ring-purple-600 focus:border-white border-purple-500 rounded-lg p-2 mb-10 w-full m-2" id="password" name="match" required>
+                <input type="password" placeholder="Contraseña" class="bg-purple-600 text-white border-2 text-center focus:outline focus:ring-2 focus:ring-purple-600 focus:border-white border-purple-500 rounded-lg p-2 mb-10 w-full m-2" id="match" name="match" required>
                 <label class="text-black font-bold mb-2 uppercase text-start" for="confirmPassword">Repite tu contraseña</label>
-                <input type="password" placeholder="Repite tu Contraseña" class="bg-purple-600 text-white border-2 text-center focus:outline focus:ring-2 focus:ring-purple-600 focus:border-white border-purple-500 rounded-lg p-2 mb-10 w-full m-2" id="confirmPassword" name="confirmarMatch" required>
+                <input type="password" placeholder="Repite tu Contraseña" class="bg-purple-600 text-white border-2 text-center focus:outline focus:ring-2 focus:ring-purple-600 focus:border-white border-purple-500 rounded-lg p-2 mb-10 w-full m-2" id="confirmarMatch" name="confirmarMatch" required>
                 <label>
                   Rol
                   <select name="rol">

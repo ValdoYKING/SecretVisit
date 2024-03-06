@@ -8,22 +8,22 @@ class Usuario
 
  public int $id;
  public string $cue;
+ public string $correo;
  public string $match;
  /** @var Rol[] */
  public array $roles;
- public string $correo;
 
  public function __construct(
   string $cue = "",
+  string $correo = "",
   string $match = "",
   array $roles = [],
-  string $correo = "",
   int $id = 0
  ) {
   $this->id = $id;
   $this->cue = $cue;
-  $this->match = $match;
   $this->correo = $correo;
+  $this->match = $match;
   $this->roles = $roles;
  }
 
@@ -31,11 +31,11 @@ class Usuario
  {
   if ($this->cue === "")
    throw new Exception("Falta el cue.");
+    if ($this->correo === "") {
+   throw new Exception("Falta el correo.");
+  }
   if ($this->match === "") {
    throw new Exception("Falta el match.");
-  }
-  if ($this->correo === "") {
-   throw new Exception("Falta el correo.");
   }
   foreach ($this->roles as $rol) {
    if (!($rol instanceof Rol))
