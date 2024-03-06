@@ -9,7 +9,8 @@ footer.innerHTML = `
             <a href="#" class="text-xl font-bold text-gray-700 md:text-8xl  uppercase">Secret<span
                 class="text-purple-500">Visit</span></a>
             <p class="mt-2 text-sm text-gray-500">Mantén tu producto a la altura de tus clientes</p>
-            <p class="mt-2 text-sm text-gray-500">© 2021 SecretVisit. Todos los derechos reservados</p>
+            <p class="mt-2 text-sm text-gray-500">© ${ new Date().getFullYear() }
+             SecretVisit. Todos los derechos reservados</p>
           </div>
           <div class="flex-1 mt-20">
             <p class="text-xl font-bold text-gray-700 md:text-2xl">Enlaces</p>
