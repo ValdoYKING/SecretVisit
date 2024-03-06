@@ -1,5 +1,4 @@
 <?php
-
 class Pregunta
   {
     public int $id;
@@ -16,7 +15,7 @@ class Pregunta
     public function valida()
     {
       if ($this->pregunta === "")
-        throw new Exception("Faltala la pregunta.");
+        throw new Exception("Falta la pregunta.");
     }
   }
 

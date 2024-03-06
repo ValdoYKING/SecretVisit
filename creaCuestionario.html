@@ -17,7 +17,7 @@
 </head>
 
 <body onload="ejecuta(fetch('srv/srvConsultarPreguntas.php'))
-  .then(render => muestraInnerHtml(lista, render))
+  .then(render => muestraInnerHtml(lista , render))
   .catch(muestraError)">
 
 
@@ -50,10 +50,6 @@
   </form>
   </div>
 
-
-
-
-
  
         <div class="modal-header">
           <h1 class="modal-title fs-5" id="exampleModalLabel">Que pregunta deseas ingresar</h1>
@@ -66,8 +62,6 @@
             <input type="text" name="apregunta">
             <button type="submit">Agregar Pregunta </button>
           </form>
-        </div>
-        <div class="modal-footer">
         </div>
 
 

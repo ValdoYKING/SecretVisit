@@ -11,9 +11,9 @@ ejecuta(function () {
     $pregunta = htmlentities($it->pregunta);
 
   $render .= 
-  "<th> $id </th>
-  <td> $pregunta</td>
-  <td> </td>" ; 
+  "<h1> $id </h1>
+  <p> $pregunta</p>
+  <p> </p>" ; 
   }
   return $render;
 });
