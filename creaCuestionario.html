@@ -24,7 +24,9 @@
 
   <div>
       <h1>Crear Cuestionario</h1>
-  <form >
+  <form id="cuestionario" onsubmit="submitForma('srv/srvRegistroPregunta.php', event, cuestionario)
+  .then(modelo => location.href = 'creaCuestionario.html')
+    .catch(muestraError)">
     <div>  
     <div>
       Numero de preguntas: <input hidden type="number" id="numPreguntas" name="numPreguntas" min="1">
