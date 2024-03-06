@@ -6,10 +6,9 @@ require_once __DIR__ . "/dao/consultarPregunta.php";
 ejecuta(function () {
   $lista = consultarPregunta();
   $render = "";
-
-  foreach ($lista as $modelo) {
-    $id = htmlentities($modelo->id);
-    $pregunta = htmlentities($modelo->pregunta);
+  foreach ($lista as $it) {
+    $id = htmlentities($it->id);
+    $pregunta = htmlentities($it->pregunta);
 
   $render .= 
   "<th> $id </th>
@@ -17,6 +16,4 @@ ejecuta(function () {
   <td> </td>" ; 
   }
   return $render;
-} );
-
-?>
+});
