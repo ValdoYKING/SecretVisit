@@ -1,7 +1,7 @@
 <?php
 
 require_once __DIR__ . "/../../lib/php/recibeFetchAll.php";
-require_once __DIR__ . "/../modelo/Pregunta.php";
+require_once __DIR__ . "/../modelo/Empresa.php";
 require_once __DIR__ . "/AccesoBd.php";
 
 /** @return Empresa[] */

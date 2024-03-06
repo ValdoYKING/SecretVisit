@@ -14,17 +14,27 @@
     </h1>
     <div>
 
-        <form id="Cempresa" onsubmit="submitFoma('srv/srvRegistrarEmpresa.php', event, Cempresa)
+        <form id="Cempresa" onsubmit="submitForma('srv/srvRegistrarEmpresa.php', event, Cempresa)
         .then(modelo => location.href = 'consultaEmpresa.html')
         .catch(muestraError)">
-            <label for="">Nombre de la Empresa</label>
-            <input type="text" name="nombre" id="">
-            <label for="">Direccion de la Empresa</label>
-            <input type="text" name="direccion" id="">
-            <label for="">Telefono</label>
-            <input type="tel" name="telefono" id="">
+
+        <div>
+            <div>
+                <label for="">Nombre de la Empresa</label>
+                <input type="text" name="nombre" id="">
+            </div>
+            <div>
+                <label for="">Direccion de la Empresa</label>
+                <input type="text" name="direccion" id="">
+            </div>
+            <div>
+                <label for="">Telefono</label>
+                <input type="tel" name="telefono" id="">
+            </div>
+
 
             <button type="submit">Subir Empresa</button>
+        </div>
         </form>
 
     </div>
