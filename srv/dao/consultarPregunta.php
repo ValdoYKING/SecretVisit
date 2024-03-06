@@ -10,13 +10,14 @@ function consultarPregunta():array
  $con = AccesoBd::getCon();
  $stmt = $con->query(
   "SELECT
-    PRE_ID
-    PRE_PREGUNTA
+    PRE_ID AS id
+    PRE_PREGUNTA AS pregunta
    FROM PREGUNTA
    ORDER BY PRE_ID"
  );
  $resultado = $stmt->fetchAll(
-  PDO::FETCH_OBJ
+  PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE,
+  Pregunta::class
  );
  return recibeFetchAll($resultado);
 }

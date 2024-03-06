@@ -8,8 +8,8 @@ ejecuta(function (){
   $render = "";
 
   foreach ($lista as $modelo) {
-    $id = htmlentities($modelo->PRE_ID);
-    $pregunta = htmlentities($modelo->PRE_PREGUNTA);
+    $id = htmlentities($modelo->id);
+    $pregunta = htmlentities($modelo->pregunta);
 
   $render .= 
   "<th> $id </th>

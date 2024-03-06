@@ -68,11 +68,11 @@ class AccesoBd
     );
     rolAgrega($analista);
 
-    $preguntas = cuentaPregunta();
-    if($preguntas === 0){
+    if(cuentaPregunta() === 0){
       agregarPregunta(
         new Pregunta(
-          pregunta: "¿Qué calificacion le das al servicio de la compañia?")
+          pregunta: "¿Qué calificacion le das al servicio de la compañia?"
+          )
       );
       agregarPregunta(
         new Pregunta(
