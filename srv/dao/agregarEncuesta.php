@@ -32,7 +32,7 @@ function agregarEncuesta(Encuesta $modelo)
         "recompensa" => $modelo->recompensa
     ]);
 
-    echo "Encuesta insertada con ID: " . $modelo->id . "\n"; // Agrega mensajes de depuración
+    // echo "Encuesta insertada con ID: " . $modelo->id . "\n"; // Agrega mensajes de depuración
     $modelo->id = $con->lastInsertId();
 
     return $modelo->id; // Devuelve el ID de la encuesta creada

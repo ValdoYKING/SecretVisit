@@ -27,7 +27,8 @@ ejecuta(function () {
         }
 
         $usuario = new Usuario();
-        $usuario->cue = $_SESSION[CUE];
+        // $usuario->cue = $_SESSION[CUE];
+        $usuario->cue = 'rodolfo';
 
         // Crear una nueva encuesta
         $encuesta = new Encuesta($empresa, $usuario, 'Recompensa por defecto', 0);
