@@ -22,11 +22,31 @@
   .then(render => muestraInnerHtml(lista , render))
   .catch(muestraError)">
 
+<script>
+  function consultarpregunta() {
+    fetch('srv/srvConsultarPreguntas.php')
+    .then(response => response.text() )
+    .then(render => muestraInnerHtml('lista',render))
+    .catch(error = muestraError(error));
+  }
+
+  function buscaEmpresa(parametros){
+    fetch('srv/srvBusquedaEmpresa.php' + parametros)
+    .then(response => response.text())
+    .then(render => muestraInnerHtml('cuestionario',render))
+    .catch(error => muestraError(error));
+  }
+  
+  window.onload = function() {
+    let parametros = '?parametro1=valor1&parametro2valor2';
+    buscaEmpresa(parametros)
+    consultarpregunta()
+  }
+  
+</script>
 
 
-  <div onload="ejecuta(fetch('srv/srvBusquedaEmpresa.php' + parametros))
-  .then(render => muestraInnerHtml(cuestionario , render))
-  .catch(muestraError)">>
+  <div>
       <h1>Crear Cuestionario</h1>
   <form id="cuestionario" onsubmit="submitForma('srv/srvCrearCuestionario.php' + parametros, event, cuestionario)
   .then(modelo => location.href = 'creaCuestionario.html')
@@ -49,7 +69,7 @@
     </tbody>
   </table>
   </div>  
-  <button class="btn btn-success" type="button" >Crear Cuestionario </button>
+  <button class="btn btn-success" type="submit" >Crear Cuestionario </button>
   </form>
   </div>
 
