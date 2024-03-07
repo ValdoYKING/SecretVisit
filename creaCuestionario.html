@@ -37,18 +37,42 @@ if (!isset($_SESSION[CUE]) || !in_array("Analista", $_SESSION[ROL_IDS])) {
         }
       }
     </script>
-
+<script>
+    const parametros = new URL(location.href).searchParams
+</script>
 </head>
 
 <body onload="ejecuta(fetch('srv/srvConsultarPreguntas.php'))
   .then(render => muestraInnerHtml(lista , render))
   .catch(muestraError)">
 
-   <mi-nav id="nav"></mi-nav>
+<script>
+  function consultarpregunta() {
+    fetch('srv/srvConsultarPreguntas.php')
+    .then(response => response.text() )
+    .then(render => muestraInnerHtml('lista',render))
+    .catch(error = muestraError(error));
+  }
+
+  function buscaEmpresa(parametros){
+    fetch('srv/srvBusquedaEmpresa.php' + parametros)
+    .then(response => response.text())
+    .then(render => muestraInnerHtml('cuestionario',render))
+    .catch(error => muestraError(error));
+  }
+     <mi-nav id="nav"></mi-nav>
+
+  window.onload = function() {
+    let parametros = '?parametro1=valor1&parametro2valor2';
+    buscaEmpresa(parametros)
+    consultarpregunta()
+  }
+  
+</script>
 
   <div class="container mx-auto ">
       <h1 class="text-black font-bold text-center text-3xl mb-4 0">Crear un Cuestionario</h1>
-  <form id="cuestionario" onsubmit="submitForma('srv/srvRegistroPregunta.php', event, cuestionario)
+  <form id="cuestionario" onsubmit="submitForma('srv/srvCrearCuestionario.php' + parametros, event, cuestionario)
   .then(modelo => location.href = 'creaCuestionario.html')
     .catch(muestraError)">
    
@@ -66,6 +90,8 @@ if (!isset($_SESSION[CUE]) || !in_array("Analista", $_SESSION[ROL_IDS])) {
       </tr>
     </thead>
     <tbody id="lista"> 
+      <input type="text" name="id" id="" >
+      <input type="text" name="cue" id="" >
     </tbody>
   </table>
      <button
@@ -73,7 +99,8 @@ if (!isset($_SESSION[CUE]) || !in_array("Analista", $_SESSION[ROL_IDS])) {
        type="submit" >Crear Cuestionario </button>
 
   </div>  
-    </form>
+  <button class="btn btn-success" type="submit" >Crear Cuestionario </button>
+  </form>
   </div>
 
   <div class="container 3/4 mx-auto"

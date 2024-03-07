@@ -23,7 +23,12 @@ function BuscaEncuesta(int $id): false|Encuesta
  return $stmt->fetch();
 }
 
-function ultimoId()  {
-  
-  
+
+  function obtenerUltimoIdEncuesta(): ?int
+{
+    $con = AccesoBd::getCon();
+    $stmt = $con->query("SELECT MAX(ENC_ID) as last_id FROM ENCUESTA");
+    $lastId = $stmt->fetch(PDO::FETCH_ASSOC)['last_id'];
+    return $lastId !== null ? (int)$lastId : null;
 }
+  
