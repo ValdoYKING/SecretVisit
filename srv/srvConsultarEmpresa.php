@@ -19,7 +19,7 @@ ejecuta(function () {
       <p class='card-text'>$telefono</p>
       <a class='btn btn-primary'> $direccion</a>
       <div> $calificacion</div>
-      <a href='creaCuestionario.html'>Crear Cuestionario</a>
+      <a href='creaCuestionario.html?empId=$id&?cue=rodolfo'>Crear Cuestionario</a>
     </div>
   </div>
     "; 

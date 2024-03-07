@@ -13,7 +13,9 @@
   <script type="module" src="lib/js/submitForma.js"></script>
  <script type="module" src="lib/js/muestraInnerHtml.js"></script>
 
-
+<script>
+    const parametros = new URL(location.href).searchParams
+</script>
 </head>
 
 <body onload="ejecuta(fetch('srv/srvConsultarPreguntas.php'))
@@ -24,7 +26,7 @@
 
   <div>
       <h1>Crear Cuestionario</h1>
-  <form id="cuestionario" onsubmit="submitForma('srv/srvRegistroPregunta.php', event, cuestionario)
+  <form id="cuestionario" onsubmit="submitForma('srv/srvRegistroPregunta.php' + parametros, event, cuestionario)
   .then(modelo => location.href = 'creaCuestionario.html')
     .catch(muestraError)">
     <div>  
@@ -40,6 +42,8 @@
       </tr>
     </thead>
     <tbody id="lista">
+      <input type="number" hidden name="empId">
+      <input type="text" hidden name="cue">
     </tbody>
   </table>
   </div>  
