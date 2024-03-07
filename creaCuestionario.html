@@ -24,7 +24,9 @@
 
 
 
-  <div>
+  <div onload="ejecuta(fetch('srv/srvBusquedaEmpresa.php' + parametros))
+  .then(render => muestraInnerHtml(cuestionario , render))
+  .catch(muestraError)">>
       <h1>Crear Cuestionario</h1>
   <form id="cuestionario" onsubmit="submitForma('srv/srvCrearCuestionario.php' + parametros, event, cuestionario)
   .then(modelo => location.href = 'creaCuestionario.html')
@@ -42,8 +44,8 @@
       </tr>
     </thead>
     <tbody id="lista">
-      <input type="number" hidden name="empId">
-      <input type="text" hidden name="cue">
+      <input type="text" name="id" id="" >
+      <input type="text" name="cue" id="" >
     </tbody>
   </table>
   </div>  

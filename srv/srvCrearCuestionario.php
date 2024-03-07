@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . "/../modelo/Encuesta_Pregunta.php";
+require_once __DIR__ . "/modelo/Encuesta_Pregunta.php";
 require_once __DIR__ . "/dao/enc_preAgregar.php";
 require_once __DIR__ . "/dao/BuscaEncuesta.php";
 require_once __DIR__ . "/dao/cuentaEncuesta.php";
@@ -15,8 +15,8 @@ require_once __DIR__ . "/dao/usuarioBuscaCue.php";
 ejecuta(function ()
 {
     
-    $idpreguntas[] = trim(leeTexto("preguntasE"));
-        $idemp = new Empresa(id: trim(leeEntero("empId")));
+    $idpreguntas[] = ("preguntasE");
+        $idemp = new Empresa(id: leeEntero("empId"));
         $idcue = new Usuario(id: leeEntero(1));
         $encuestaN = new Encuesta("",$idcue,$idemp);
         agregarEncuesta($encuestaN);
