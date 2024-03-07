@@ -14,7 +14,7 @@ ejecuta(function () {
   "<tr>
   <th> $id </th>
   <td> $pregunta</td>
-  <td> <input type='checkbox'></td>
+  <td> <input value='$id' name='preguntasE'  type='checkbox'></td>
   </tr>
   " ; 
   }
