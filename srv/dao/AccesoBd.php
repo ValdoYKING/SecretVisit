@@ -85,7 +85,8 @@ class AccesoBd
     if (!$usuario) {
      $usuario = new Usuario(
       cue: "adminPixel",
-      match: "pikosy99*",
+      correo: "admin99@mail.com",
+      match: "admin",
       roles: [$administrador]
      );
      usuarioAgrega($usuario);
@@ -95,7 +96,8 @@ class AccesoBd
     if (!$usuario) {
      $usuario = new Usuario(
       cue: "rodolfo",
-      match: "encuesta#2",
+      correo: "rodolfo@mail.com",
+      match: "rodolfo",
       roles: [$analista]
      );
      usuarioAgrega($usuario);
@@ -105,7 +107,8 @@ class AccesoBd
    if (!$usuario) {
     $usuario = new Usuario(
      cue: "alberto",
-     match: "pregutas99*",
+     correo: "alberto@mail.com",
+     match: "beto",
      roles: [$mysteryShopper]
     );
     usuarioAgrega($usuario);

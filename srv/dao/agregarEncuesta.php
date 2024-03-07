@@ -10,31 +10,30 @@ function agregarEncuesta(Encuesta $modelo)
 {
     $con = AccesoBd::getCon();
     $empresa = BuscaEmpresa($modelo->empresa->id);
-    $usuario = usuarioBuscaCue($modelo->usuario->id);
+    $usuario = usuarioBuscaCue($modelo->usuario->cue);
     if ($empresa === false)
-    throw new Exception("Empresa no encontrada.");
+        throw new Exception("Empresa no encontrada.");
     if ($usuario === false)
-    throw new Exception("Usuario no encontrado.");
+        throw new Exception("Usuario no encontrado.");
     $modelo->empresa = $empresa;
     $modelo->usuario = $usuario;
     $modelo->valida();
 
     $stmt = $con->prepare(
         "INSERT INTO ENCUESTA
-        (EMP_ID, USU_ID,ENC_RECOMPENSA)
+        (EMP_ID, USU_ID, ENC_RECOMPENSA)
         VALUES
         (:empId, :usuId, :recompensa)"
     );
 
-    $stmt->execute(
-        (
-            [
-                "empId" => $empresa->id,
-                "usuId" => $usuario->id,
-                "recompensa" => $modelo->recompensa
-            ]
-        )
-            );
+    $stmt->execute([
+        "empId" => $empresa->id,
+        "usuId" => $usuario->id,
+        "recompensa" => $modelo->recompensa
+    ]);
+
+    // echo "Encuesta insertada con ID: " . $modelo->id . "\n"; // Agrega mensajes de depuración
     $modelo->id = $con->lastInsertId();
+
+    return $modelo->id; // Devuelve el ID de la encuesta creada
 }
-/** Falta terminar */ 

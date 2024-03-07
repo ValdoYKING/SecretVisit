@@ -3,53 +3,87 @@
 
 <head>
 
- <meta charset="UTF-8">
- <meta name="viewport" content="width=device-width">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width">
+  <script type="module" src="lib/js/ejecuta.js"></script>
+  <script type="module" src="lib/js/submitForma.js"></script>
+  <script type="module" src="lib/js/muestraError.js"></script>
+  <script type="module" src="./js/custom/mi-nav.js"></script>
+  <script type="module" src="./js/Sesion.js"></script>
+  <script type="module" src="./js/custom/footer.js"></script>
 
- <title>Iniciar sesión</title>
 
- <script type="module" src="./js/custom/mi-nav.js"></script>
- <script type="module" src="lib/js/ejecuta.js"></script>
- <script type="module" src="lib/js/submitForma.js"></script>
- <script type="module" src="lib/js/muestraError.js"></script>
- <script type="module" src="./js/Sesion.js"></script>
-
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            clifford: '#da373d',
+          }
+        }
+      }
+    }
+  </script>
+  <title>Iniciar Sesión</title>
 </head>
 
-  <body
-    onload="ejecuta('srv/srvSesion.php')
+<body onload="ejecuta('srv/srvSesion.php')
   .then(objeto => {
    const sesion = new Sesion(objeto)
    nav.sesion = sesion
   })
   .catch(muestraError)">
 
- <mi-nav id="nav"></mi-nav>
+ <!-- <body> -->
+  <mi-nav id="nav"></mi-nav>
+  <div class="flex flex-col items-center justify-center  h-screen m-4">
+    <h1 class="text-5xl font-bold text-black mb-10 uppercase">
+      Secret <span class="text-purple-700">Visit</span>
+    </h1>
 
- <form id="login" hidden onsubmit="submitForma('srv/srvLogin.php', event, login)
-   .then(json => location.href = 'perfil.html')
-   .catch(muestraError)">
+    <div class="border rounded-lg shadow-xl   w-full  mx-10 w-1/2 sm:w-full  md:w-1/2 lg:w-1/2  p-10">
+    <!-- <form id="login" hidden onsubmit="submitForma('srv/srvLogin.php', event, login)
+    .then(json => location.href = 'perfil.html')
+    .catch(muestraError)" class="flex flex-col mx-auto items-center justify-center"> -->
+    <form id="login" class="flex flex-col mx-auto items-center justify-center" action="srv/srvLogin.php" method="POST">
+    <p class="text-2xl mb-10 font-bold text-black uppercase">Iniciar <span class="text-purple-700">Sesión</p>
+      <label for="email" class="text-black font-bold mb-2 uppercase">Ingresa tu nombre de usuario</label>
+      <!-- <input type="text" class="bg-purple-100 border-2 bg-purple-600 rounded-lg p-2 mb-10 text-center text-white 
+        sm:w-full md:w-full mx-auto
+        focus:outline focus:ring-2 focus:ring-purple-600 focus:border-white
+        m-2" placeholder="Correo electronico" id="correo" name="correo" required>
+      </input> -->
+      <input type="text" class="bg-purple-100 border-2 bg-purple-600 rounded-lg p-2 mb-10 text-center text-white 
+        sm:w-full md:w-full mx-auto
+        focus:outline focus:ring-2 focus:ring-purple-600 focus:border-white
+        m-2" placeholder="Usuario" id="cue" name="cue" required>
+      </input>
+      <label class="text-black font-bold mb-2 uppercase" for="password">Ingresa tu contraseña</label>
+      <input type="password" placeholder="Contraseña" class="bg-purple-600 text-white border-2
+          text-center   sm:w-full md:w-full mx-auto
 
-  <h1>Iniciar Sesión</h1>
-
-  <p>
-   <label>
-    Cue
-    <input name="cue">
-   </label>
-  </p>
-
-  <p>
-   <label>
-    Match
-    <input type="password" name="match">
-   </label>
-  </p>
-
-  <p><button type="submit">Iniciar sesión</button></p>
-
- </form>
-
+        focus:outline focus:ring-2 focus:ring-purple-600 focus:border-white
+        border-purple-500 rounded-lg p-2 mb-10  m-2" id="match" name="match" required/>
+    
+      <button type="submit" class="bg-purple-900 text-white px-4 py-2 mt-4 rounded-xl 
+        sm:w-full  mx-auto md:w-1/2 
+      m-2" id="btnIniciarSesion">
+        Entrar
+      </button>
+      <a href="index.html" class="text-purple-700 text-center text-sm mt-2">
+        Olvide mi contraseña
+      </a>
+      <a href="register.html" class="text-purple-700 text-center text-sm mt-2">
+        No tienes cuenta?
+        <span class="text-purple-900">
+          Registrate
+      </a>
+ 
+    </form>
+    </div>
+  </div>
+  <footer id="footer"></footer>
 </body>
 
 </html>

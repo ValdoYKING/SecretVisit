@@ -11,6 +11,7 @@ function usuarioBuscaCue(string $cue)
   "SELECT
     USU_ID as id,
     USU_CUE as cue,
+    USU_CORREO as correo,
     USU_MATCH as match
    FROM USUARIO
    WHERE USU_CUE = :cue"

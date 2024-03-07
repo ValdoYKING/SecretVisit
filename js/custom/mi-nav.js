@@ -1,70 +1,56 @@
-import { htmlentities } from "../../lib/js/htmlentities.js"
-import { Sesion } from "../Sesion.js"
-import { ROL_ADMINISTRADOR } from "../const/ROL_ADMINISTRADOR.js"
-/* import { ROL_CLIENTE } from "../const/ROL_CLIENTE.js" */
-import { ROL_MYSTERY_SHOPPER } from "../const/ROL_MYSTERY_SHOPPER.js"
-import { ROL_ANALISTA } from "../const/ROL_ANALISTA.js"
+const nav = document.getElementById('nav');
 
-export class MiNav extends HTMLElement {
+const navItems = [
+    {
+        name: 'Inicio',
+        url: 'index.html'
+    },
+    {
+        name: 'Nosotros',
+        url: 'nosotros.html'
+    },
+    {
+        name: 'Servicios',
+        url: 'servicios.html'
+    },
+    {
+        name: 'Crear cuestionario',
+        url: 'creaCuestionario.html'
+    },
+    {
+        name: 'Registrar empresa',
+        url: 'registrarEmpresa.html'
+    },
+    {
+        name: 'Registro',
+        url: 'register.html'
+    },
+    {
+        name: 'Iniciar Sesión',
+        url: 'login.html'
+    }
+];
 
- connectedCallback() {
 
-  this.style.display = "block"
 
-  this.innerHTML = /* html */
-   `<nav>
-     <ul style="display: flex;
-            flex-wrap: wrap;
-            padding:0;
-            gap: 0.5em;
-            list-style-type: none">
-      <li><progress max="100">Cargando&hellip;</progress></li>
-     </ul>
-    </nav>`
+nav.innerHTML = `
+ <nav class="flex items-center justify-between flex-wrap bg-white p-6">
+    <div class="flex items-center flex-shrink-0 text-white mr-6">
+      <p class="font-semibold text-black text-6xl tracking-tight ">Secret</p>
+      <span class="font-semibold text-purple-500  tracking-tight text-6xl">Visit</span>
+    </div>
+    <ul class="flex">
+    ${navItems.map((item) => `
+        <li>
+            <a href="${item.url}"
+                class="inline-block text-sm px-4 py-2 leading-none border rounded text-black border-white hover:border-transparent hover:text-white hover:bg-purple-700 mt-4 lg:mt-0">${item.name}</a>
+        <li>
+    `).join('')}
 
- }
 
- /**
-  * @param {Sesion} sesion
-  */
- set sesion(sesion) {
-  const cue = sesion.cue
-  const rolIds = sesion.rolIds
-  let innerHTML = /* html */ `<li><a href="index.html">Inicio</a></li>`
-  innerHTML += this.hipervinculosAdmin(rolIds)
-  innerHTML += this.hipervinculosMysteryShopper(rolIds)
-  innerHTML += this.hipervinculosAnalista(rolIds)
-  const cueHtml = htmlentities(cue)
-  if (cue !== "") {
-   innerHTML +=  /* html */ `<li>${cueHtml}</li>`
-  }
-  innerHTML += /* html */ `<li><a href="perfil.html">Perfil</a></li>`
-  const ul = this.querySelector("ul")
-  if (ul !== null) {
-   ul.innerHTML = innerHTML
-  }
- }
+        
+ 
+    </ul>
 
- /**
-  * @param {Set<string>} rolIds
-  */
- hipervinculosAdmin(rolIds) {
-  return rolIds.has(ROL_ADMINISTRADOR) ?
-   /* html */ `<li><a href="admin.html">Para administradores</a></li>`
-   : ""
- }
-
- hipervinculosMysteryShopper(rolIds) {
-    return rolIds.has(ROL_MYSTERY_SHOPPER) ?
-     /* html */ `<li><a href="mystery-shopper.html">Para mystery shoppers</a></li>`
-     : ""  
- }
-
- hipervinculosAnalista(rolIds) {
-  return rolIds.has(ROL_ANALISTA) ?
-   /* html */ `<li><a href="analista.html">Para analistas</a></li>`
-   : ""
- }
-}
-
-customElements.define("mi-nav", MiNav)
+  </nav>
+`;
