@@ -1,5 +1,4 @@
-
-const handleSubmit=(e)=>{
-  e.prevenDefault();
-  console.log("enviando data")
-}
+  const handleSubmit =(e)=>{
+    e.preventDefault();
+    console.log("submitting form...")
+  }
