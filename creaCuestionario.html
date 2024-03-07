@@ -24,6 +24,8 @@ if (!isset($_SESSION[CUE]) || !in_array("Analista", $_SESSION[ROL_IDS])) {
  <script type="module" src="lib/js/muestraError.js"></script>
   <script type="module" src="lib/js/submitForma.js"></script>
  <script type="module" src="lib/js/muestraInnerHtml.js"></script>
+ <script type="module" src="lib/js/muestraObjeto.js"></script>
+
    <script type="module" src="./js/custom/footer.js"></script>
 
     <script>
@@ -42,43 +44,41 @@ if (!isset($_SESSION[CUE]) || !in_array("Analista", $_SESSION[ROL_IDS])) {
 </script>
 </head>
 
-<body>
+<body onload="ejecuta(fetch('srv/srvConsultarPreguntas.php'))
+  .then(render => muestraInnerHtml(lista , render))
+  .catch(muestraError)">
 
-<div>
-</div>
 <script>
   function consultarpregunta() {
     fetch('srv/srvConsultarPreguntas.php')
-    .then(render => muestraInnerHtml(lista,render))
-    .catch(muestraError);
+    .then(response => response.text() )
+    .then(render => muestraInnerHtml('lista',render))
+    .catch(error => muestraError(error));
   }
 
   function buscaEmpresa(parametros){
     fetch('srv/srvBusquedaEmpresa.php' + parametros)
-    .then(render => muestraInnerHtml(cuestionario,render))
-    .catch(muestraError);
+    .then(response => response.text())
+    .then(render => muestraObjeto('cuestionario',render))
+    .catch(error => muestraError(error));
   }
-
-  
      <mi-nav id="nav"></mi-nav>
 
-   window.onload = function() {
-    let parametros = '?empId=valor1&cue=adolfo';
+  window.onload = function() {
+    let parametros = '?parametro1=valor1&parametro2valor2';
     buscaEmpresa(parametros)
     consultarpregunta()
-  } 
+  }
   
 </script>
 
   <div class="container mx-auto ">
       <h1 class="text-black font-bold text-center text-3xl mb-4 0">Crear un Cuestionario</h1>
-  <form id="cuestionarios" onsubmit="submitForma('srv/srvCrearCuestionario.php' + parametros, event, cuestionarios)
+  <form id="cuestionario" onsubmit="submitForma('srv/srvCrearCuestionario.php' + parametros, event, cuestionario)
   .then(modelo => location.href = 'creaCuestionario.html')
     .catch(muestraError)">
    
-            <div id="cuestionario">
-      <input type="text" name="id" id="id" >
-      <input type="text" name="cue" id="cue" >
+            <div>
         <label for="pregunta" class="text-black font-bold mb-2 uppercase text-start" >
           Numero de preguntas: <input hidden type="number" id="numPreguntas" name="numPreguntas" min="1">
             </div>
@@ -92,6 +92,8 @@ if (!isset($_SESSION[CUE]) || !in_array("Analista", $_SESSION[ROL_IDS])) {
       </tr>
     </thead>
     <tbody id="lista"> 
+      <input type="text" name="id" id="" >
+      <input type="text" name="cue" id="" >
     </tbody>
   </table>
      <button
