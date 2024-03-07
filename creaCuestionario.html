@@ -18,12 +18,25 @@ if (!isset($_SESSION[CUE]) || !in_array("Analista", $_SESSION[ROL_IDS])) {
  <meta name="viewport" content="width=device-width">
 
  <title>Cuestionario</title>
-
+  <script src="https://cdn.tailwindcss.com"></script>
+   <script type="module" src="./js/custom/mi-nav.js"></script>
  <script type="module" src="lib/js/ejecuta.js"></script>
  <script type="module" src="lib/js/muestraError.js"></script>
   <script type="module" src="lib/js/submitForma.js"></script>
  <script type="module" src="lib/js/muestraInnerHtml.js"></script>
+   <script type="module" src="./js/custom/footer.js"></script>
 
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              clifford: '#da373d',
+            }
+          }
+        }
+      }
+    </script>
 
 </head>
 
@@ -31,48 +44,60 @@ if (!isset($_SESSION[CUE]) || !in_array("Analista", $_SESSION[ROL_IDS])) {
   .then(render => muestraInnerHtml(lista , render))
   .catch(muestraError)">
 
+   <mi-nav id="nav"></mi-nav>
 
-
-  <div>
-      <h1>Crear Cuestionario</h1>
+  <div class="container mx-auto ">
+      <h1 class="text-black font-bold text-center text-3xl mb-4 0">Crear un Cuestionario</h1>
   <form id="cuestionario" onsubmit="submitForma('srv/srvRegistroPregunta.php', event, cuestionario)
   .then(modelo => location.href = 'creaCuestionario.html')
     .catch(muestraError)">
-    <div>  
-    <div>
-      Numero de preguntas: <input hidden type="number" id="numPreguntas" name="numPreguntas" min="1">
-    </div>
-  <table>
-    <thead>
+   
+            <div>
+        <label for="pregunta" class="text-black font-bold mb-2 uppercase text-start" >
+          Numero de preguntas: <input hidden type="number" id="numPreguntas" name="numPreguntas" min="1">
+            </div>
+  <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+
       <tr>
-        <th>N° </th>
-        <td> Pregunta </td>
-        <td> Agregar a Cuestionario</td>
+        <th scope="col" class="px-6 py-3">N° </th>
+         <td class="px-6 py-4"> Pregunta </td>
+         <td class="px-6 py-4">Agregar a Cuestionario</td>
       </tr>
     </thead>
-    <tbody id="lista">
+    <tbody id="lista"> 
     </tbody>
   </table>
+     <button
+        class="bg-green-500 m-4 px-4 py-2 rounded-md w-2/4 mx-auto flex text-white   font-bold  hover:bg-green-400 hover:text-white text-center justify-center "
+       type="submit" >Crear Cuestionario </button>
+
   </div>  
-  <button class="btn btn-success" type="button" >Crear Cuestionario </button>
-  </form>
+    </form>
   </div>
 
- 
-        
-        
-  <div class="modal-body">
-   <h1 class="modal-title fs-5" id="exampleModalLabel">Que pregunta deseas ingresar</h1>
-          <form id="forma" onsubmit="submitForma('srv/srvRegistroPregunta.php', event, forma)
+  <div class="container 3/4 mx-auto"
+    
+   <h1 class="text-black font-bold text-center text-lg mb-4">¿Qué pregunta deseas ingresar?</h1>
+          <form
+              class=" mx-auto"
+            id="forma" onsubmit="submitForma('srv/srvCrearCuestionario',                 event, forma)
           .then(modelo => location.href = 'creaCuestionario.html')
             .catch(muestraError)">
-            <label>Pregunta #</label>
-            <input type="text" name="apregunta">
-            <button type="submit">Agregar Pregunta </button>
+            <label
+                class="block text-lg font-bold text-gray-700"
+              >Pregunta #</label>
+            <input type="text" name="apregunta" class="bg-purple-400
+                w-1/2 mx-auto
+                rounded-lg text-black font-bold p-2" id="pregunta" required>
+             
+            <button 
+                class="bg-green-500 m-4 px-4 py-2 rounded-lg text-white font-bold hover:bg-green-400  hover:text-white text-center justify-center"
+              type="submit">Agregar Pregunta </button>
           </form>
         </div>
-
-
+   <div>  
+   <footer id="footer"></footer>
 
 </body>
 

@@ -15,6 +15,10 @@
  <script type="module" src="./js/custom/footer.js"></script>
   <script type="module" src="../SecretVisit/js/helpers/helpers.js" ></script>
   <script src="https://cdn.tailwindcss.com"></script>
+
+  <script>
+   
+  </script>
   <script>
     tailwind.config = {
       theme: {
@@ -123,23 +127,14 @@
               text-center bg-cyan-600 hover:bg-white-700 text-white  rounded-lg font-bold py-2 px-4 
               hover:bg-cyan-500  rounded mt-4 shadow-lg" 
               type="submit"
-              onclick="ejecuta('srv/srvCrearVisita.php', event, form)
-              .then(json => location.href = './creaCuestionario.html')
-              .catch(muestraError)">
-
-
-
-              
-              Crear</button>
+              onclick=handleSubmite(event)
+              > Crear</button>
           </form>
         
       </div>
       </div>
 
     </div>
-
-
- 
 
  <p>
 
