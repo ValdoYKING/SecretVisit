@@ -86,7 +86,7 @@ class AccesoBd
      $usuario = new Usuario(
       cue: "adminPixel",
       correo: "admin99@mail.com",
-      match: "pikosy99*",
+      match: "admin",
       roles: [$administrador]
      );
      usuarioAgrega($usuario);
@@ -97,7 +97,7 @@ class AccesoBd
      $usuario = new Usuario(
       cue: "rodolfo",
       correo: "rodolfo@mail.com",
-      match: "encuesta#2",
+      match: "rodolfo",
       roles: [$analista]
      );
      usuarioAgrega($usuario);
@@ -108,7 +108,7 @@ class AccesoBd
     $usuario = new Usuario(
      cue: "alberto",
      correo: "alberto@mail.com",
-     match: "pregutas99*",
+     match: "beto",
      roles: [$mysteryShopper]
     );
     usuarioAgrega($usuario);

@@ -10,7 +10,9 @@
 </head>
 <body>
     <h1>Crear Encuesta</h1>
-    <form id="crearEncuestaForm" onsubmit="submitForma('srv/srvCrearEncuesta.php', event, crearEncuestaForm)">
+    <form id="crearEncuestaForm" onsubmit="submitForma('srv/srvCrearEncuesta.php', event, crearEncuestaForm)
+    .then(json => location.href = 'analista.html')
+        .catch(muestraError)">
      <!-- <form id="crearEncuestaForm" onsubmit="submitForma('srv/srvCrearEncuesta.php', event)"> -->
 
         <label for="empresaId">Seleccionar Empresa:</label>
