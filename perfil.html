@@ -12,7 +12,19 @@
  <script type="module" src="lib/js/ejecuta.js"></script>
  <script type="module" src="lib/js/muestraError.js"></script>
  <script type="module" src="./js/Sesion.js"></script>
-
+ <script type="module" src="./js/custom/footer.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            clifford: '#da373d',
+          }
+        }
+      }
+    }
+  </script>
 </head>
 
 <body onload="ejecuta('srv/srvSesion.php')
@@ -37,9 +49,9 @@
   .catch(muestraError)">
 
  <mi-nav id="nav"></mi-nav>
-
- <h1>Perfil</h1>
-
+  <div class="container mx-auto w-4/5 ">
+ <h1 class="text-5xl uppercase font-bold text-start my-4"> Mi perfil</h1>
+    
  <p>
   <output id="outputCue">
    <progress max="100">Cargando&hellip;</progress>
@@ -64,6 +76,8 @@
   </button>
 
  </p>
+</div>
+ <footer id="footer"></footer>
 
 </body>
 
