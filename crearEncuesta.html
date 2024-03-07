@@ -23,14 +23,34 @@
             <!-- Aquí se cargarán las opciones de las empresas -->
         </select>
         <h2>Preguntas Disponibles:</h2>
-        <div id="preguntasContainer">
-            <!-- Aquí se cargarán las preguntas disponibles -->
-        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>N</th>
+                    <td>Pregunta</td>
+                    <td>Seleciona</td>
+                </tr>
+            </thead>
+            <tbody id="preguntasContainer">
+
+            </tbody>
+     
+
+        </table>
         <p style="display: none;">CUE: <span id="cueDisplay"></span></p>
         <p style="display: none;">Rol: <span id="rolDisplay"></span></p>
         <input type="hidden" name="cueDisplay" id="cueDisplay" value="">
         <button type="submit">Guardar Encuesta</button>
     </form>
+    <div>
+        <form id="agregarPregunta" onsubmit="submitForma('srv/srvRegistroPregunta.php', event, agregarPregunta)
+        .then(json => location.href = 'crearEncuesta.html')
+            .catch(muestraError)"> 
+
+            <input type="text" name="apregunta" id="">
+            <button type="submit">agregar Pregunta</button>
+        </form>
+    </div>
 
     <footer id="footer"></footer>
 
@@ -65,12 +85,15 @@
                     checkbox.type = 'checkbox';
                     checkbox.name = 'preguntaId[]'; // Cambiar el nombre para enviarlo como un arreglo
                     checkbox.value = pregunta.id;
-                    const label = document.createElement('label');
-                    label.textContent = pregunta.pregunta; // Corrección aquí
-                    const div = document.createElement('div');
-                    div.appendChild(checkbox);
-                    div.appendChild(label);
-                    preguntasContainer.appendChild(div);
+                    const th = document.createElement('th');
+                    const th2 = document.createElement('th')
+            th.textContent = pregunta.pregunta;
+            th2.textContent = pregunta.id; // Corrección aquí
+                    const tr = document.createElement('tr');
+                    tr.appendChild(th2);
+                    tr.appendChild(th);
+            tr.appendChild(checkbox);
+                    preguntasContainer.appendChild(tr);
                 });
             } catch (error) {
                 console.error('Error al cargar las preguntas:', error);
