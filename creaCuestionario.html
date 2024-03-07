@@ -107,8 +107,7 @@ if (!isset($_SESSION[CUE]) || !in_array("Analista", $_SESSION[ROL_IDS])) {
   <div class="container 3/4 mx-auto"
     
    <h1 class="text-black font-bold text-center text-lg mb-4">¿Qué pregunta deseas ingresar?</h1>
-          <form class=" mx-auto"
-            id="forma" onsubmit="submitForma('srv/srvCrearCuestionario',event,forma)
+          <form class=" mx-auto" id="forma" onsubmit="submitForma('srv/srvRegistroPregunta.php',event,forma)
             .then(modelo => location.href = 'creaCuestionario.html')
             .catch(muestraError)">
             <label
