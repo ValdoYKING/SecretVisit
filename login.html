@@ -43,9 +43,10 @@
     </h1>
 
     <div class="border rounded-lg shadow-xl   w-full  mx-10 w-1/2 sm:w-full  md:w-1/2 lg:w-1/2  p-10">
-    <form id="login" hidden onsubmit="submitForma('srv/srvLogin.php', event, login)
+    <!-- <form id="login" hidden onsubmit="submitForma('srv/srvLogin.php', event, login)
     .then(json => location.href = 'perfil.html')
-    .catch(muestraError)" class="flex flex-col mx-auto items-center justify-center">
+    .catch(muestraError)" class="flex flex-col mx-auto items-center justify-center"> -->
+    <form id="login" class="flex flex-col mx-auto items-center justify-center" action="srv/srvLogin.php" method="POST">
     <p class="text-2xl mb-10 font-bold text-black uppercase">Iniciar <span class="text-purple-700">Sesión</p>
       <label for="email" class="text-black font-bold mb-2 uppercase">Ingresa tu nombre de usuario</label>
       <!-- <input type="text" class="bg-purple-100 border-2 bg-purple-600 rounded-lg p-2 mb-10 text-center text-white 
