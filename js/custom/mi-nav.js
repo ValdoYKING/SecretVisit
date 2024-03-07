@@ -18,6 +18,10 @@ const navItems = [
         url: 'creaCuestionario.html'
     },
     {
+        name: 'Registrar empresa',
+        url: 'registrarEmpresa.html'
+    },
+    {
         name: 'Registro',
         url: 'register.html'
     },
