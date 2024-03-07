@@ -11,7 +11,7 @@ function BuscaEmpresa(int $id): false|Empresa
       EMP_ID as id,
       EMP_NOMBRE as nombre,
       EMP_DIRECCION as direccion,
-      EMP_TELEFONO as telefono,
+      EMP_TELEFONO as telefono
    FROM EMPRESA
    WHERE EMP_ID = :id"  
  );

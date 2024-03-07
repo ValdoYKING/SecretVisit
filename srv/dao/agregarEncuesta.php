@@ -10,7 +10,7 @@ function agregarEncuesta(Encuesta $modelo)
 {
     $con = AccesoBd::getCon();
     $empresa = BuscaEmpresa($modelo->empresa->id);
-    $usuario = usuarioBuscaCue($modelo->usuario->id);
+    $usuario = usuarioBuscaCue($modelo->usuario->cue);
     if ($empresa === false)
         throw new Exception("Empresa no encontrada.");
     if ($usuario === false)
@@ -33,6 +33,7 @@ function agregarEncuesta(Encuesta $modelo)
     ]);
 
     echo "Encuesta insertada con ID: " . $modelo->id . "\n"; // Agrega mensajes de depuración
+    $modelo->id = $con->lastInsertId();
 
     return $modelo->id; // Devuelve el ID de la encuesta creada
 }

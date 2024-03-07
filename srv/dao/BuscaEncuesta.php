@@ -11,7 +11,7 @@ function BuscaEncuesta(int $id): false|Encuesta
       ENC_ID as id,
       EMP_ID as idempresa,
       USU_ID as idusuario,
-      ENC_RECOMPENSA as recompensa,
+      ENC_RECOMPENSA as recompensa
    FROM ENCUESTA
    WHERE ENC_ID = :id"  
  );
