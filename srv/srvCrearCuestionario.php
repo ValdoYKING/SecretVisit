@@ -14,11 +14,12 @@ require_once __DIR__ . "/dao/usuarioBuscaCue.php";
 
 ejecuta(function ()
 {
-    
-    $idpreguntas[] = ("preguntasE");
-        $idemp = new Empresa(id: leeEntero("empId"));
-        $idcue = new Usuario(id: leeEntero(1));
-        $encuestaN = new Encuesta("",$idcue,$idemp);
+    $idempresa = leeEntero("");;
+    $cue = $_POST['cue'];
+    $idpreguntas[] = ("preguntasE");  
+        $idemp = new Empresa(id: $idempresa);
+        $idcue = new Usuario(id: $cue );
+        $encuestaN = new Encuesta("",$idcue,$idemp,0);
         agregarEncuesta($encuestaN);
     foreach($idpreguntas as $idp){
         $preguntaid = leeEntero($idp);

@@ -42,41 +42,43 @@ if (!isset($_SESSION[CUE]) || !in_array("Analista", $_SESSION[ROL_IDS])) {
 </script>
 </head>
 
-<body onload="ejecuta(fetch('srv/srvConsultarPreguntas.php'))
-  .then(render => muestraInnerHtml(lista , render))
-  .catch(muestraError)">
+<body>
 
+<div>
+</div>
 <script>
   function consultarpregunta() {
     fetch('srv/srvConsultarPreguntas.php')
-    .then(response => response.text() )
-    .then(render => muestraInnerHtml('lista',render))
-    .catch(error = muestraError(error));
+    .then(render => muestraInnerHtml(lista,render))
+    .catch(muestraError);
   }
 
   function buscaEmpresa(parametros){
     fetch('srv/srvBusquedaEmpresa.php' + parametros)
-    .then(response => response.text())
-    .then(render => muestraInnerHtml('cuestionario',render))
-    .catch(error => muestraError(error));
+    .then(render => muestraInnerHtml(cuestionario,render))
+    .catch(muestraError);
   }
+
+  
      <mi-nav id="nav"></mi-nav>
 
-  window.onload = function() {
-    let parametros = '?parametro1=valor1&parametro2valor2';
+   window.onload = function() {
+    let parametros = '?empId=valor1&cue=adolfo';
     buscaEmpresa(parametros)
     consultarpregunta()
-  }
+  } 
   
 </script>
 
   <div class="container mx-auto ">
       <h1 class="text-black font-bold text-center text-3xl mb-4 0">Crear un Cuestionario</h1>
-  <form id="cuestionario" onsubmit="submitForma('srv/srvCrearCuestionario.php' + parametros, event, cuestionario)
+  <form id="cuestionarios" onsubmit="submitForma('srv/srvCrearCuestionario.php' + parametros, event, cuestionarios)
   .then(modelo => location.href = 'creaCuestionario.html')
     .catch(muestraError)">
    
-            <div>
+            <div id="cuestionario">
+      <input type="text" name="id" id="id" >
+      <input type="text" name="cue" id="cue" >
         <label for="pregunta" class="text-black font-bold mb-2 uppercase text-start" >
           Numero de preguntas: <input hidden type="number" id="numPreguntas" name="numPreguntas" min="1">
             </div>
@@ -90,8 +92,6 @@ if (!isset($_SESSION[CUE]) || !in_array("Analista", $_SESSION[ROL_IDS])) {
       </tr>
     </thead>
     <tbody id="lista"> 
-      <input type="text" name="id" id="" >
-      <input type="text" name="cue" id="" >
     </tbody>
   </table>
      <button
