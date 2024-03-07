@@ -22,3 +22,8 @@ function BuscaEncuesta(int $id): false|Encuesta
  );
  return $stmt->fetch();
 }
+
+function ultimoId()  {
+  
+  
+}
