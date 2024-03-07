@@ -1,51 +1,77 @@
 <!DOCTYPE html>
 <html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
 
-<head>
+    <title>Solo Administradores</title>
 
- <meta charset="UTF-8">
- <meta name="viewport" content="width=device-width">
+    <script type="module" src="lib/js/ejecuta.js"></script>
+    <script type="module" src="lib/js/muestraError.js"></script>
+    <script type="module" src="./js/const/ROL_ADMINISTRADOR.js"></script>
+    <script type="module" src="./js/custom/mi-nav.js"></script>
+    <script type="module" src="./js/Sesion.js"></script>
+  </head>
 
- <title>Solo Administradores</title>
+  <body onload="cargarUsuarios()">
+    <mi-nav id="nav"></mi-nav>
 
- <script type="module" src="lib/js/ejecuta.js"></script>
- <script type="module" src="lib/js/muestraError.js"></script>
- <script type="module" src="./js/const/ROL_ADMINISTRADOR.js"></script>
- <script type="module" src="./js/custom/mi-nav.js"></script>
- <script type="module" src="./js/Sesion.js"></script>
+    <main id="main">
+      <p>Bienvenido, Administrador.</p>
 
-</head>
+      <h2>Usuarios Registrados</h2>
+      <table id="tablaUsuarios">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Correo Electrónico</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Los usuarios se cargarán aquí -->
+        </tbody>
+      </table>
+    </main>
+    <button
+      class="bg-clifford text-white text-sm font-bold rounded-lg p-2 m-2 justify-end item-end w-1/6 mx-auto"
+      type="button"
+      onclick="cerrarSesion()"
+    >
+      Cerrar sesión
+    </button>
 
-<body onload="ejecuta('srv/srvSesion.php')
-  .then(objeto => {
-   const sesion = new Sesion(objeto)
-   if (sesion.rolIds.has(ROL_ADMINISTRADOR)) {
-    nav.sesion = sesion
-    main.hidden = false
-   } else {
-    location.href = 'index.html'
-   }
-  })
-  .catch(muestraError)">
+    <script>
+      async function cargarUsuarios() {
+        try {
+          const respuesta = await fetch("srv/srvObtenerUsuarios.php");
+          const usuarios = await respuesta.json();
+          const tbody = document.querySelector("#tablaUsuarios tbody");
+          tbody.innerHTML = ""; // Limpiar contenido anterior
+          usuarios.forEach((usuario) => {
+            const fila = document.createElement("tr");
+            fila.innerHTML = `
+                        <td>${usuario.id}</td>
+                        <td>${usuario.cue}</td>
+                        <td>${usuario.correo}</td>
+                    `;
+            tbody.appendChild(fila);
+          });
+        } catch (error) {
+          console.error("Error al cargar usuarios:", error);
+        }
+      }
 
- <mi-nav id="nav"></mi-nav>
-
- <main id="main" hidden>
-
-  <h1>Solo Administradores</h1>
-
-  <p>Hola.</p>
-
-  <p>
-   <button type="button" onclick="ejecuta('srv/srvSaludoCliente.php')
-     .then(saludo => alert(saludo))
-     .catch(muestraError)">
-    Ejecuta servicio
-   </button>
-  </p>
-
- </main>
-
-</body>
-
+      async function cerrarSesion() {
+        try {
+          const respuesta = await fetch('srv/srvLogout.php');
+          const json = await respuesta.json();
+          // Redirige a la página de inicio después de cerrar sesión
+          location.href = 'index.html';
+        } catch (error) {
+          console.error('Error al cerrar sesión:', error);
+        }
+      }
+    </script>
+  </body>
 </html>
