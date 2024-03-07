@@ -17,7 +17,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
 
   <script>
-    const  onload = async () => {
+    const onload = async () => {
       ejecuta('srv/srvSesion.php')
         .then(objeto => {
           const sesion = new Sesion(objeto)
@@ -38,14 +38,7 @@
           }
         })
         .catch(muestraError)
-      cargarData('funcion')
-        .then(data => {
-          const select = document.getElementById('funcion')
-          select.innerHTML = data
-            .map(item => `<option value="${item.id}">${item.nombre}</option>`)
-            .join('')
-        })
-        .catch(muestraError)
+    
     }
 
   </script>
