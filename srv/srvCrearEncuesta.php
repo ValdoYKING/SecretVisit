@@ -16,6 +16,7 @@ ejecuta(function () {
     if (isset($_POST['empresaId'], $_POST['preguntaId'])) {
         $empresaId = $_POST['empresaId'];
         $preguntaIds = $_POST['preguntaId'];
+        $cue = leeTexto('cue');
 
         // Crear un objeto Empresa con el ID recibido
         $empresa = new Empresa();
@@ -28,7 +29,7 @@ ejecuta(function () {
 
         $usuario = new Usuario();
         // $usuario->cue = $_SESSION[CUE];
-        $usuario->cue = 'rodolfo';
+        $usuario->cue = $cue;
 
         // Crear una nueva encuesta
         $encuesta = new Encuesta($empresa, $usuario, 'Recompensa por defecto', 0);
