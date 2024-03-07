@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Encuesta</title>
+    <script type="module" src="lib/js/ejecuta.js"></script>
+    <script type="module" src="lib/js/muestraError.js"></script>
+    <script type="module" src="lib/js/submitForma.js"></script>
+</head>
+<body>
+    <h1>Crear Encuesta</h1>
+    <form id="crearEncuestaForm" onsubmit="submitForma('srv/srvCrearEncuesta.php', event, crearEncuestaForm)">
+     <!-- <form id="crearEncuestaForm" onsubmit="submitForma('srv/srvCrearEncuesta.php', event)"> -->
+
+        <label for="empresaId">Seleccionar Empresa:</label>
+        <select name="empresaId" id="empresaId">
+            <!-- Aquí se cargarán las opciones de las empresas -->
+        </select>
+        <h2>Preguntas Disponibles:</h2>
+        <div id="preguntasContainer">
+            <!-- Aquí se cargarán las preguntas disponibles -->
+        </div>
+        <button type="submit">Guardar Encuesta</button>
+    </form>
+</body>
+
+<script>
+    // Función para cargar las opciones de las empresas en el select
+async function cargarEmpresas() {
+    try {
+        const respuesta = await fetch('srv/srvObtenerEmpresas.php');
+        const empresas = await respuesta.json();
+        const select = document.getElementById('empresaId');
+        select.innerHTML = ''; // Limpiar contenido anterior
+        empresas.forEach(empresa => {
+            const option = document.createElement('option');
+            option.value = empresa.id;
+            option.textContent = empresa.nombre;
+            select.appendChild(option);
+        });
+    } catch (error) {
+        console.error('Error al cargar las empresas:', error);
+    }
+}
+
+// Función para cargar las preguntas disponibles
+async function cargarPreguntas() {
+    try {
+        const respuesta = await fetch('srv/srvObtenerPreguntas.php');
+        const preguntas = await respuesta.json();
+        const preguntasContainer = document.getElementById('preguntasContainer');
+        preguntasContainer.innerHTML = ''; // Limpiar contenido anterior
+        preguntas.forEach(pregunta => {
+            const checkbox = document.createElement('input');
+            checkbox.type = 'checkbox';
+            checkbox.name = 'preguntaId[]'; // Cambiar el nombre para enviarlo como un arreglo
+            checkbox.value = pregunta.id;
+            const label = document.createElement('label');
+            label.textContent = pregunta.pregunta; // Corrección aquí
+            const div = document.createElement('div');
+            div.appendChild(checkbox);
+            div.appendChild(label);
+            preguntasContainer.appendChild(div);
+        });
+    } catch (error) {
+        console.error('Error al cargar las preguntas:', error);
+    }
+}
+
+// Cargar las empresas y las preguntas al cargar la página
+window.onload = function() {
+    cargarEmpresas();
+    cargarPreguntas();
+};
+
+</script>
+
+</html>

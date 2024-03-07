@@ -11,9 +11,9 @@ class Encuesta
     public string $recompensa;
 
     public function __construct(
-        string $recompensa = "",
+        Empresa $empresa = null,
         ?Usuario $usuario = null,
-        ?Empresa $empresa = null,
+        string $recompensa = "",
         int $id = 0
     ) {
       $this->id = $id;

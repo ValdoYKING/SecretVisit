@@ -25,6 +25,18 @@ const cerrarSesion = async () => {
       url: 'servicios.html'
     },
     {
+      name: 'Crear preguntas',
+      url: 'crearPregunta.html'
+    },
+    {
+      name: 'Crear encuesta',
+      url: 'crearEncuesta.html'
+    },
+    {
+      name: 'Registrar empresa',
+      url: 'registrarEmpresa.html'
+    },
+    {
       name: 'Perfil',
       url: 'perfil.html'
     },
