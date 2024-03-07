@@ -47,7 +47,7 @@ function bdCrea(PDO $con)
 
   $con->exec(
     'CREATE TABLE IF NOT EXISTS ENCUESTA (
-            ENC_ID INTEGER PRIMARY KEY,
+            ENC_ID INTEGER PRIMARY KEY AUTOINCREMENT,
             EMP_ID INTEGER NOT NULL,
             USU_ID INTEGER NOT NULL,
             ENC_RECOMPENSA TEXT NOT NULL,
@@ -65,12 +65,14 @@ function bdCrea(PDO $con)
 
   $con->exec(
     'CREATE TABLE IF NOT EXISTS ENC_PRE (
+            ID INTEGER PRIMARY KEY AUTOINCREMENT,
             ENC_ID INTEGER NOT NULL,
             PRE_ID INTEGER NOT NULL,
             ENCPRE_RESPUESTA TEXT NOT NULL,
-            PRIMARY KEY(ENC_ID, PRE_ID),
+            UNIQUE (ENC_ID, PRE_ID),
             FOREIGN KEY (ENC_ID) REFERENCES ENCUESTA(ENC_ID),
             FOREIGN KEY (PRE_ID) REFERENCES PREGUNTA(PRE_ID)
         )'
-  );
+);
+
 }

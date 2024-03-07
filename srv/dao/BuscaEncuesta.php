@@ -11,7 +11,7 @@ function BuscaEncuesta(int $id): false|Encuesta
       ENC_ID as id,
       EMP_ID as idempresa,
       USU_ID as idusuario,
-      ENC_RECOMPENSA as recompensa,
+      ENC_RECOMPENSA as recompensa
    FROM ENCUESTA
    WHERE ENC_ID = :id"  
  );
@@ -22,3 +22,13 @@ function BuscaEncuesta(int $id): false|Encuesta
  );
  return $stmt->fetch();
 }
+
+
+  function obtenerUltimoIdEncuesta(): ?int
+{
+    $con = AccesoBd::getCon();
+    $stmt = $con->query("SELECT MAX(ENC_ID) as last_id FROM ENCUESTA");
+    $lastId = $stmt->fetch(PDO::FETCH_ASSOC)['last_id'];
+    return $lastId !== null ? (int)$lastId : null;
+}
+  

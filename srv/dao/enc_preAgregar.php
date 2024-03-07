@@ -5,7 +5,7 @@ require_once __DIR__ . "/AccesoBd.php";
 require_once __DIR__ . "/BuscaPregunta.php";
 require_once __DIR__ . "/BuscaEncuesta.php";
 
-function detalleDeVentaAgrega(Encuesta_Pregunta $modelo)
+function enc_preAgregar(Encuesta_Pregunta $modelo)
 {
  $con = AccesoBd::getCon();
  $pregunta = BuscaPregunta($modelo->pregunta->id);
