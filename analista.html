@@ -32,6 +32,7 @@
   .then(objeto => {
    const sesion = new Sesion(objeto)
    if (sesion.rolIds.has(ROL_ANALISTA)) {
+     localStorage.setItem('isAutorizate', true);
     nav.sesion = sesion
     main.hidden = false
    } else {
@@ -40,7 +41,8 @@
   })
   .catch(muestraError)">
 
- <mi-nav id="nav"></mi-nav>
+ <mi-nav isAutorizate=`${isAutorizate}`
+   id="nav"></mi-nav>
 
  <main id="main" hidden>
 
@@ -171,14 +173,13 @@
         Mis visitas <span class="text-white-500 text-purple-500"> secretas</span>
          <i class="fas fa-user-secret">
          </i>
-         <div class="col-span-1 bg-purple-500 rounded-lg p-4 text-center text-white hover:cursor-pointer w-1/6 mx-auto my-2"  >
+         <div class="col-span-1 bg-purple-500 rounded-lg p-2 text-center text-white hover:cursor-pointer w-3/6 mx-auto my-2 hover:bg-purple-700"  >
            + Crear una nueva visita
          </div>
        </p>
       
      </div>
-     <div class="grid grid-cols-4 gap-4 mb-4">
-      
+     <div class="grid grid-cols-1 md:grid-cols-1 md:grid-cols-2 lg:grid-cols-cols-4 gap-4 mb-4">
        <div
          class="flex items-center justify-center rounded bg-white-50 h-28 bg-white shadow-lg hover:bg-purple-400 hover:text-white hover:cursor-pointer">
          <img src="https://applicantes.com/wp-content/uploads/2023/03/crear-logotipo-empresa-financiera.jpeg"

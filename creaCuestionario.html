@@ -69,9 +69,10 @@ if (!isset($_SESSION[CUE]) || !in_array("Analista", $_SESSION[ROL_IDS])) {
   }
   
 </script>
+   <mi-nav  id="nav"></mi-nav>
+  <div class="container mx-auto shadow-lg p-6 bg-white rounded-lg"">
 
-  <div class="container mx-auto ">
-      <h1 class="text-black font-bold text-center text-3xl mb-4 0">Crear un Cuestionario</h1>
+      <h1 class="text-black font-bold text-center text-3xl mb-4 ">Crear un Cuestionario</h1>
   <form id="cuestionario" onsubmit="submitForma('srv/srvCrearCuestionario.php' + parametros, event, cuestionario)
   .then(modelo => location.href = 'creaCuestionario.html')
     .catch(muestraError)">
@@ -95,35 +96,35 @@ if (!isset($_SESSION[CUE]) || !in_array("Analista", $_SESSION[ROL_IDS])) {
     </tbody>
   </table>
      <button
-        class="bg-green-500 m-4 px-4 py-2 rounded-md w-2/4 mx-auto flex text-white   font-bold  hover:bg-green-400 hover:text-white text-center justify-center "
-       type="submit" >Crear Cuestionario </button>
+        class="bg-green-500 m-4 px-4 py-2 rounded-md w-2/4 mx-auto flex text-white mt-10  font-bold  hover:bg-green-400 hover:text-white text-center justify-center "
+       type="submit" >+ Crear  </button>
 
-  </div>  
-  <button class="btn btn-success" type="submit" >Crear Cuestionario </button>
+   
+  <p class="text-center text-black font-bold text-3xl mb-4 " >Añade tu pregunta </button>
   </form>
-  </div>
+
 
   <div class="container 3/4 mx-auto"
     
    <h1 class="text-black font-bold text-center text-lg mb-4">¿Qué pregunta deseas ingresar?</h1>
-          <form
-              class=" mx-auto"
-            id="forma" onsubmit="submitForma('srv/srvCrearCuestionario',                 event, forma)
-          .then(modelo => location.href = 'creaCuestionario.html')
+          <form class=" mx-auto"
+            id="forma" onsubmit="submitForma('srv/srvCrearCuestionario',event,forma)
+            .then(modelo => location.href = 'creaCuestionario.html')
             .catch(muestraError)">
             <label
                 class="block text-lg font-bold text-gray-700"
               >Pregunta #</label>
-            <input type="text" name="apregunta" class="bg-purple-400
-                w-1/2 mx-auto
-                rounded-lg text-black font-bold p-2" id="pregunta" required>
+            <input type="text" name="apregunta" class="bg-white shadow-lg
+                w-1/2 mx-auto rounded-md border-2 border-gray-300 p-2" placeholder="Ingresa tu pregunta"
+               required>
              
             <button 
                 class="bg-green-500 m-4 px-4 py-2 rounded-lg text-white font-bold hover:bg-green-400  hover:text-white text-center justify-center"
               type="submit">Agregar Pregunta </button>
           </form>
-        </div>
-   <div>  
+        
+    </div>
+     </div> 
    <footer id="footer"></footer>
 
 </body>
