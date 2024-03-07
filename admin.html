@@ -31,34 +31,14 @@
   <mi-nav id="nav"></mi-nav>
 
   <main id="main" class="container w-full mx-auto">
-    <p>Bienvenido, Administrador.</p><button
+    <p>Bienvenido, Administrador.</p>
+    <button
       class="bg-clifford text-white text-sm font-bold rounded-lg p-2 m-2 justify-end item-end w-1/6 mx-auto"
       type="button" onclick="cerrarSesion()">
       Cerrar sesión
     </button>
 
-    <h2>Usuarios Registrados</h2>
-    <table id="tablaUsuarios" class="min-w-full divide-y divide-gray-200">
-      <thead>
-        <tr>
-          <th scope="col"
-            class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-            ID
-          </th>
-          <th scope="col"
-            class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-            Nombre
-          </th>
-          <th scope="col"
-            class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-            Correo Electrónico
-          </th>
-        </tr>
-      </thead>
-      <tbody class="bg-white divide-y divide-gray-200">
-        <!-- Los usuarios se cargarán aquí -->
-      </tbody>
-    </table>
+    
   </main>
   <div class="p-4 container mx-auto">
     <div class="p-4 border-white-200  border-dashed rounded-lg dark:border-white-700 shadow-xl my-2">
@@ -107,7 +87,30 @@
                     hover:bg-cyan-500  rounded mt-4 shadow-lg" type="submit" onclick=handleSubmite(event)>
           Crear</button>
       </form>
-
+      <h2
+          class="uppercase font-bold text-center text-3xl text-white-500 dark:text-white-400 my-10"
+        >Usuarios Registrados</h2>
+      <table id="tablaUsuarios" class="min-w-full divide-y divide-gray-200">
+        <thead>
+          <tr>
+            <th scope="col"
+              class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              ID
+            </th>
+            <th scope="col"
+              class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              Nombre
+            </th>
+            <th scope="col"
+              class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              Correo Electrónico
+            </th>
+          </tr>
+        </thead>
+        <tbody class="bg-white divide-y divide-gray-200">
+          <!-- Los usuarios se cargarán aquí -->
+        </tbody>
+      </table>
     </div>
   </div>
 
