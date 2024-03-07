@@ -12,48 +12,48 @@
  <script type="module" src="lib/js/muestraError.js"></script>
   <script type="module" src="lib/js/submitForma.js"></script>
  <script type="module" src="lib/js/muestraInnerHtml.js"></script>
+ <script type="module" src="lib/js/muestraObjeto.js"></script>
+
 
 <script>
     const parametros = new URL(location.href).searchParams
 </script>
 </head>
 
-<body>
+<body onload="ejecuta(fetch('srv/srvConsultarPreguntas.php'))
+  .then(render => muestraInnerHtml(lista , render))
+  .catch(muestraError)">
 
-<div>
-</div>
 <script>
   function consultarpregunta() {
     fetch('srv/srvConsultarPreguntas.php')
-    .then(render => muestraInnerHtml(lista,render))
-    .catch(muestraError);
+    .then(response => response.text() )
+    .then(render => muestraInnerHtml('lista',render))
+    .catch(error => muestraError(error));
   }
 
   function buscaEmpresa(parametros){
     fetch('srv/srvBusquedaEmpresa.php' + parametros)
-    .then(render => muestraInnerHtml(cuestionario,render))
-    .catch(muestraError);
+    .then(response => response.text())
+    .then(render => muestraObjeto('cuestionario',render))
+    .catch(error => muestraError(error));
   }
-
   
-  
-   window.onload = function() {
-    let parametros = '?empId=valor1&cue=adolfo';
+  window.onload = function() {
+    let parametros = '?parametro1=valor1&parametro2valor2';
     buscaEmpresa(parametros)
     consultarpregunta()
-  } 
+  }
   
 </script>
 
 
   <div>
       <h1>Crear Cuestionario</h1>
-  <form id="cuestionarios" onsubmit="submitForma('srv/srvCrearCuestionario.php' + parametros, event, cuestionarios)
+  <form id="cuestionario" onsubmit="submitForma('srv/srvCrearCuestionario.php' + parametros, event, cuestionario)
   .then(modelo => location.href = 'creaCuestionario.html')
     .catch(muestraError)">
-    <div id="cuestionario">  
-      <input type="text" name="id" id="id" >
-      <input type="text" name="cue" id="cue" >
+    <div>  
     <div>
       Numero de preguntas: <input hidden type="number" id="numPreguntas" name="numPreguntas" min="1">
     </div>
@@ -66,6 +66,8 @@
       </tr>
     </thead>
     <tbody id="lista">
+      <input type="text" name="id" id="" >
+      <input type="text" name="cue" id="" >
     </tbody>
   </table>
   </div>  
