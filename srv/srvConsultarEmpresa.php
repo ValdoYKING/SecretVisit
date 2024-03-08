@@ -20,6 +20,7 @@ ejecuta(function () {
       <a class='btn btn-primary'> $direccion</a>
       <div> $calificacion</div>
       <a href='crearEncuesta.html?empId=$id&?cue=rodolfo'>Crear Cuestionario</a>
+      <a href='FormEncuesta.html?empid=$id'> Ver cuestionario</a>
     </div>
   </div>
     "; 
