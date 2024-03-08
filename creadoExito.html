@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width" />
+
+  <title>Solo Administradores</title>
+
+  <script type="module" src="lib/js/ejecuta.js"></script>
+  <script type="module" src="lib/js/muestraError.js"></script>
+  <script type="module" src="./js/const/ROL_ADMINISTRADOR.js"></script>
+  <script type="module" src="./js/custom/mi-nav.js"></script>
+  <script type="module" src="./js/Sesion.js"></script>
+  <script type="module" src="./js/custom/footer.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            clifford: '#da373d',
+          }
+        }
+      }
+    }
+  </script>
+</head>
+
+<body onload="cargarUsuarios()">
+  <mi-nav id="nav"></mi-nav>
+
+  <main id="main" class="container w-full mx-auto">
+    <p>Bienvenido, Administrador.</p>
+    <button
+      class="bg-clifford text-white text-sm font-bold rounded-lg p-2 m-2 justify-end item-end w-1/6 mx-auto"
+      type="button" onclick="cerrarSesion()">
+      Cerrar sesión
+    </button>
+  </main>
+  <div class="p-4 container mx-auto">
+    <div class="p-4 border-white-200  border-dashed rounded-lg dark:border-white-700 shadow-xl my-2">
+      <p class="text-4xl text-white-400 dark:text-white-500 uppercase font-bold">
+       Creado con <span class="text-white-500 text-purple-500">exito</span>
+      </p>
+        <button class="bg-purple-700" type="button" onclick="location.href = 'admin.html'">
+          Volver</button>
+   
+ 
+    </div>
+  </div>
+
+  </div>
+
+  <p>
+
+    <a id="login" hidden href="login.html">Iniciar sesión</a>
+    <a id="registro" hidden href="registro.html">Registrarse</a>
+
+
+
+  </p>
+  </div>
+  <footer id="footer"></footer>
+
+
+  <script>
+    async function cargarUsuarios() {
+      try {
+        const respuesta = await fetch("srv/srvObtenerUsuarios.php");
+        const usuarios = await respuesta.json();
+        const tbody = document.querySelector("#tablaUsuarios tbody");
+        tbody.innerHTML = ""; // Limpiar contenido anterior
+        usuarios.forEach((usuario) => {
+          const fila = document.createElement("tr");
+          fila.innerHTML = `
+                        <td>${usuario.id}</td>
+                        <td>${usuario.cue}</td>
+                        <td>${usuario.correo}</td>
+                    `;
+          tbody.appendChild(fila);
+        });
+      } catch (error) {
+        console.error("Error al cargar usuarios:", error);
+      }
+    }
+
+    async function cerrarSesion() {
+      try {
+        const respuesta = await fetch('srv/srvLogout.php');
+        const json = await respuesta.json();
+        // Redirige a la página de inicio después de cerrar sesión
+        location.href = 'index.html';
+      } catch (error) {
+        console.error('Error al cerrar sesión:', error);
+      }
+    }
+
+
+  </script>
+</body>
+
+</html>
