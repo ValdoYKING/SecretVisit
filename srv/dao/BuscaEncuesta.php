@@ -32,3 +32,22 @@ function BuscaEncuesta(int $id): false|Encuesta
     return $lastId !== null ? (int)$lastId : null;
 }
   
+function BuscaEncuestaidEmpresa(int $id): false|Encuesta
+{
+ $con = AccesoBd::getCon();
+ $stmt = $con->prepare(
+  "SELECT
+      ENC_ID as id,
+      EMP_ID as idempresa,
+      USU_ID as idusuario,
+      ENC_RECOMPENSA as recompensa
+   FROM ENCUESTA
+   WHERE EMP_ID = :id"  
+ );
+ $stmt->execute([":id" => $id]);
+ $stmt -> setFetchMode(
+  PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE,
+  Encuesta::class
+ );
+ return $stmt->fetch();
+}

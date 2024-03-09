@@ -17,10 +17,14 @@
 
 </script>
 <body onload="ejecuta(fetch('srv/srvEncuestaConsulta.php?'+ parametros))
-.then(render => muestraInnerHtml(consulta , render))
-.catch(muestraError)">
-    
-
+.then(render =>muestraInnerHtml(consulta , render)) 
+.catch(muestraError => {
+    if (muestraError) {
+        window.location='listaEmpresas.html'
+        muestraError(muestraError)
+    }
+})
+ ">
     <form action="" method="post">
         <div id="consulta">
 
