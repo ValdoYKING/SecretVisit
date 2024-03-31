@@ -39,7 +39,7 @@ ejecuta(function () {
 
         // Llamar a otro archivo para agregar las preguntas a la encuesta
         
-        agregarPreguntasEncuesta($encuesta, $preguntaIds);
+        agregarPreguntasEncuesta($encuesta, $preguntaIds, $usuario);
 
         // Retorna un mensaje de éxito
         return "Encuesta creada exitosamente";
