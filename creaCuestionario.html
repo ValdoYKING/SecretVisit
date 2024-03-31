@@ -1,14 +1,4 @@
-<?php
-// Verificar la sesión y los roles del usuario
-require_once __DIR__ . "/ruta/al/scriptDeSesion.php";
 
-// Verificar si el usuario tiene la sesión activa y el rol de "Analista"
-if (!isset($_SESSION[CUE]) || !in_array("Analista", $_SESSION[ROL_IDS])) {
-    // Si no tiene sesión activa o el rol correcto, redirigir a otra página
-    header("Location: paginaDeError.php");
-    exit(); // Detener la ejecución del script
-}
-?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -44,18 +34,60 @@ if (!isset($_SESSION[CUE]) || !in_array("Analista", $_SESSION[ROL_IDS])) {
 </script>
 </head>
 
-<body onload="ejecuta(fetch('srv/srvConsultarPreguntas.php'))
-  .then(render => muestraInnerHtml(lista , render))
-  .catch(muestraError)">
+<body onload="loadData()">
 
 <script>
-  
+  const loadData = async () => {
+    await getQuestions()
+    await getCompanys()
+    async function getQuestions() {
+      try {
+        const response = await fetch('srv/srvConsultarPreguntas.php');
+        const data = await response.json();
+        muestraInnerHtml(lista, data);
+      } catch (error) {
+        muestraError(error);
+      }
+    }
+    async function getCompanys(id) {
+        //send id via post to get the company
+        id = 1;
+        const url = 'srv/srvGetCompanysById.php';
+        const request = {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ id }),
+        };
+        try {
+          const response = await fetch(url, request);
+          const data = await response.json();
+          console.log(data);
 
-  function buscaEmpresa(parametros){
-    fetch('srv/srvBusquedaEmpresa.php' + parametros)
-    .then(render => muestraObjeto('cuestionario',render))
-    .catch(error => muestraError(error));
+    
+        } catch (error) {
+          muestraError(error);
+        }
+
+    }
+
+    
   }
+    async function buscaEmpresa(parametros) {
+      try {
+        const response = await fetch('srv/srvBusquedaEmpresa.php' + parametros);
+        const data = await response.json();
+        muestraObjeto('cuestionario', data);
+      } catch (error) {
+        muestraError(error);
+      }
+    }
+
+ 
+ 
+   // buscaEmpresa(parametros);
+  
   
 /*   window.onload = function() {
     let parametros = '?parametro1=valor1&parametro2valor2';
@@ -69,11 +101,21 @@ if (!isset($_SESSION[CUE]) || !in_array("Analista", $_SESSION[ROL_IDS])) {
   Volver
 </button>
       <h1 class="text-purple-700 font-bold text-start text-3xl mb-4 uppercase my-10 ">+ Crear un Cuestionario</h1>
+        <select name="empresa" id="empresa" class="bg-white shadow-lg w-1/2 mx-auto rounded-md border-2 border-gray-300 p-2 text-black font-bold mb-2 uppercase text-start"
+          required>
+          <option value="">Selecciona una empresa</option>
+          <option value="1">Empresa 1</option>
+          <option value="2">Empresa 2</option>
+          <option value="3">Empresa 3</option>
+        
+        </select>
   <form id="cuestionario" onsubmit="submitForma('srv/srvCrearCuestionario.php' + parametros, event, cuestionario)
   .then(modelo => location.href = 'creaCuestionario.html')
     .catch(muestraError)">
    
             <div>
+            
+            
         <label for="pregunta" class="text-black font-bold mb-2 uppercase text-start" >
           Numero de preguntas: <input hidden type="number" id="numPreguntas" name="numPreguntas" min="1">
             </div>
