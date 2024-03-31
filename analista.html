@@ -135,13 +135,6 @@
          <li>
            <a href="#"
              class="flex items-center p-2 text-white-900 rounded-lg text-white hover:bg-white-100 hover:bg-white-700 group">
-             <!-- <svg
-               class="flex-shrink-0 w-5 h-5 text-white-500 transition duration-75 text-white-400 group-hover:text-white-900 group-hover:text-white"
-               aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 16">
-               <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                 d="M1 8h11m0 0L8 4m4 4-4 4m4-11h3a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-3" />
-             </svg> -->
-            <!--  <span class="flex-1 ms-3 whitespace-nowrap">Sign In</span> -->
              
            </a>
          </li>
@@ -163,6 +156,7 @@
      </div>
    </aside>
 
+   
    <div class="p-4 sm:ml-64">
      <button class="bg-purple-500 text-white text-sm font-bold rounded-lg p-2 m-2 justify-end item-end w-1/6 mx-auto"
          type="button" id="logout" hidden onclick="ejecuta('srv/srvLogout.php')
@@ -171,93 +165,62 @@
          Terminar sesión
       </button>
      <div class="p-4 border-white-200  border-dashed rounded-lg dark:border-white-700 shadow-xl my-2">
+       <h2 class="text-xl text-white-400 dark:text-white-500 uppercase font-bold">
+         Bienvenido</h2>
        <p class="text-4xl text-white-400 dark:text-white-500 uppercase font-bold">
-        Mis visitas <span class="text-white-500 text-purple-500"> secretas</span>
+        Mis Empresas visitas  <span class="text-white-500 text-purple-500"> secretas</span>
          <i class="fas fa-user-secret">
          </i>
-         <div class="col-span-1 bg-purple-500 rounded-lg p-2 text-center text-white hover:cursor-pointer w-3/6 mx-auto my-2 hover:bg-purple-700"  >
-           + Crear una nueva visita
-         </div>
+       
        </p>
       
      </div>
-     <div class="grid grid-cols-1 md:grid-cols-1 md:grid-cols-2 lg:grid-cols-cols-4 gap-4 mb-4">
-       <div
-         class="flex items-center justify-center rounded bg-white-50 h-28 bg-white shadow-lg hover:bg-purple-400 hover:text-white hover:cursor-pointer">
-         <img src="https://applicantes.com/wp-content/uploads/2023/03/crear-logotipo-empresa-financiera.jpeg"
-           alt="profile" class="w-26 h-20 rounded-full">
-         <div class="ms-4">
-           <p class="text-md font-bold text-white-400 ">Empresa 1</p>
-           <p class="text-purple-500">10 <span class="text-black  preguntas">preguntas</span>
-           <p class="text-sm text-purple-700">5 <span class="text-black">min restantes</span></p>
-           <button
-             class="flex w-full m-auto  
-             justify-center text-center bg-purple-500 hover:bg-white-700 text-white  rounded-lg font-bold rounded shadow-lg hover:bg-white hover:text-purple-400"
-             type="submit">
-             Ver</button>
-         </div>
-       </div>
-       <div
-         class="flex items-center justify-center rounded bg-white-50 h-28 bg-white shadow-lg hover:bg-purple-400 hover:text-white hover:cursor-pointer">
-         <img src="https://applicantes.com/wp-content/uploads/2023/03/crear-logotipo-empresa-financiera.jpeg"
-           alt="profile" class="w-26 h-20 rounded-full">
-         <div class="ms-4">
-           <p class="text-md font-bold text-white-400 ">Empresa 1</p>
-           <p class="text-purple-500">10 <span class="text-black  preguntas">preguntas</span>
-           <p class="text-sm text-purple-700">5 <span class="text-black">min restantes</span></p>
-           <button
-             class="flex w-full m-auto  
-                 justify-center text-center bg-purple-500 hover:bg-white-700 text-white  rounded-lg font-bold rounded shadow-lg hover:bg-white hover:text-purple-400"
-             type="submit">
-             Ver</button>
-         </div>
-       </div>
-       <div
-         class="flex items-center justify-center rounded bg-white-50 h-28 bg-white shadow-lg hover:bg-purple-400 hover:text-white hover:cursor-pointer">
-         <img src="https://applicantes.com/wp-content/uploads/2023/03/crear-logotipo-empresa-financiera.jpeg"
-           alt="profile" class="w-26 h-20 rounded-full">
-         <div class="ms-4">
-           <p class="text-md font-bold text-white-400 ">Empresa 1</p>
-           <p class="text-purple-500">10 <span class="text-black  preguntas">preguntas</span>
-           <p class="text-sm text-purple-700">5 <span class="text-black">min restantes</span></p>
-           <button
-             class="flex w-full m-auto  
-                 justify-center text-center bg-purple-500 hover:bg-white-700 text-white  rounded-lg font-bold rounded shadow-lg hover:bg-white hover:text-purple-400"
-             type="submit">
-             Ver</button>
-         </div>
-       </div>
-       <div
-         class="flex items-center justify-center rounded bg-white-50 h-28 bg-white shadow-lg hover:bg-purple-400 hover:text-white hover:cursor-pointer">
-         <img src="https://applicantes.com/wp-content/uploads/2023/03/crear-logotipo-empresa-financiera.jpeg"
-           alt="profile" class="w-26 h-20 rounded-full">
-         <div class="ms-4">
-           <p class="text-md font-bold text-white-400 ">Empresa 1</p>
-           <p class="text-purple-500">10 <span class="text-black  preguntas">preguntas</span>
-           <p class="text-sm text-purple-700">5 <span class="text-black">min restantes</span></p>
-           <button
-             class="flex w-full m-auto  
-                 justify-center text-center bg-purple-500 hover:bg-white-700 text-white  rounded-lg font-bold rounded shadow-lg hover:bg-white hover:text-purple-400"
-             type="submit">
-             Ver</button>
-         </div>
-       </div>
-     </div>
-       <div class="flex items-center justify-center rounded bg-white-50 h-60 bg-white shadow-lg hover:bg-purple-400 hover:text-white hover:cursor-pointer">
-         <img src="https://applicantes.com/wp-content/uploads/2023/03/crear-logotipo-empresa-financiera.jpeg"
-           alt="profile" class="w-26 h-20 rounded-full">
-         <div class="ms-4">
-           <p class="text-md font-bold text-white-400 ">Empresa 12</p>
-           <p class="text-purple-500">10 <span class="text-black  preguntas">preguntas</span>
-           <p class="text-sm text-purple-700">5 <span class="text-black">min restantes</span></p>
-           <button
-             class="flex w-full m-auto  
-               justify-center text-center bg-purple-500 hover:bg-white-700 text-white  rounded-lg font-bold rounded shadow-lg hover:bg-white hover:text-purple-400"
-             type="submit">
-             Ver</button>
-         </div>
-       </div>
+     <div class="p-4 border-white-200  border-dashed rounded-lg dark:border-white-700 shadow-xl my-2">
+        <h2 class="text-xl text-white-400 dark:text-white-500 uppercase font-bold">
+          Crear nueva  </h2>
+        <p class="text-4xl text-white-400 dark:text-white-500 uppercase font-bold">
+          <span class="text-white-500 text-purple-500"> Empresa</span>
+          <i class="fas fa-user-secret">
+          </i>
+          </p>
+          <button class="bg-purple-500 text-white text-sm font-bold rounded-lg p-2 m-2 
+            justify-rcenter item-center w-1/4 mx-auto"
+            onclick="location.href='registrarEmpresa.html'">
+          + Crear Empressa
+          </button>
+       <button class="bg-purple-500 text-white text-sm font-bold rounded-lg p-2 m-2 
+         justify-rcenter item-center w-1/4 mx-auto"
+         onclick="location.href='listaEmpresas.html'">
+       + Ver mis Empressa
+       </button>
+       
+       
+        
+
       </div>
+     <div class="p-4 border-white-200  border-dashed rounded-lg dark:border-white-700 shadow-xl my-2">
+       <h2 class="text-xl text-white-400 dark:text-white-500 uppercase font-bold">
+         Crear nueva  </h2>
+       <p class="text-4xl text-white-400 dark:text-white-500 uppercase font-bold">
+         <span class="text-white-500 text-purple-500"> Encuesta</span>
+         <i class="fas fa-user-secret">
+         </i>
+         </p>
+         <button class="bg-purple-500 text-white text-sm font-bold rounded-lg p-2 m-2 
+           justify-rcenter item-center w-1/4 mx-auto"
+           onclick="location.href='creaCuestionario.html'">
+         + Crear Nueva Encuesta
+         </button>
+       <button class="bg-purple-500 text-white text-sm font-bold rounded-lg p-2 m-2 
+          justify-rcenter item-center w-1/4 mx-auto"
+          onclick="location.href='creaCuestionario.html'">
+        + Ver mis  Encuesta
+        </button>
+
+
+     </div>
+     
+    
    
       
        

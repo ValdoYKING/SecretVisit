@@ -8,15 +8,49 @@
     <script type="module" src="lib/js/ejecuta.js"></script>
     <script type="module" src="lib/js/muestraError.js"></script>
     <script type="module" src="lib/js/muestraInnerHtml.js"></script>
-   
+   <script>
+     const loadData = async () => {
+         try {
+             const response = await fetch('srv/srvConsultarEmpresa.php');
+             if (!response.ok) {
+                 throw new Error('Error al cargar los datos');
+             }
+             const data = await response.json();
+              const lista = document.getElementById('lista');
+             data.forEach(empresa => (
+               <div
+                  class="flex items-center justify-center rounded bg-white-50 h-28 bg-white shadow-lg hover:bg-purple-400 hover:text-white hover:cursor-pointer">
+                  <img src="https://applicantes.com/wp-content/uploads/2023/03/crear-logotipo-empresa-financiera.jpeg"
+                    alt="profile" class="w-26 h-20 rounded-full">
+                  <div class="ms-4">
+                    <p class="text-md font-bold text-white-400 ">Empresa 1</p>
+                    <p class="text-purple-500">10 <span class="text-black  preguntas">preguntas</span>
+                    <p class="text-sm text-purple-700">5 <span class="text-black">min restantes</span></p>
+                    <button
+                      class="flex w-full m-auto  
+                      justify-center text-center bg-purple-500 hover:bg-white-700 text-white  rounded-lg font-bold rounded shadow-lg hover:bg-white hover:text-purple-400"
+                      type="submit">
+                      Ver</button>
+                  </div>
+                </div>
+               
+                 ))
+          innerHtml(lista, render);
+                
+               
+             console.log(data);
+         } catch (error) {
+             console.error('Ocurrió un error:', error);
+         }
+     }
+
+     
+   </script>
 </head>
-<body onload="ejecuta(fetch('srv/srvConsultarEmpresa.php'))
-  .then(render => muestraInnerHtml(lista , render))
-  .catch(muestraError)">
+<body onload="loadData()">
 
-
-<div id="lista">
-
-</div>
+    <h1>Lista de Empresas</h1>
+    <div id="lista"></div>
+    
 </body>
 </html>
