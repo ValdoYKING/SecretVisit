@@ -146,17 +146,10 @@
            </a>
          </li>
          <li>
-           <a href="#" class="flex items-center p-2 text-white-900
-             bg-red-600 hover:bg-red-400
-             rounded-lg text-white hover:bg-white-100 hover:bg-white-700 group"
-             
-             onclick="ejecuta('srv/srvLogout.php')
-             .then(json => location.href = 'index.html')
-             .catch(muestraError)"
-             >
-
-             <span class="flex-1 ms-3 white space-nowrap">Cerrar Sesión</span>
-           </a>
+          <a href="#" class="flex items-center p-2 text-white-900 bg-red-600 hover:bg-red-400 rounded-lg text-white hover:bg-white-100 hover:bg-white-700 group"
+          onclick="logout()">
+          <span class="flex-1 ms-3 white space-nowrap">Cerrar Sesión</span>
+          </a>
          
          </li>
        </ul>
@@ -268,5 +261,15 @@
  </main>
 <footer id="footer"></footer>
 </body>
+<script>
+  async function logout() {
+    try {
+      await ejecuta('srv/srvLogout.php');
+      location.href = 'index.html';
+    } catch (error) {
+      muestraError(error);
+    }
+  }
+</script>
 
 </html>

@@ -33,7 +33,7 @@ const navItems = [
     url: 'listaEncuesta.html'
   },
   {
-    name: 'Registrar empresa2',
+    name: 'Registrar empresa',
     url: 'registrarEmpresa.html'
   },
   {
