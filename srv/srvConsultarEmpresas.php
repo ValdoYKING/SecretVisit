@@ -1,10 +1,10 @@
 <?php
 
 require_once __DIR__ . "/../lib/php/ejecuta.php";
-require_once __DIR__ . "/dao/consultarEmpresa.php";
+require_once __DIR__ . "/dao/consultarEmpresas.php";
 
 ejecuta(function () {
-    $lista = consultarEmpresa();
+    $lista = consultarEmpresas();
     $empresas = array();
     foreach ($lista as $it) {
         $id = htmlentities($it->id);

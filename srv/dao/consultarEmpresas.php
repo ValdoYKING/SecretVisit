@@ -5,7 +5,7 @@ require_once __DIR__ . "/../modelo/Empresa.php";
 require_once __DIR__ . "/AccesoBd.php";
 
 /** @return Empresa[] */
-function consultarEmpresa(): array
+function consultarEmpresas(): array
 {
  $con = AccesoBd::getCon();
  $stmt = $con->query(
