@@ -161,8 +161,23 @@
 
   <script>
    
-    
+      function updateRol(id,newValue) {
+        //send post 
+        const url="srv/CambiarRol.php"
+        fetch(url,{
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + token
+          },
+          body: JSON.stringify({
+            id: id,
+            rol: newValue
+          })
+        })
+      }
     async function loadFiles() {
+      
         async function loadUsers() {
             try {
                 const respuesta = await fetch("srv/srvObtenerUsuarios.php");
@@ -178,10 +193,11 @@
                         <td>${usuario.correo}</td>
                         <td>${usuario.rol_id? usuario.rol_id: "No encontrado"}</td>
                         <td>
-                          <select name="rol" id="rol" class="">
-                            <option value="">Seleccionar Rol</option>
-                            <option value="Mystery Shopper">Mystery Shopper</option>
-                            <option value="Analista">Analista</option>
+                        <select name="rol" id="rol" class="">
+                  <option value="">Seleccionar Rol</option>
+                  <option value="Mystery Shopper" ${usuario.rol_id === 'Mystery Shopper' ? 'selected' : ''}>Mystery Shopper</option>
+                  <option value="Analista" ${usuario.rol_id === 'Analista' ? 'selected' : ''}>Analista</option>
+                      </select>
                         </td>
                         <td>
                           <button class="bg-green-700 text-white text-sm font-bold rounded-lg p-2 h-8 w-24" type="button"
@@ -196,12 +212,9 @@
             } catch (error) {
                 console.error("Error al cargar usuarios:", error);
             }
+       
         }
-      function updateRol(id) {
-          const selectElement = document.querySelector(`#rol_${id}`);
-          const newRol = selectElement.value;
-          console.log("Updating role for user with ID:", id, "New Role:", newRol);
-      }
+     
 
  
       async function loadCompany() {
