@@ -44,37 +44,92 @@ if (!isset($_SESSION[CUE]) || !in_array("Analista", $_SESSION[ROL_IDS])) {
 </script>
 </head>
 
-<body onload="ejecuta(fetch('srv/srvConsultarPreguntas.php'))
-  .then(render => muestraInnerHtml(lista , render))
-  .catch(muestraError)">
-
+<body>
+   
 <script>
 function volver() {
   location.href ='admin.html';
   console.log("volver")
 }
     
-  function consultarpregunta() {
-    fetch('srv/srvConsultarPreguntas.php')
-    .then(response => response.text() )
-    .then(render => muestraInnerHtml('lista',render))
-    .catch(error => muestraError(error));
-  }
 
-  function buscaEmpresa(parametros){
-    fetch('srv/srvBusquedaEmpresa.php' + parametros)
-    .then(response => response.text())
-    .then(render => muestraObjeto('cuestionario',render))
-    .catch(error => muestraError(error));
-  }
-     <mi-nav id="nav"></mi-nav>
+async function cargarEmpresas() {
+            try {
+                const respuesta = await fetch('srv/srvObtenerEmpresas.php');
+                const empresas = await respuesta.json();
+                const select = document.getElementById('empresaId');
+                select.innerHTML = ''; // Limpiar contenido anterior
+                empresas.forEach(empresa => {
+                    const option = document.createElement('option');
+                    option.value = empresa.id;
+                    option.textContent = empresa.nombre;
+                    select.appendChild(option);
+                });
+            } catch (error) {
+                console.error('Error al cargar las empresas:', error);
+            }
+        }
+
+  async function cargarPreguntas() {
+            try {
+                const respuesta = await fetch('srv/srvObtenerPreguntas.php');
+                const preguntas = await respuesta.json();
+                const preguntasContainer = document.getElementById('preguntasContainer');
+                preguntasContainer.innerHTML = ''; // Limpiar contenido anterior
+                preguntas.forEach(pregunta => {
+                    const checkbox = document.createElement('input');
+                    checkbox.type = 'checkbox';
+                    checkbox.name = 'preguntaId[]'; // Cambiar el nombre para enviarlo como un arreglo
+                    checkbox.value = pregunta.id;
+                    const th = document.createElement('th');
+                    const th2 = document.createElement('th');
+                    const p = document.createElement('p');
+                    p.textContent = "categoria";
+            th.textContent = pregunta.pregunta ;
+            th2.textContent = pregunta.id; // Corrección aquí
+                    const tr = document.createElement('tr');
+                    tr.appendChild(th2);
+                    tr.appendChild(th).appendChild(p);
+                    tr.appendChild(checkbox);
+                    checkbox.addEventListener('change',function() {
+                        if (this.checked) { 
+                            preguntasSeleccionadas++
+                        } else {
+                            preguntasSeleccionadas--
+                        }
+                        contador();
+                    } );
+                    preguntasContainer.appendChild(tr);
+                });
+            } catch (error) {
+                console.error('Error al cargar las preguntas:', error);
+            }
+        }
 
   window.onload = function() {
     let parametros = '?parametro1=valor1&parametro2valor2';
-    buscaEmpresa(parametros)
-    consultarpregunta()
+    cargarPreguntas();
+    cargarEmpresas();
+
+    const form = document.getElementById('cuestionario');
+    form.addEventListener('submit', validarPreguntas);
+
   }
   
+  let preguntasSeleccionadas = 0;
+
+function contador() {
+    const con = document.getElementById('contadorPreguntas')
+    con.textContent = preguntasSeleccionadas
+}
+
+function validarPreguntas(event) {
+    if (preguntasSeleccionadas < 10) {
+        alert("Debe seleccionar al menos 10 preguntas");
+        alert("En caso de no contar con pregunta sufucientes,\n  deberas de agregar usted mismo");
+        event.preventDefault()
+    }
+}
 </script>
    <mi-nav  id="nav"></mi-nav>
   <div class="container mx-auto shadow-lg p-6 bg-white rounded-lg"">
@@ -82,14 +137,18 @@ function volver() {
   Volver a administrador
 </button>
       <h1 class="text-purple-700 font-bold text-center text-3xl mb-4 uppercase ">+ Crear un Cuestionario</h1>
-  <form id="cuestionario" onsubmit="submitForma('srv/srvCrearCuestionario.php' + parametros, event, cuestionario)
+  <form id="cuestionario" onsubmit="submitForma('srv/srvCrearEncuesta.php', event, cuestionario)
   .then(modelo => location.href = 'creaCuestionario.html')
     .catch(muestraError)">
-   
+           <label for="empresaId">Seleccionar Empresa:</label>
+           <select name="empresaId" id="empresaId">
+               <!-- Aquí se cargarán las opciones de las empresas -->
+           </select>
             <div>
         <label for="pregunta" class="text-black font-bold mb-2 uppercase text-start" >
-          Numero de preguntas: <input hidden type="number" id="numPreguntas" name="numPreguntas" min="1">
+          <p> Numero de preguntas:  <span id="contadorPreguntas">0</span></p>
             </div>
+
   <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
      <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
 
@@ -99,11 +158,13 @@ function volver() {
          <td class="px-6 py-4">Agregar a Cuestionario</td>
       </tr>
     </thead>
-    <tbody id="lista"> 
-      <input type="text" name="id" id="" >
-      <input type="text" name="cue" id="" >
+    <tbody id="preguntasContainer"> 
+     
     </tbody>
   </table>
+  <p style="display: none;">CUE: <span id="cueDisplay"></span></p>
+  <p style="display: none;">Rol: <span id="rolDisplay"></span></p>
+  <input type="hidden" name="cue" id="cueInput" value="">
      <button
         class="bg-purple-500 m-4 px-4 py-2 rounded-md w-2/4 mx-auto flex text-white mt-10  font-bold  hover:bg-purple-400 hover:text-white text-center justify-center "
        type="submit" >+ Crear  </button>

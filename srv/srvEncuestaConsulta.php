@@ -3,11 +3,14 @@
 require_once __DIR__ . "/../lib/php/ejecuta.php";
 require_once __DIR__ . "/../lib/php/leeEntero.php";
 require_once __DIR__ . "/dao/consultarEnc_Pre.php";
+require_once __DIR__ . "/dao/BuscaEncuesta.php";
 
 ejecuta(function () {
 
     $idempre = leeEntero("empid");
-    $modelos = consultarEnc_Pre($idempre); // Obtener todos los modelos
+    $encuestaM = BuscaEncuestaidEmpresa($idempre);
+    $encID = $encuestaM->id;
+    $modelos = consultarEnc_Pre($encID);// Obtener todos los modelos
     if ($modelos === false || empty($modelos))
     throw new Exception("no encontro encuesta");
 
@@ -23,16 +26,14 @@ ejecuta(function () {
             $pregunta = $encuesta_pregunta->pregunta;
             $encuesta = $encuesta_pregunta->encuesta;
     
-            $preguntaId = htmlentities($pregunta->id);
+            //$preguntaId = htmlentities($pregunta->id);
             $preguntaTexto = htmlentities($pregunta->pregunta);
             $encuestaId = htmlentities($encuesta->id);
-    
             $render .= 
             "<div>
-                <label>Pregunta: $preguntaTexto</label>
-                <input type='range' name='respuesta' id='respuesta'>
-                <input type='hidden' name='preguntaId' value='$preguntaId'>
-                <input type='hidden' name='encuestaId' value='$encuestaId'>
+                <label> $preguntaTexto</label>
+                <input type='range' min='0' max='5' name='respuestas' value='4'>
+                <input type='hidden' name='preguntaId' value='$encuestaId'>
             </div>";
         }
         return $render;
