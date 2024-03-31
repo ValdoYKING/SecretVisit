@@ -160,11 +160,14 @@
 
 
   <script>
+   
+    
     async function loadFiles() {
         async function loadUsers() {
             try {
                 const respuesta = await fetch("srv/srvObtenerUsuarios.php");
                 const usuarios = await respuesta.json();
+                
                 const tbody = document.querySelector("#tablaUsuarios tbody");
                 tbody.innerHTML = ""; 
                 usuarios.forEach((usuario) => {
@@ -173,7 +176,7 @@
                         <td>${usuario.id}</td>
                         <td>${usuario.cue}</td>
                         <td>${usuario.correo}</td>
-                        <td>${usuario.rol? usuario.rol: "No encontrado"}</td>
+                        <td>${usuario.rol_id? usuario.rol_id: "No encontrado"}</td>
                         <td>
                           <select name="rol" id="rol" class="">
                             <option value="">Seleccionar Rol</option>
@@ -181,9 +184,11 @@
                             <option value="Analista">Analista</option>
                         </td>
                         <td>
-                          <button class="bg-green-700 text-white text-sm font-bold rounded-lg p-2 h-8 w-24" type="button" onclick="updateRol(${usuario.id})">
-                            Actualizar Rol
-                            </button>
+                          <button class="bg-green-700 text-white text-sm font-bold rounded-lg p-2 h-8 w-24" type="button"
+                          
+                          onclick="updateRol(${usuario.id})">
+                        Actualizar Rol
+                    </button>
                         </td>
                     `;
                     tbody.appendChild(fila);
@@ -192,6 +197,13 @@
                 console.error("Error al cargar usuarios:", error);
             }
         }
+      function updateRol(id) {
+          const selectElement = document.querySelector(`#rol_${id}`);
+          const newRol = selectElement.value;
+          console.log("Updating role for user with ID:", id, "New Role:", newRol);
+      }
+
+ 
       async function loadCompany() {
           try {
               const respuesta = await fetch("srv/srvConsultarEmpresas.php");
