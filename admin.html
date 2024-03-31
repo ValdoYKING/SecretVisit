@@ -161,18 +161,19 @@
 
   <script>
    
-      function updateRol(id,newValue) {
+      function updateRol(id,rol) {
         //send post 
-        const url="srv/CambiarRol.php"
+        console.log(id, rol  )
+        const url="srv/srvCambiarRol.php"
         fetch(url,{
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            "Authorization": "Bearer " + token
+           
           },
           body: JSON.stringify({
             id: id,
-            rol: newValue
+            rol: rol
           })
         })
       }
@@ -193,18 +194,16 @@
                         <td>${usuario.correo}</td>
                         <td>${usuario.rol_id? usuario.rol_id: "No encontrado"}</td>
                         <td>
-                        <select name="rol" id="rol" class="">
+                      <select name="rol" id="rol_${usuario.id}" class="rol-select">
+                      
                   <option value="">Seleccionar Rol</option>
                   <option value="Mystery Shopper" ${usuario.rol_id === 'Mystery Shopper' ? 'selected' : ''}>Mystery Shopper</option>
                   <option value="Analista" ${usuario.rol_id === 'Analista' ? 'selected' : ''}>Analista</option>
                       </select>
                         </td>
                         <td>
-                          <button class="bg-green-700 text-white text-sm font-bold rounded-lg p-2 h-8 w-24" type="button"
-                          
-                          onclick="updateRol(${usuario.id})">
-                        Actualizar Rol
-                    </button>
+                        <button class="bg-green-700 text-white text-sm font-bold rounded-lg p-2 h-8 w-24" type="button" onclick="updateRol(${usuario.id}, 'rol_${usuario.rol_id}')">Actualizar</button>
+              
                         </td>
                     `;
                     tbody.appendChild(fila);
