@@ -34,7 +34,7 @@ if (isAutorizate ) {
       url: 'creaCuestionario.html'
     },
     {
-      name: 'Registrar empresa',
+      name: 'Registrar empresas',
       url: 'registrarEmpresa.html'
     },
     {
@@ -44,6 +44,10 @@ if (isAutorizate ) {
     {
       name: 'Iniciar Sesión',
       url: 'login.html'
+    }, 
+    {
+        name: 'Servicios',
+        url: 'servicios.html'
     }
   ];
 }

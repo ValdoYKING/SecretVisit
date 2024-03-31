@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">  <script type="module" src="lib/js/ejecuta.js"></script>
+  <script type="module" src="lib/js/muestraError.js"></script>
+  <script type="module" src="./js/custom/mi-nav.js"></script>
+  <script type="module" src="./js/custom/footer.js"></script>
+  <script type="module" src="./js/Sesion.js"></script>
+  <script type="module" src="./src/validation.js"></script>
+
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            clifford: '#da373d',
+          }
+        }
+      }
+    }
+  </script>
+  <title>Inicio</title>
+</head>
+
+<!-- <body onload="ejecuta('srv/srvSesion.php')
+  .then(objeto => {
+   const sesion = new Sesion(objeto)
+   nav.sesion = sesion
+  })
+  .catch(muestraError)"> -->
+
+<body class="">
+  <mi-nav id="nav"></mi-nav>
+  <div class="container mx-auto w-full  mt-20">
+    <main>
+      <h1 class="text-4xl uppercase font-bold text-start">Servicios</h1><br>
+      <p class="text-3xl">Puedes y debes ver tu negocio a través de los ojos de tus clientes. 
+        La investigación de la experiencia del cliente de SecretVisit puede proveerte de datos críticos para tomar decisiones significativas en tu negocio.
+      </p>
+      <p class="text-3xl">Desde 2024, hemos trabajado con empresas de todo tipo para ayudarles a mantener su producto
+        a la altura de sus clientes.
+      </p>
+    </main>
+
+    <div class="container" style="margin-top: 8%;">
+        <div class="card border-0">
+          <div class="row g-0">
+            <div class="col-md-6">
+              <img src="src/assets/anonimo.jpg" class="img-fluid" alt="Imagen">
+            </div>
+            <div class="col-md-6">
+              <div class="card-body">
+                <h5 class="text-4xl uppercase font-bold text-start">Cliente Incognito</h5><br>
+                <p class="text-3xl">Cliente Incógnito (Mystery Shopping) es un método bien conocido en la investigación de mercados.
+                    La experiencia de SecretVisit en este fiable y probado método han permitido llevarlo a un nuevo nivel en la medición de la experiencia de los clientes. </p>
+                <button class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded my-10 " onclick="location.href='login.html'">¡Comienza ahora!</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    <div class="container" style="margin-top: 8%;">
+        <div class="card border-0">
+          <div class="row g-0">
+            <div class="col-md-6">
+              <div class="card-body">
+                <h5 class="text-4xl uppercase font-bold text-start">Encuestas de Cliente</h5><br>
+                <p class="text-3xl">Las encuestas de satisfacción del cliente brindan resultados inmediatos, retroalimentación ilimitada y permiten dar incentivos a los clientes a cambio de completar dichas encuestas. </p>
+                <button class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded my-10 " onclick="location.href='login.html'">¡Comienza ahora!</button>   
+              </div>
+            </div>
+            <div class="col-md-6">
+                <img src="src/assets/encuesta.jpg" class="img-fluid" alt="Imagen">
+              </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container" style="margin-top: 8%;">
+        <div class="card border-0">
+          <div class="row g-0">
+            <div class="col-md-6">
+              <img src="src/assets/rep.jpg" class="img-fluid" alt="Imagen">
+            </div>
+            <div class="col-md-6">
+              <div class="card-body">
+                <h5 class="text-4xl uppercase font-bold text-start">Reputación Social</h5><br>
+                <p class="text-3xl">Revisa todas las reseñas de clientes reales en múltiples plataformas de reseñas y redes sociales, como Yelp, Google y TripAdvisor, entre otras. Fortalece las relaciones con tus clientes y supervisa los comentarios, facilitando la resolución de problemas rápidamente para los clientes insatisfechos. </p>
+                <button class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded my-10 " onclick="location.href='login.html'">¡Comienza ahora!</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container" style="margin-top: 8%;">
+        <div class="card border-0">
+          <div class="row g-0">
+            <div class="col-md-6">
+              <div class="card-body">
+                <h5 class="text-4xl uppercase font-bold text-start">Seguir Las Reglas</h5><br>
+                <p class="text-3xl">Puede ser costoso para tu empresa que tus empleados no siguen las reglas. La mayoría de las veces no se sabe que es un problema, hasta que ya es demasiado tarde. Toma medidas proactivas para que los elementos de tu marca cumplan con las normas legales y asegura que los empleados estén cumpliendo con los requisitos al interactuar con clientes. </p>
+                <button class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded my-10 " onclick="location.href='login.html'">¡Comienza ahora!</button>   
+              </div>
+            </div>
+            <div class="col-md-6">
+                <img src="src/assets/reglas.jpg" class="img-fluid" alt="Imagen">
+              </div>
+          </div>
+        </div>
+      </div>  
+
+
+      </div>
+
+  <footer id="footer"></footer>
+  
+</body>
+
+</html>

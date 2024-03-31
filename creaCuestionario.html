@@ -47,6 +47,7 @@ if (!isset($_SESSION[CUE]) || !in_array("Analista", $_SESSION[ROL_IDS])) {
 <body>
    
 <script>
+<<<<<<< Updated upstream
 function volver() {
   location.href ='admin.html';
   console.log("volver")
@@ -105,38 +106,42 @@ async function cargarEmpresas() {
                 console.error('Error al cargar las preguntas:', error);
             }
         }
+  
+  function consultarpregunta() {
+    fetch('srv/srvConsultarPreguntas.php')
+    .then(response => response.text() )
+    .then(render => muestraInnerHtml('lista',render))
+    .catch(error => muestraError(error));
+  }
+=======
+  
+>>>>>>> Stashed changes
+
+  function buscaEmpresa(parametros){
+    fetch('srv/srvBusquedaEmpresa.php' + parametros)
+    .then(render => muestraObjeto('cuestionario',render))
+    .catch(error => muestraError(error));
+  }
+<<<<<<< Updated upstream
+     <mi-nav id="nav"></mi-nav>
 
   window.onload = function() {
+=======
+  
+/*   window.onload = function() {
+>>>>>>> Stashed changes
     let parametros = '?parametro1=valor1&parametro2valor2';
-    cargarPreguntas();
-    cargarEmpresas();
-
-    const form = document.getElementById('cuestionario');
-    form.addEventListener('submit', validarPreguntas);
-
+    buscaEmpresa(parametros)
+    consultarpregunta()
   }
   
-  let preguntasSeleccionadas = 0;
-
-function contador() {
-    const con = document.getElementById('contadorPreguntas')
-    con.textContent = preguntasSeleccionadas
-}
-
-function validarPreguntas(event) {
-    if (preguntasSeleccionadas < 10) {
-        alert("Debe seleccionar al menos 10 preguntas");
-        alert("En caso de no contar con pregunta sufucientes,\n  deberas de agregar usted mismo");
-        event.preventDefault()
-    }
-}
 </script>
    <mi-nav  id="nav"></mi-nav>
   <div class="container mx-auto shadow-lg p-6 bg-white rounded-lg"">
 <button class="bg-gray-500 hover:bg-black-700 border-white text-white font-bold border-sm py-2 px-2 rounded" onclick="location.href ='admin.html'">
   Volver a administrador
 </button>
-      <h1 class="text-purple-700 font-bold text-center text-3xl mb-4 uppercase ">+ Crear un Cuestionario</h1>
+      <h1 class="text-purple-700 font-bold text-start text-3xl mb-4 uppercase my-10 ">+ Crear un Cuestionario</h1>
   <form id="cuestionario" onsubmit="submitForma('srv/srvCrearEncuesta.php', event, cuestionario)
   .then(modelo => location.href = 'creaCuestionario.html')
     .catch(muestraError)">
@@ -158,8 +163,9 @@ function validarPreguntas(event) {
          <td class="px-6 py-4">Agregar a Cuestionario</td>
       </tr>
     </thead>
-    <tbody id="preguntasContainer"> 
-     
+    <tbody id="lista"> 
+      <input type="text" name="id" id="" >
+      <input type="text" name="cue" class="text-black font-bold mb-2 uppercase text-start" >
     </tbody>
   </table>
   <p style="display: none;">CUE: <span id="cueDisplay"></span></p>
@@ -169,8 +175,8 @@ function validarPreguntas(event) {
         class="bg-purple-500 m-4 px-4 py-2 rounded-md w-2/4 mx-auto flex text-white mt-10  font-bold  hover:bg-purple-400 hover:text-white text-center justify-center "
        type="submit" >+ Crear  </button>
 
-   
-  <p class="text-center text-black font-bold text-3xl mb-4 " >Añade tu pregunta </button>
+   <hr class="">
+  <p class="text-start text-purple-700 font-bold text-3xl mb-4 uppercase my-10 " > + Añade tu pregunta </button>
   </form>
 
 

@@ -24,10 +24,12 @@
         }
       }
     }
+
+  
   </script>
 </head>
 
-<body onload="cargarUsuarios()">
+<body onload="loadFiles()">
   <mi-nav id="nav"></mi-nav>
 
   <main id="main" class="container w-full mx-auto">
@@ -38,54 +40,9 @@
       Cerrar sesión
     </button>
   </main>
-  <div class="p-4 container mx-auto">
-    <div class="p-4 border-white-200  border-dashed rounded-lg dark:border-white-700 shadow-xl my-2">
-      <p class="text-4xl text-white-400 dark:text-white-500 uppercase font-bold">
-        Crea una nueva <span class="text-white-500 text-purple-500">visita secreta</span>
-      </p>
-      <form id="form" class="mt-4"  onsubmit="location.href='creadoExito.html'">
-        <!-- onsubmit="submitForma('srv/srvCrearVisita.php', event,         forma)
-        .then(modelo => location.href = 'creadoExito.html')
-        .catch(muestraError)" -->
-        
-        <div class="justify-between mt-4 ">
-          <div class="grid grid-cols-3 gap-10 ">
-            <div class="w-full block ">
-              <label for="name" class="block text-sm font-medium text-white-700 dark:text-white-200">Nombre de la
-                empresa</label>
-              <input type="text" name="name" id="name"
-                class="mt-1 focus:ring-white-500 focus:border-white-500
-                          bg-purple-500 h-10 block w-full text-white shadow-sm sm:text-sm border-white-300 rounded-md w-full required ">
-            </div>
-            <div>
-              <label for="numberQ" class="block text-sm font-medium text-white-700 dark:text-white-200">Numero de
-                preguntas</label>
-              <input type="number" name="numberQ" id="numberQ"
-                class="mt-1 focus:ring-white-500 focus:border-white-500
-                                text-white    bg-purple-500 h-10 block w-full shadow-sm sm:text-sm border-white-300 rounded-md w-full">
-            </div>
-           
-
-            <div>
-              <label for="info" class="block text-sm font-medium text-white-700 dark:text-white-200">Información
-                adicional</label>
-              <input type="text" name="info" id="info"
-                class="mt-1 focus:ring-white-500 focus:border-white-500
-                         text-white               bg-purple-500 h-10 block w-full shadow-sm sm:text-sm border-white-300 rounded-md w-full">
-            </div>
-
-
-          </div>
-        </div>
-        <button class=" flex w-1/4 m-auto  
-                      justify-center
-                    text-center bg-cyan-600 hover:bg-white-700 text-white  rounded-lg font-bold py-2 px-4
-                    hover:bg-cyan-500  rounded mt-4 shadow-lg" type="submit" >
-          Crear</button>
-      </form>
-      <h2
-          class="uppercase font-bold text-center text-3xl text-white-500 dark:text-white-400 my-10"
-        >Usuarios Registrados</h2>
+  <div class="p-4 container mx-auto ">
+    <div class="p-4 border-white-200  border-dashed rounded-lg dark:border-white-700 shadow-xl my-2 ">
+      <h2 class="uppercase font-bold text-center text-3xl text-white-500 dark:text-white-400 my-10" >Usuarios Registrados</h2>
       <table id="tablaUsuarios" class="min-w-full divide-y divide-gray-200">
         <thead>
           <tr>
@@ -101,15 +58,93 @@
               class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
               Correo Electrónico
             </th>
+            <th scope="col"
+              class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            Rol Actual
+            </th>
+            <th scope="col"
+              class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              Actualizar Rol
+            </th>
+            <th scope="col"
+              class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              Acciones
+            </th>
           </tr>
         </thead>
         <tbody class="bg-white divide-y divide-gray-200">
           <!-- Los usuarios se cargarán aquí -->
         </tbody>
       </table>
+      
+    </div>
+  </div>
+  <div class="p-4 container mx-auto ">
+    <div class="p-4 border-white-200  border-dashed rounded-lg dark:border-white-700 shadow-xl my-2 ">
+      <h2 class="uppercase font-bold text-center text-3xl text-white-500 dark:text-white-400 my-10" >Empresas Registradas</h2>
+      <table id="tablaEmpresa" class="min-w-full divide-y divide-gray-200">
+        <thead>
+          <tr>
+            <th scope="col"
+              class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              ID
+            </th>
+            <th scope="col"
+              class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              Nombre
+            </th>
+            <th scope="col"
+              class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              Dirección
+            </th>
+
+            <th scope="col"
+              class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            Telefono
+            </th>
+            <th scope="col"
+              class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            Calificacion
+            </th>
+          </tr>
+        </thead>
+        <tbody class="bg-white divide-y divide-gray-200">
+    
+        </tbody>
+      </table>
+
     </div>
   </div>
 
+  <div class="p-4 container mx-auto ">
+    <div class="p-4 border-white-200  border-dashed rounded-lg dark:border-white-700 shadow-xl my-2 ">
+      <h2 class="uppercase font-bold text-center text-3xl text-white-500 dark:text-white-400 my-10" >Mystery Shopper Registrados</h2>
+      <table id="tablaMystery" class="min-w-full divide-y divide-gray-200">
+        <thead>
+          <tr>
+            <th scope="col"
+              class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              id
+            </th>
+            <th scope="col"
+              class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+               Cuenta
+            </th>
+            <th scope="col"
+              class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              Correo electronico
+            </th>
+
+            <th
+          </tr>
+        </thead>
+        <tbody class="bg-white divide-y divide-gray-200">
+
+        </tbody>
+      </table>
+
+    </div>
+  </div>
   </div>
 
   <p>
@@ -125,36 +160,130 @@
 
 
   <script>
-    async function cargarUsuarios() {
-      try {
-        const respuesta = await fetch("srv/srvObtenerUsuarios.php");
-        const usuarios = await respuesta.json();
-        const tbody = document.querySelector("#tablaUsuarios tbody");
-        tbody.innerHTML = ""; // Limpiar contenido anterior
-        usuarios.forEach((usuario) => {
-          const fila = document.createElement("tr");
-          fila.innerHTML = `
+   
+    
+    async function loadFiles() {
+        async function loadUsers() {
+            try {
+                const respuesta = await fetch("srv/srvObtenerUsuarios.php");
+                const usuarios = await respuesta.json();
+                
+                const tbody = document.querySelector("#tablaUsuarios tbody");
+                tbody.innerHTML = ""; 
+                usuarios.forEach((usuario) => {
+                    const fila = document.createElement("tr");
+                    fila.innerHTML = `
                         <td>${usuario.id}</td>
                         <td>${usuario.cue}</td>
                         <td>${usuario.correo}</td>
+                        <td>${usuario.rol_id? usuario.rol_id: "No encontrado"}</td>
+                        <td>
+                          <select name="rol" id="rol" class="">
+                            <option value="">Seleccionar Rol</option>
+                            <option value="Mystery Shopper">Mystery Shopper</option>
+                            <option value="Analista">Analista</option>
+                        </td>
+                        <td>
+                          <button class="bg-green-700 text-white text-sm font-bold rounded-lg p-2 h-8 w-24" type="button"
+                          
+                          onclick="updateRol(${usuario.id})">
+                        Actualizar Rol
+                    </button>
+                        </td>
                     `;
-          tbody.appendChild(fila);
-        });
-      } catch (error) {
-        console.error("Error al cargar usuarios:", error);
+                    tbody.appendChild(fila);
+                });
+            } catch (error) {
+                console.error("Error al cargar usuarios:", error);
+            }
+        }
+      function updateRol(id) {
+          const selectElement = document.querySelector(`#rol_${id}`);
+          const newRol = selectElement.value;
+          console.log("Updating role for user with ID:", id, "New Role:", newRol);
       }
+
+ 
+      async function loadCompany() {
+          try {
+              const respuesta = await fetch("srv/srvConsultarEmpresas.php");
+              const empresas = await respuesta.json();
+
+              const tbodyEmpresa = document.querySelector("#tablaEmpresa tbody");
+              tbodyEmpresa.innerHTML = "";
+            if(empresas.length>0){
+              empresas.forEach((empresa) => {
+                  let fila = document.createElement("tr");
+                  fila.innerHTML = `
+                      <td>${empresa.id}</td>
+                      <td>${empresa.nombre}</td>
+                      <td>${empresa.direccion}</td>
+                      <td>${empresa.telefono}</td>
+                      <td class="rating">${showStars(empresa.calificacion)}</td>
+                  `;
+                  tbodyEmpresa.appendChild(fila);
+              });
+  }
+          } catch (error) {
+              console.error('Error al cargar empresas:', error);
+          }
+      }
+
+      function showStars(rating) {
+          let stars = '';
+          for (let i = 5; i >= 1; i--) {
+              if (rating >= i) {
+                  stars += '<span class="fa fa-star checked"></span>';
+              }
+              else {
+                  stars += '<span class="fa fa-star"></span>';
+              }
+          }
+          return stars;
+      }
+      async function loadMystery() {
+          try {
+              const respuesta = await fetch("srv/srvConsultarMysteryShoppers.php");
+              const mysterys = await respuesta.json();
+              console.log(mysterys);
+
+              const tbodyMystery = document.querySelector("#tablaMystery tbody");
+              tbodyMystery.innerHTML = "";
+
+              if (mysterys.length > 0) {
+                  mysterys.forEach((mystery) => {
+                      let fila = document.createElement("tr");
+                      fila.innerHTML = `
+                          <td>${mystery.id}</td>
+                          <td>${mystery.cue}</td>
+                          <td>${mystery.correo}</td>
+                      `;
+                      tbodyMystery.appendChild(fila);
+                  });
+              }
+          } catch (error) {
+              console.error('Error al cargar MYSTERY:', error);
+          }
+      }
+        await loadMystery();
+        await loadUsers();
+        await loadCompany();
     }
 
+    
     async function cerrarSesion() {
       try {
         const respuesta = await fetch('srv/srvLogout.php');
         const json = await respuesta.json();
         localStorage.removeItem("isAutorizate");
+        //localStorage.clear();
         location.href = 'index.html';
       } catch (error) {
         console.error('Error al cerrar sesión:', error);
       }
     }
+
+    
 
 
   </script>

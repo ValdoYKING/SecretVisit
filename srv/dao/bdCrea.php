@@ -41,7 +41,9 @@ function bdCrea(PDO $con)
             EMP_NOMBRE TEXT NOT NULL,
             EMP_DIRECCION TEXT NOT NULL,
             EMP_TELEFONO TEXT NOT NULL,
-            EMP_CALIFICACION INTEGER NOT NULL
+            EMP_CALIFICACION INTEGER NOT NULL,
+            ID_ANALISTA INTEGER NOT NULL,
+            ID_ENC INTEGER NOT NULL
         )'
   );
 
@@ -69,6 +71,7 @@ function bdCrea(PDO $con)
             ENC_ID INTEGER NOT NULL,
             PRE_ID INTEGER NOT NULL,
             ENCPRE_RESPUESTA TEXT NOT NULL,
+            ID_MYSTERY INTEGER NOT NULL,
             UNIQUE (ENC_ID, PRE_ID),
             FOREIGN KEY (ENC_ID) REFERENCES ENCUESTA(ENC_ID),
             FOREIGN KEY (PRE_ID) REFERENCES PREGUNTA(PRE_ID)
