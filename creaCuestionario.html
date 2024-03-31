@@ -82,7 +82,7 @@ function volver() {
 <button class="bg-gray-500 hover:bg-black-700 border-white text-white font-bold border-sm py-2 px-2 rounded" onclick="location.href ='admin.html'">
   Volver a administrador
 </button>
-      <h1 class="text-purple-700 font-bold text-center text-3xl mb-4 uppercase ">+ Crear un Cuestionario</h1>
+      <h1 class="text-purple-700 font-bold text-start text-3xl mb-4 uppercase my-10 ">+ Crear un Cuestionario</h1>
   <form id="cuestionario" onsubmit="submitForma('srv/srvCrearCuestionario.php' + parametros, event, cuestionario)
   .then(modelo => location.href = 'creaCuestionario.html')
     .catch(muestraError)">
@@ -102,15 +102,15 @@ function volver() {
     </thead>
     <tbody id="lista"> 
       <input type="text" name="id" id="" >
-      <input type="text" name="cue" id="" >
+      <input type="text" name="cue" class="text-black font-bold mb-2 uppercase text-start" >
     </tbody>
   </table>
      <button
         class="bg-purple-500 m-4 px-4 py-2 rounded-md w-2/4 mx-auto flex text-white mt-10  font-bold  hover:bg-purple-400 hover:text-white text-center justify-center "
        type="submit" >+ Crear  </button>
 
-   
-  <p class="text-center text-black font-bold text-3xl mb-4 " >Añade tu pregunta </button>
+   <hr class="">
+  <p class="text-start text-purple-700 font-bold text-3xl mb-4 uppercase my-10 " > + Añade tu pregunta </button>
   </form>
 
 
