@@ -34,7 +34,7 @@ if (isAutorizate ) {
       url: 'creaCuestionario.html'
     },
     {
-      name: 'Registrar empresa',
+      name: 'Registrar empresas',
       url: 'registrarEmpresa.html'
     },
     {
