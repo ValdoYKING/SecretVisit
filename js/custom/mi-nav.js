@@ -1,58 +1,31 @@
 const nav = document.getElementById('nav');
 
-const isAutorizate = localStorage.getItem('isAutorizate')
-let navItems;
-
-console.log(isAutorizate)
-if (isAutorizate ) {
-  navItems = [
+const navItems = [
     {
-      name: 'Crear cuestionario',
-      url: 'creaCuestionario.html'
+        name: 'Inicio',
+        url: 'index.html'
     },
     {
-      name: 'Registrar empresa',
-      url: 'registrarEmpresa.html'
-    },
-  ];
-} else {
-  navItems = [
-    {
-      name: 'Inicio',
-      url: 'index.html'
+        name: 'Nosotros',
+        url: 'nosotros.html'
     },
     {
-      name: 'Nosotros',
-      url: 'nosotros.html'
+        name: 'Servicios',
+        url: 'servicios.html'
     },
     {
-      name: 'Servicios',
-      url: 'servicios.html'
+        name: 'Registro',
+        url: 'register.html'
     },
     {
-      name: 'Crear cuestionario',
-      url: 'creaCuestionario.html'
-    },
-    {
-      name: 'Registrar empresas',
-      url: 'registrarEmpresa.html'
-    },
-    {
-      name: 'Registro',
-      url: 'register.html'
-    },
-    {
-      name: 'Iniciar Sesión',
-      url: 'login.html'
+        name: 'Iniciar Sesión',
+        url: 'login.html'
     }, 
     {
         name: 'Servicios',
         url: 'servicios.html'
     }
-  ];
-}
-
-
+];
 
 nav.innerHTML = `
  <nav class="flex items-center justify-between flex-wrap bg-white p-6">

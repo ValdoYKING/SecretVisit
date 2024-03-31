@@ -48,10 +48,12 @@ ejecuta(function () {
     /* $usuarioNuevo = new Usuario($cue, $match, [], 0); */
     $usuarioNuevo = new Usuario($cue, $correo, $match, [], 0);
 
+    $usuarioNuevo->roles = [$analista];
+
     // Agrega el rol correspondiente al usuario según el valor recibido del formulario
 
 
-    switch ($rol) {
+    /* switch ($rol) {
         case "Mystery Shopper":
             $usuarioNuevo->roles = [$mysteryShopper];
             break;
@@ -61,7 +63,7 @@ ejecuta(function () {
         default:
             throw new Exception("Rol inválido.");
             break;
-    }
+    } */
 
     // Agrega el usuario a la base de datos
     usuarioAgrega($usuarioNuevo);
