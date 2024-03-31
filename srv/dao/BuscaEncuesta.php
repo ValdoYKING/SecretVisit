@@ -51,3 +51,20 @@ function BuscaEncuestaidEmpresa(int $id): false|Encuesta
  );
  return $stmt->fetch();
 }
+
+
+function listaEncuesta() {
+  $con = AccesoBd::getCon();
+  $stmt = $con->query(
+    "SELECT    
+    E.ENC_ID as idEnc,
+    E.EMP_ID as idEmp,
+    E.USU_ID as idUsu,
+    EM.EMP_NOMBRE as nombreEmpresa
+      FROM ENCUESTA E
+    JOIN EMPRESA EM ON E.EMP_ID = EM.EMP_ID;"
+  );
+
+  $encuesta = $stmt->fetchAll(PDO::FETCH_ASSOC);
+  return $encuesta;
+}

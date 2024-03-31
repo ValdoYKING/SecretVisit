@@ -8,18 +8,18 @@ require_once __DIR__ . "/AccesoBd.php";
 
 
 
-function cambiarRolUsu(Usuario $usuario)  {
+function cambiarRolUsu(int $id, String $rol)  {
     
 
     $con = AccesoBd::getCon();
     
-    $idUsu = $usuario->id;
-    $usu_rol = obtenerRolUsuario($idUsu);
+    
+    $usu_rol = obtenerRolUsuario($id);
     if ($usu_rol === false) {
         throw new Exception("usuario no encontrada.");
     }
-    $nuevo_rol_id = $usuario->roles;
     
+    $nuevo_rol_id = $rol;
 
     $stmt = $con->prepare(
         "UPDATE USU_ROL
@@ -30,8 +30,8 @@ function cambiarRolUsu(Usuario $usuario)  {
 
 
 // Bind de los parámetros
+$stmt->bindParam(':usu_id', $id);
 $stmt->bindParam(':nuevo_rol_id', $nuevo_rol_id);
-$stmt->bindParam(':usu_id', $usu_id);
 
 // Ejecutar la consulta
 $stmt->execute();

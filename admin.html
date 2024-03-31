@@ -145,6 +145,20 @@
 
     </div>
   </div>
+
+  <div>
+    <table id="tablaEncuesta">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Empresa</th>
+          <th>Opciones</th>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+  </div>
   </div>
 
   <p>
@@ -161,9 +175,9 @@
 
   <script>
    
-      function updateRol(id,rol) {
-        //send post 
-        console.log(id, rol  )
+      function updateRol(id) {
+      
+        const rol = document.getElementById(`rol_${id}`).value;
         const url="srv/srvCambiarRol.php"
         fetch(url,{
           method: "POST",
@@ -173,9 +187,10 @@
           },
           body: JSON.stringify({
             id: id,
-            rol: rol
+            rol:rol
           })
         })
+        location.reload();
       }
     async function loadFiles() {
       
@@ -183,7 +198,6 @@
             try {
                 const respuesta = await fetch("srv/srvObtenerUsuarios.php");
                 const usuarios = await respuesta.json();
-                
                 const tbody = document.querySelector("#tablaUsuarios tbody");
                 tbody.innerHTML = ""; 
                 usuarios.forEach((usuario) => {
@@ -194,15 +208,16 @@
                         <td>${usuario.correo}</td>
                         <td>${usuario.rol_id? usuario.rol_id: "No encontrado"}</td>
                         <td>
-                      <select name="rol" id="rol_${usuario.id}" class="rol-select">
-                      
-                  <option value="">Seleccionar Rol</option>
-                  <option value="Mystery Shopper" ${usuario.rol_id === 'Mystery Shopper' ? 'selected' : ''}>Mystery Shopper</option>
-                  <option value="Analista" ${usuario.rol_id === 'Analista' ? 'selected' : ''}>Analista</option>
-                      </select>
+                            <select name="rol" id="rol_${usuario.id}" class="rol-select">
+                                <option value="">Seleccionar Rol</option>
+                                <option value="Mystery Shopper">Mystery Shopper</option>
+                                <option value="Analista">Analista</option>
+                            </select>
                         </td>
-                        <td>
-                        <button class="bg-green-700 text-white text-sm font-bold rounded-lg p-2 h-8 w-24" type="button" onclick="updateRol(${usuario.id}, 'rol_${usuario.rol_id}')">Actualizar</button>
+
+                      
+                       <button class="bg-green-700 text-white text-sm font-bold rounded-lg p-2 h-8 w-24" type="button" onclick="updateRol(${usuario.id})">Actualizar</button>
+                     
               
                         </td>
                     `;
@@ -277,9 +292,35 @@
               console.error('Error al cargar MYSTERY:', error);
           }
       }
+
+      async function loadQuestion() {
+          try {
+              const respuesta = await fetch("srv/srvListaEncuesta.php");
+              const encuestas = await respuesta.json();
+              console.log(encuestas);
+              const tbodyencuesta = document.querySelector("#tablaEncuesta tbody");
+              tbodyencuesta.innerHTML = "";
+            if(encuestas.length>0){
+              encuestas.forEach((encuesta) => {
+                  let fila = document.createElement("tr");
+                  fila.innerHTML = `
+                      <td>${encuesta.idEnc}</td>
+                      <td>${encuesta.nombreEmpresa}</td>
+                      <td><a href='FormEncuesta.html?empid=${encuesta.idEmp}'>C</a>
+                          <a href="#" onclick="EliminarEncuesta(event, id)">E</a>
+                      </td>
+                  `;
+                  tbodyencuesta.appendChild(fila);
+              });
+  }
+          } catch (error) {
+              console.error('Error al cargar encuestas:', error);
+          }
+      }
         await loadMystery();
         await loadUsers();
         await loadCompany();
+        await loadQuestion();
     }
 
     
@@ -295,7 +336,32 @@
       }
     }
 
-    
+    function EliminarEncuesta(event, id) {
+      event.preventDefault();
+      if (confirm("¿Seguro de Eliminar esta Encuesta ?")) {
+        const url = "srv/srvEliminarEncuesta.php";
+        const data = {id:id};
+        fetch( url, {
+          method:"POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        })
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Error al eliminar Encuesta');
+          }
+
+          console.log('Encuesta eliminado exitosamente')
+        })
+        .catch(error => {
+          console.error('Error:',error);
+        });
+        
+      }
+      
+    }
 
 
   </script>
