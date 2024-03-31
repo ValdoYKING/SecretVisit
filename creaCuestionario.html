@@ -49,36 +49,15 @@ if (!isset($_SESSION[CUE]) || !in_array("Analista", $_SESSION[ROL_IDS])) {
   .catch(muestraError)">
 
 <script>
-<<<<<<< Updated upstream
-function volver() {
-  location.href ='admin.html';
-  console.log("volver")
-}
-    
   
-  function consultarpregunta() {
-    fetch('srv/srvConsultarPreguntas.php')
-    .then(response => response.text() )
-    .then(render => muestraInnerHtml('lista',render))
-    .catch(error => muestraError(error));
-  }
-=======
-  
->>>>>>> Stashed changes
 
   function buscaEmpresa(parametros){
     fetch('srv/srvBusquedaEmpresa.php' + parametros)
     .then(render => muestraObjeto('cuestionario',render))
     .catch(error => muestraError(error));
   }
-<<<<<<< Updated upstream
-     <mi-nav id="nav"></mi-nav>
-
-  window.onload = function() {
-=======
   
 /*   window.onload = function() {
->>>>>>> Stashed changes
     let parametros = '?parametro1=valor1&parametro2valor2';
     buscaEmpresa(parametros)
   } */
