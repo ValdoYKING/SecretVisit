@@ -22,8 +22,13 @@ ejecuta(function ()
 
     $MOencuesta = BuscaEncuestaidEmpresa($id);
     $idEnc = $MOencuesta->id;
-    if (!isset($_POST['preguntaId'], $_POST['respuestas'])) {
+    $dato[] = $_POST['preguntaId'];
+
+    
+    /*
+    if (isset($_POST['preguntaId'], $_POST['respuestas'])) {
         $preguntaIds = $_POST['preguntaId'];
+    
         $respuestas = $_POST['respuestas'];
 
         $encPre = new Encuesta_Pregunta();
@@ -45,6 +50,7 @@ ejecuta(function ()
 } else {
     return "Algo salio mas cheque bien sus respuestas";
 }
+*/
 }
 );
 ?>

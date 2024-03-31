@@ -23,15 +23,12 @@
         window.location='listaEmpresas.html'
         muestraError(muestraError)
     }
-})
- ">
+})">
     <form id="contestarEnc" onsubmit="submitForma('srv/srvContestarEncuesta.php?'+parametros ,event, contestarEnc)
     .then(json => location.href = 'FormEncuesta.html')
     .catch(muestraError)">
         <div id="consulta">
-
         </div>
-        
         <button class="" type="submit">Enviar Respuestas</button>
     </form>
 </body>

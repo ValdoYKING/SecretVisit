@@ -16,17 +16,7 @@ function agregarRespuestaEncuesta( int $encId, array $preguntasIds, array $respu
 
 
 
-    foreach ($preguntasIds as $index => $preguntaId) {
-        $respuesta = $respuestas[$index];
-        
 
-            $encuestaPregunta = new Encuesta_Pregunta();
-            $encuestaPregunta->encuesta->id = $encId;
-            $encuestaPregunta->pregunta->id = $preguntaId;
-            $encuestaPregunta->respuesta = $respuesta;
-    
-            actualizarEncuestaPregunta($encuestaPregunta);
-        }
     }
 
 ?>
