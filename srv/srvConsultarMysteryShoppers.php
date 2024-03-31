@@ -1,9 +1,10 @@
 <?php
 
 require_once __DIR__ . "/../lib/php/ejecuta.php";
-require_once __DIR__ . "/dao/consultarEmpresas.php";
+require_once __DIR__ . "/dao/consultaMysterys.php";
 
 ejecuta(function () {
-    $lista = consultarEmpresas();
+    $lista = consultarMystery();
+   
   return $lista;
 });
