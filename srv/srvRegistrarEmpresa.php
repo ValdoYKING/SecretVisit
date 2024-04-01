@@ -10,9 +10,14 @@ ejecuta(function () {
     $nombre = trim(leeTexto("nombre"));
     $direccion = trim(leeTexto("direccion"));
     $telefono = trim(leeTexto("telefono"));
+    $cue = leeTexto('cue');
+
+    $usuario = new Usuario();
+    // $usuario->cue = $_SESSION[CUE];
+    $usuario->cue = $cue;
 
     // crea un nuevo objeto Usuario con los datos del formulario
-    $nuevaEmpresa = new Empresa(0,$nombre,$direccion,$telefono);
+    $nuevaEmpresa = new Empresa(0,$nombre,$direccion,$telefono,$usuario);
 
 
 

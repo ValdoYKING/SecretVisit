@@ -27,7 +27,21 @@
   </script>
 
   <script>
-    
+    function getParameterByName(name, url) {
+        if (!url) url = window.location.href;
+        name = name.replace(/[\[\]]/g, '\\$&');
+        var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+            results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return '';
+        return decodeURIComponent(results[2].replace(/\+/g, ' '));
+    }
+
+    var errorMessage = getParameterByName('error');
+
+    if (errorMessage) {
+        alert(errorMessage);
+    }
   </script>
   <title>Iniciar Sesión</title>
 </head>
@@ -37,7 +51,7 @@
    const sesion = new Sesion(objeto)
    nav.sesion = sesion
   })
-  .catch(muestraError)">
+    .catch(muestraError)">
 
  <!-- <body> -->
   <mi-nav id="nav"></mi-nav>
@@ -50,6 +64,7 @@
     <!-- <form id="login" hidden onsubmit="submitForma('srv/srvLogin.php', event, login)
     .then(json => location.href = 'perfil.html')
     .catch(muestraError)" class="flex flex-col mx-auto items-center justify-center"> -->
+    <div id="errorContainer" class="text-red-600 text-center mt-4"></div>
     <form id="login" class="flex flex-col mx-auto items-center justify-center" action="srv/srvLogin.php" method="POST">
     <p class="text-2xl mb-10 font-bold text-black uppercase">Iniciar <span class="text-purple-700">Sesión</p>
       <label for="email" class="text-black font-bold mb-2 uppercase">Ingresa tu nombre de usuario</label>
@@ -88,6 +103,7 @@
     </div>
   </div>
   <footer id="footer"></footer>
+
 </body>
 
 </html>

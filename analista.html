@@ -224,5 +224,15 @@
   </main>
   <footer id="footer"></footer>
 </body>
+<script>
+  async function logout() {
+    try {
+      await ejecuta('srv/srvLogout.php');
+      location.href = 'index.html';
+    } catch (error) {
+      muestraError(error);
+    }
+  }
+</script>
 
 </html>

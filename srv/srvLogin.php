@@ -14,7 +14,9 @@ ejecuta(function () {
     $match = leeTexto("match");
     $usuario = usuarioVerifica($cue, $match);
     if ($usuario === false) {
-        throw new Exception("Datos incorrectos.");
+        /* throw new Exception("Datos incorrectos."); */
+        header("Location: ../login.html?error=Datos incorrectos.");
+        exit();
     } else {
         $rolIds = [];
         foreach ($usuario->roles as $rol) {
