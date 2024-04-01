@@ -12,18 +12,6 @@ const navItems = [
     {
         name: 'Servicios',
         url: 'servicios.html'
-    },
-    {
-        name: 'Registro',
-        url: 'register.html'
-    },
-    {
-        name: 'Iniciar Sesión',
-        url: 'login.html'
-    }, 
-    {
-        name: 'Servicios',
-        url: 'servicios.html'
     }
 ];
 

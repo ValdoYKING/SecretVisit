@@ -11,5 +11,6 @@ function ObtenerEmpresasPorId($id)
     );
     $empresas = $stmt->fetchAll(PDO::FETCH_ASSOC);
     return $empresas;
+    
 }
 ?>
