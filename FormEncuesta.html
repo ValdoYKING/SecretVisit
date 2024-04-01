@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario </title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script type="module" src="./js/custom/mi-nav.js"></script>
+  <script type="module" src="lib/js/ejecuta.js"></script>
+  <script type="module" src="lib/js/muestraError.js"></script>
+   <script type="module" src="lib/js/submitForma.js"></script>
+  <script type="module" src="lib/js/muestraInnerHtml.js"></script>
+  <script type="module" src="lib/js/muestraObjeto.js"></script>
+</head>
+<script>
+    const parametros = new URL(location.href).searchParams
+
+</script>
+<body onload="ejecuta(fetch('srv/srvEncuestaConsulta.php?'+ parametros))
+.then(render =>muestraInnerHtml(consulta , render)) 
+.catch(muestraError => {
+    if (muestraError) {
+        window.location='listaEmpresas.html'
+        muestraError(muestraError)
+    }
+})">
+    <form id="contestarEnc" onsubmit="submitForma('srv/srvContestarEncuesta.php?'+parametros ,event, contestarEnc)
+    .then(json => location.href = 'FormEncuesta.html')
+    .catch(muestraError)">
+        <div id="consulta">
+        </div>
+        <button class="" type="submit">Enviar Respuestas</button>
+    </form>
+</body>
+</html>

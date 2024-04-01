@@ -19,7 +19,7 @@ function enc_preAgregar(Encuesta_Pregunta $modelo)
  $modelo->valida();
  $stmt = $con->prepare(
   "INSERT INTO ENC_PRE
-     (, DTV_CANTIDAD, DTV_PRECIO)
+     (DTV_CANTIDAD, DTV_PRECIO)
     VALUES
      (:ventId, :prodId, :cantidad, :precio)"
  );
@@ -30,4 +30,3 @@ function enc_preAgregar(Encuesta_Pregunta $modelo)
   ]
  );
 }
-/** Falta Terminar */

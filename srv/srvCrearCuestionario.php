@@ -1,4 +1,5 @@
 <?php
+/* 
 
 require_once __DIR__ . "/modelo/Encuesta_Pregunta.php";
 require_once __DIR__ . "/dao/enc_preAgregar.php";
@@ -14,12 +15,12 @@ require_once __DIR__ . "/dao/usuarioBuscaCue.php";
 
 ejecuta(function ()
 {
-    $idempresa = leeEntero("");;
+    $idempresa = leeEntero("");
     $cue = $_POST['cue'];
     $idpreguntas[] = ("preguntasE");  
         $idemp = new Empresa(id: $idempresa);
         $idcue = new Usuario(id: $cue );
-        $encuestaN = new Encuesta("",$idcue,$idemp,0);
+        $encuestaN = new Encuesta($idcue,$idemp,"",0);
         agregarEncuesta($encuestaN);
     foreach($idpreguntas as $idp){
         $preguntaid = leeEntero($idp);
@@ -42,3 +43,4 @@ ejecuta(function ()
     $nuevaencpre->encuesta->id = [];
     return $nuevaencpre;
 });
+*/

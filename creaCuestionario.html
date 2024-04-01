@@ -34,6 +34,8 @@
 </script>
 </head>
 
+<body>
+   
 <body onload="loadData()">
 
 <script>
@@ -66,34 +68,83 @@
           console.log(data);
 
     
-        } catch (error) {
-          muestraError(error);
+
+async function cargarEmpresas() {
+            try {
+                const respuesta = await fetch('srv/srvObtenerEmpresas.php');
+                const empresas = await respuesta.json();
+                const select = document.getElementById('empresaId');
+                select.innerHTML = ''; // Limpiar contenido anterior
+                empresas.forEach(empresa => {
+                    const option = document.createElement('option');
+                    option.value = empresa.id;
+                    option.textContent = empresa.nombre;
+                    select.appendChild(option);
+                });
+            } catch (error) {
+                console.error('Error al cargar las empresas:', error);
+            }
         }
 
-    }
-
-    
+  async function cargarPreguntas() {
+            try {
+                const respuesta = await fetch('srv/srvObtenerPreguntas.php');
+                const preguntas = await respuesta.json();
+                const preguntasContainer = document.getElementById('preguntasContainer');
+                preguntasContainer.innerHTML = ''; // Limpiar contenido anterior
+                preguntas.forEach(pregunta => {
+                    const checkbox = document.createElement('input');
+                    checkbox.type = 'checkbox';
+                    checkbox.name = 'preguntaId[]'; // Cambiar el nombre para enviarlo como un arreglo
+                    checkbox.value = pregunta.id;
+                    const th = document.createElement('th');
+                    const th2 = document.createElement('th');
+                    const p = document.createElement('p');
+                    p.textContent = "categoria";
+            th.textContent = pregunta.pregunta ;
+            th2.textContent = pregunta.id; // Corrección aquí
+                    const tr = document.createElement('tr');
+                    tr.appendChild(th2);
+                    tr.appendChild(th).appendChild(p);
+                    tr.appendChild(checkbox);
+                    checkbox.addEventListener('change',function() {
+                        if (this.checked) { 
+                            preguntasSeleccionadas++
+                        } else {
+                            preguntasSeleccionadas--
+                        }
+                        contador();
+                    } );
+                    preguntasContainer.appendChild(tr);
+                });
+            } catch (error) {
+                console.error('Error al cargar las preguntas:', error);
+            }
+        }
+  
+  function consultarpregunta() {
+    fetch('srv/srvConsultarPreguntas.php')
+    .then(response => response.text() )
+    .then(render => muestraInnerHtml('lista',render))
+    .catch(error => muestraError(error));
   }
-    async function buscaEmpresa(parametros) {
-      try {
-        const response = await fetch('srv/srvBusquedaEmpresa.php' + parametros);
-        const data = await response.json();
-        muestraObjeto('cuestionario', data);
-      } catch (error) {
-        muestraError(error);
-      }
-    }
+  
 
- 
- 
-   // buscaEmpresa(parametros);
+  function buscaEmpresa(parametros){
+    fetch('srv/srvBusquedaEmpresa.php' + parametros)
+    .then(render => muestraObjeto('cuestionario',render))
+    .catch(error => muestraError(error));
+  }
+     <mi-nav id="nav"></mi-nav>
+
+  window.onload = function() {
   
-  
-/*   window.onload = function() {
+   window.onload = function() {
     let parametros = '?parametro1=valor1&parametro2valor2';
     buscaEmpresa(parametros)
-  } */
-  
+    consultarpregunta()
+  }
+  }
 </script>
    <mi-nav  id="nav"></mi-nav>
   <div class="container mx-auto shadow-lg p-6 bg-white rounded-lg"">
@@ -101,24 +152,20 @@
   Volver
 </button>
       <h1 class="text-purple-700 font-bold text-start text-3xl mb-4 uppercase my-10 ">+ Crear un Cuestionario</h1>
-        <select name="empresa" id="empresa" class="bg-white shadow-lg w-1/2 mx-auto rounded-md border-2 border-gray-300 p-2 text-black font-bold mb-2 uppercase text-start"
-          required>
-          <option value="">Selecciona una empresa</option>
-          <option value="1">Empresa 1</option>
-          <option value="2">Empresa 2</option>
-          <option value="3">Empresa 3</option>
-        
-        </select>
   <form id="cuestionario" onsubmit="submitForma('srv/srvCrearCuestionario.php' + parametros, event, cuestionario)
   .then(modelo => location.href = 'creaCuestionario.html')
     .catch(muestraError)">
-   
+           <label for="empresaId">Seleccionar Empresa:</label>
+           <select name="empresaId" id="empresaId">
+               <!-- Aquí se cargarán las opciones de las empresas -->
+           </select>
             <div>
             
             
         <label for="pregunta" class="text-black font-bold mb-2 uppercase text-start" >
-          Numero de preguntas: <input hidden type="number" id="numPreguntas" name="numPreguntas" min="1">
+          <p> Numero de preguntas:  <span id="contadorPreguntas">0</span></p>
             </div>
+
   <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
      <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
 
@@ -133,6 +180,9 @@
       <input type="text" name="cue" class="text-black font-bold mb-2 uppercase text-start" >
     </tbody>
   </table>
+  <p style="display: none;">CUE: <span id="cueDisplay"></span></p>
+  <p style="display: none;">Rol: <span id="rolDisplay"></span></p>
+  <input type="hidden" name="cue" id="cueInput" value="">
      <button
         class="bg-purple-500 m-4 px-4 py-2 rounded-md w-2/4 mx-auto flex text-white mt-10  font-bold  hover:bg-purple-400 hover:text-white text-center justify-center "
        type="submit" >+ Crear  </button>

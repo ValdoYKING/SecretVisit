@@ -17,9 +17,10 @@
     <mi-nav id="nav"></mi-nav>
     <h1>Crear Encuesta</h1>
     <form id="crearEncuestaForm" onsubmit="submitForma('srv/srvCrearEncuesta.php', event, crearEncuestaForm)
-        .then(json => location.href = 'analista.html')
+        .then(json => location.href = 'crearEncuesta.html')
         .catch(muestraError)">
         <label for="empresaId">Seleccionar Empresa:</label>
+        <p>Preguntas seleccionadas: <span id="contadorPreguntas">0</span></p>
         <select name="empresaId" id="empresaId">
             <!-- Aquí se cargarán las opciones de las empresas -->
         </select>
@@ -47,8 +48,23 @@
         <form id="agregarPregunta" onsubmit="submitForma('srv/srvRegistroPregunta.php', event, agregarPregunta)
         .then(json => location.href = 'crearEncuesta.html')
             .catch(muestraError)"> 
-
-            <input type="text" name="apregunta" id="">
+            <div>
+                <label for="">Pregunta</label>
+                <input type="text" name="apregunta" id="">
+            </div>
+            <div>
+                <select name="" id="">
+                    <option value="">Seleciona una categoria</option>
+                    <option value="">Oraganizacion</option>
+                    <option value="">Limpieza</option>
+                    <option value="">Actitud</option>
+                    <option value="">Conocimiento</option>
+                </select>
+            </div>
+            <div>
+                <label for="">Recompensa</label>
+                <input type="text">
+            </div>
             <button type="submit">agregar Pregunta</button>
         </form>
     </div>
@@ -74,6 +90,20 @@
             }
         }
 
+        let preguntasSeleccionadas = 0;
+
+        function contador() {
+            const con = document.getElementById('contadorPreguntas')
+            con.textContent = preguntasSeleccionadas
+        }
+
+        function validarPreguntas(event) {
+            if (preguntasSeleccionadas < 10) {
+                alert("Debe seleccionar al menos 10 preguntas");
+                alert("En caso de no contar con pregunta sufucientes,\n  deberas de agregar usted mismo");
+                event.preventDefault()
+            }
+        }
         // Función para cargar las preguntas disponibles
         async function cargarPreguntas() {
             try {
@@ -87,13 +117,23 @@
                     checkbox.name = 'preguntaId[]'; // Cambiar el nombre para enviarlo como un arreglo
                     checkbox.value = pregunta.id;
                     const th = document.createElement('th');
-                    const th2 = document.createElement('th')
-            th.textContent = pregunta.pregunta;
+                    const th2 = document.createElement('th');
+                    const p = document.createElement('p');
+                    p.textContent = "categoria";
+            th.textContent = pregunta.pregunta ;
             th2.textContent = pregunta.id; // Corrección aquí
                     const tr = document.createElement('tr');
                     tr.appendChild(th2);
-                    tr.appendChild(th);
-            tr.appendChild(checkbox);
+                    tr.appendChild(th).appendChild(p);
+                    tr.appendChild(checkbox);
+                    checkbox.addEventListener('change',function() {
+                        if (this.checked) { 
+                            preguntasSeleccionadas++
+                        } else {
+                            preguntasSeleccionadas--
+                        }
+                        contador();
+                    } );
                     preguntasContainer.appendChild(tr);
                 });
             } catch (error) {
@@ -121,6 +161,9 @@
             cargarEmpresas();
             cargarPreguntas();
             cargarSesion();
+
+            const form = document.getElementById('crearEncuestaForm');
+            form.addEventListener('submit', validarPreguntas);
         };
     </script>
 </body>
