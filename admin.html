@@ -174,9 +174,35 @@
 
 
   <script>
-   
+
+function eliminarRegistro(event, id) {
+  event.preventDefault(); // Prevenir la acción predeterminada del enlace (navegación)
+  
+  if (confirm("¿Estás seguro de que deseas eliminar este registro?")) {
+      const url = "srv/srvEliminarEncuesta.php"; // Ruta del servicio para eliminar el registro
+      const data = { id: id }; // Datos a enviar al servicio (puede variar dependiendo de la implementación del servicio)
+      fetch(url, {
+          method: "POST",
+          headers: {
+              "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+      })
+      .then(response => {
+          if (!response.ok) {
+              throw new Error('Error al eliminar el registro.');
+          }
+         // window.location.href = window.location.href;
+      })
+      .catch(error => {
+          console.error('Error:', error);
+      });
+  }
+  location.reload();
+
+  }
+  
       function updateRol(id) {
-      
         const rol = document.getElementById(`rol_${id}`).value;
         const url="srv/srvCambiarRol.php"
         fetch(url,{
@@ -293,6 +319,7 @@
           }
       }
 
+
       async function loadQuestion() {
           try {
               const respuesta = await fetch("srv/srvListaEncuesta.php");
@@ -307,7 +334,7 @@
                       <td>${encuesta.idEnc}</td>
                       <td>${encuesta.nombreEmpresa}</td>
                       <td><a href='FormEncuesta.html?empid=${encuesta.idEmp}'>C</a>
-                          <a href="#" onclick="EliminarEncuesta(event, id)">E</a>
+                          <a href="#" onclick="eliminarRegistro(event, ${encuesta.idEnc})">E</a>
                       </td>
                   `;
                   tbodyencuesta.appendChild(fila);
@@ -335,35 +362,6 @@
         console.error('Error al cerrar sesión:', error);
       }
     }
-
-    function EliminarEncuesta(event, id) {
-      event.preventDefault();
-      if (confirm("¿Seguro de Eliminar esta Encuesta ?")) {
-        const url = "srv/srvEliminarEncuesta.php";
-        const data = {id:id};
-        fetch( url, {
-          method:"POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(data),
-        })
-        .then(response => {
-          if (!response.ok) {
-            throw new Error('Error al eliminar Encuesta');
-          }
-
-          console.log('Encuesta eliminado exitosamente')
-        })
-        .catch(error => {
-          console.error('Error:',error);
-        });
-        
-      }
-      
-    }
-
-
   </script>
 </body>
 

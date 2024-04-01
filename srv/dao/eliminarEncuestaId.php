@@ -1,7 +1,7 @@
 <?php 
     require_once __DIR__ . "/AccesoBD.php";
 
-    function EliminaEncuestaId( int $id) {
+    function EliminaEncuestaId(int $id) {
         
 
         $con = AccesoBd::getCon();
