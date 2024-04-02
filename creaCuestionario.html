@@ -1,44 +1,107 @@
-
 <!DOCTYPE html>
 <html lang="es">
 
 <head>
 
- <meta charset="UTF-8">
- <meta name="viewport" content="width=device-width">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width">
 
- <title>Cuestionario</title>
+  <title>Cuestionario</title>
   <script src="https://cdn.tailwindcss.com"></script>
-   <script type="module" src="./js/custom/mi-nav.js"></script>
- <script type="module" src="lib/js/ejecuta.js"></script>
- <script type="module" src="lib/js/muestraError.js"></script>
+  <script type="module" src="./js/custom/mi-nav.js"></script>
+  <script type="module" src="lib/js/ejecuta.js"></script>
+  <script type="module" src="lib/js/muestraError.js"></script>
   <script type="module" src="lib/js/submitForma.js"></script>
- <script type="module" src="lib/js/muestraInnerHtml.js"></script>
- <script type="module" src="lib/js/muestraObjeto.js"></script>
+  <script type="module" src="lib/js/muestraInnerHtml.js"></script>
+  <script type="module" src="lib/js/muestraObjeto.js"></script>
 
-   <script type="module" src="./js/custom/footer.js"></script>
+  <script type="module" src="./js/custom/footer.js"></script>
 
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              clifford: '#da373d',
-            }
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            clifford: '#da373d',
           }
         }
       }
-    </script>
-<script>
+    }
+  </script>
+  <script>
     const parametros = new URL(location.href).searchParams
-</script>
+  </script>
 </head>
 
+<<<<<<< Updated upstream
 <body>
    
 <body onload="loadData()">
+=======
+
+>>>>>>> Stashed changes
 
 <script>
+  const render = (array) => {
+    //renderizar las preguntas
+    const lista = document.getElementById('lista');
+    array.forEach((pregunta) => {
+      const tr = document.createElement('tr');
+      const td2 = document.createElement('td');
+      const td3 = document.createElement('td');
+      //tipo text
+      const input2 = document.createElement('input');
+      //mostrar como un select 
+      const select = document.createElement('select');
+
+
+      const button = document.createElement('button');
+
+      input2.type = 'text';
+      input2.value = pregunta.pregunta;
+      input2.name = 'cue';
+      input2.readOnly = true;
+      input2.classList.add('bg-white', 'shadow-lg', 'w-full', 'mx-auto', 'p-1', 'm-2', 'rounded-md', 'border-2', 'border-gray-300');
+      select.name = 'respuesta';
+      select.classList.add('bg-white', 'shadow-lg', 'w-full', 'mx-auto', 'p-1', 'm-2', 'rounded-md', 'border-2', 'border-gray-300');
+      const option1 = document.createElement('option');
+      option1.value = '1';
+      option1.textContent = 'Verdadero';
+      const option2 = document.createElement('option');
+      option2.value = '0';
+      option2.textContent = 'Falso';
+      select.appendChild(option1);
+      select.appendChild(option2);
+      select.value = pregunta.respuesta;
+
+      button.textContent = 'Eliminar';
+      button.classList.add('bg-red-500', 'hover:bg-red-700', 'text-white', 'font-bold', 'py-2', 'px-4', 'rounded');
+      button.onclick = () => {
+        const index = listOfQuestions[0].findIndex((item) => item.id === pregunta.id);
+        listOfQuestions[0].splice(index, 1);
+        lista.removeChild(tr);
+      }
+
+      td2.appendChild(input2);
+      td3.appendChild(select);
+      tr.appendChild(td2);
+      tr.appendChild(td3);
+      tr.appendChild(button);
+      lista.appendChild(tr);
+    });
+
+  }
+
+  const listOfQuestions = [];
+  const addQuestion = () => {
+    const pregunta = document.getElementById('pregunta').value;
+    const newQuestion = { pregunta, id: listOfQuestions[0].length + 1 };
+
+    listOfQuestions[0].push(newQuestion);
+    render([newQuestion]);
+
+  }
+
   const loadData = async () => {
     await getQuestions()
     await getCompanys()
@@ -46,29 +109,42 @@
       try {
         const response = await fetch('srv/srvConsultarPreguntas.php');
         const data = await response.json();
-        muestraInnerHtml(lista, data);
+
+        listOfQuestions.push(data);
+        const lista = document.getElementById('lista');
+        if (data.length > 0) {
+          render(data);
+        } else {
+          const option = document.createElement('option');
+          option.textContent = 'No hay preguntas';
+          lista.appendChild(option);
+        }
+
+
       } catch (error) {
         muestraError(error);
       }
     }
+
+
     async function getCompanys(id) {
-      
-        id = 2;
-        const url = 'srv/srvConsultarEmpresabyId.php';
-        const request = {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ id }),
-        };
-        try {
-          const response = await fetch(url, request);
-          const data = await response.json();
-          //RENDERIZAR LOS SELECT CON LOS DATOS DE LA EMPRESA
-          const select = document.getElementById('empresa');
-          console.log(data);
-            if (data.length === 0) {
+
+      id = 2;
+      const url = 'srv/srvConsultarEmpresabyId.php';
+      const request = {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ id }),
+      };
+      try {
+        const response = await fetch(url, request);
+        const data = await response.json();
+        //RENDERIZAR LOS SELECT CON LOS DATOS DE LA EMPRESA
+        const select = document.getElementById('empresa');
+
+        if (data.length > 0) {
           data.forEach((empresa) => {
             const option = document.createElement('option');
             option.value = empresa.EMP_ID;
@@ -81,6 +157,7 @@
           select.appendChild(option);
         }
 
+<<<<<<< Updated upstream
 
           
 
@@ -160,21 +237,61 @@ async function cargarEmpresas() {
     consultarpregunta()
   }
   }
+=======
+      } catch (error) {
+        muestraError(error);
+      }
+
+    }
+
+
+  }
+
+  async function sendForm() {
+    const empresa = document.getElementById('empresa').value;
+    const preguntas1 = document.getElementsByName('cue');
+
+    const usuario = 1;
+    const data = {
+      empresa,
+      preguntas: listOfQuestions[0]
+    };
+    console.log(data);
+    /*const request = {
+     method: 'POST',
+     headers: {
+       'Content-Type': 'application/json',
+     },
+     body: JSON.stringify(data),
+   };
+
+   try {
+     const response = await fetch(url, request);
+     const result = await response.json();
+     return result;
+   } catch (error) {
+     muestraError(error);
+   } */
+  }
+
+
+
+>>>>>>> Stashed changes
 </script>
-   <mi-nav  id="nav"></mi-nav>
-  <div class="container mx-auto shadow-lg p-6 bg-white rounded-lg"">
-<button class="bg-gray-500 hover:bg-black-700 border-white text-white font-bold border-sm py-2 px-2 rounded" onclick="location.href ='analista.html'">
-  Volver
-</button>
-      <h1 class="text-purple-700 font-bold text-start text-3xl mb-4 uppercase my-10 ">+ Crear un Cuestionario</h1>
-      
-        <select name="empresa" id="empresa" class="bg-white shadow-lg
-                w-1/2 mx-auto rounded-md border-2 border-gray-300 p-2" required>
-          <option value="">Selecciona una empresa</option>
-        </select>
+
+<body onload="loadData()"></body>
+<mi-nav id="nav"></mi-nav>
+<div class="container mx-auto shadow-lg p-6 bg-white rounded-lg lg:w-full md:w-2/3 sm:w-3/4 w-11/12 mx-auto">
+
+  <button class=" bg-gray-500 hover:bg-black-700 border-white text-white font-bold border-sm py-2 px-2 rounded"
+    onclick="location.href ='analista.html'">
+    Volver
+  </button>
 
 
+  <div>
 
+<<<<<<< Updated upstream
   <form id="cuestionario" onsubmit="submitForma('srv/srvCrearCuestionario.php' + parametros, event, cuestionario)
   .then(modelo => location.href = 'creaCuestionario.html')
     .catch(muestraError)">
@@ -189,53 +306,87 @@ async function cargarEmpresas() {
           <p> Numero de preguntas:  <span id="contadorPreguntas">0</span></p>
             </div>
 
+=======
+
+    <label for="pregunta" class="text-purple-700 font-bold mb-2 uppercase text-start">
+      <p class="text-start text-purple-700 font-bold text-3xl mb-4 uppercase my-10 "> + Selecciona tus preguntas
+      </p>
+      <input hidden type="number" id="numPreguntas" name="numPreguntas" min="1">
+  </div>
+  <p>
+    *Selecciona las preguntas que deseas agregar a tu cuestionario e indica la respuesta correcta si es verdadera o
+    falsa.
+  </p>
+>>>>>>> Stashed changes
   <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
 
       <tr>
-        <th scope="col" class="px-6 py-3">N° </th>
-         <td class="px-6 py-4"> Pregunta </td>
-         <td class="px-6 py-4">Agregar a Cuestionario</td>
+        <td class="px-6 py-4"> Pregunta </td>
+        <td class="px-6 py-4 text-start"> Respuesta</td>
+        <td class="px-6 py-4 text-start"> Acción</td>
       </tr>
     </thead>
-    <tbody id="lista"> 
-      <input type="text" name="id" id="" >
-      <input type="text" name="cue" class="text-black font-bold mb-2 uppercase text-start" >
+    <tbody id="lista" class="divide-y divide-gray-200 ">
+      <input type="text" name="id" id="" class="text-black font-bold mb-2 uppercase text-start">
+      <input type="text" name="cue" class="text-black font-bold mb-2 uppercase text-start">
     </tbody>
   </table>
+<<<<<<< Updated upstream
   <p style="display: none;">CUE: <span id="cueDisplay"></span></p>
   <p style="display: none;">Rol: <span id="rolDisplay"></span></p>
   <input type="hidden" name="cue" id="cueInput" value="">
      <button
         class="bg-purple-500 m-4 px-4 py-2 rounded-md w-2/4 mx-auto flex text-white mt-10  font-bold  hover:bg-purple-400 hover:text-white text-center justify-center "
        type="submit" >+ Crear  </button>
+=======
+>>>>>>> Stashed changes
 
-   <hr class="">
-  <p class="text-start text-purple-700 font-bold text-3xl mb-4 uppercase my-10 " > + Añade tu pregunta </button>
-  </form>
+
+  <hr class="my-8">
+  <p class="text-start text-purple-700 font-bold text-3xl mb-4 uppercase my-10 "> + Añade más preguntas</p>
+
 
 
   <div class="container 3/4 mx-auto">
-    
-   <h1 class="text-black font-bold text-center text-lg mb-4">¿Qué pregunta deseas ingresar?</h1>
-          <form class=" mx-auto" id="forma" onsubmit="submitForma('srv/srvRegistroPregunta.php',event,forma)
-            .then(modelo => location.href = 'creaCuestionario.html')
-            .catch(muestraError)">
-            <label
-                class="block text-lg font-bold text-gray-700"
-              >Pregunta #</label>
-            <input type="text" name="apregunta" class="bg-white shadow-lg
-                w-1/2 mx-auto rounded-md border-2 border-gray-300 p-2" placeholder="Ingresa tu pregunta"
-               required>
-             
-            <button 
-                class="bg-purple-500 m-4 px-4 py-2 rounded-lg text-white font-bold hover:bg-purple-400  hover:text-white text-center justify-center"
-              type="submit">Agregar Pregunta </button>
-          </form>
-        
-    </div>
-     </div> 
-   <footer id="footer"></footer><h1>Hola</h1>
+
+    <h1 class="text-black font-bold text-start text-lg mb-4">¿Qué pregunta deseas ingresar?</h1>
+
+
+
+
+    <input type="text" name="pregunta" id="pregunta" class="bg-white shadow-lg
+                            w-full mx-auto 
+                            p-1 m-2
+                            rounded-md border-2 border-gray-300 ">
+
+    <p class="text-black font-bold text-start text-lg mb-4">¿Cuál es la respuesta correcta?</p>
+    <select name="respuesta" id="respuesta" class="bg-white shadow-lg
+                            w-full mx-auto 
+                            p-1 m-2
+                            rounded-md border-2 border-gray-300 ">
+      <option value="1">Verdadero</option>
+      <option value="0">Falso</option>
+    </select>
+    <button
+      class="bg-purple-500 m-4 px-4 py-2 text-md rounded-md w-2/4 mx-auto flex text-white mt-10  font-bold  hover:bg-purple-400 hover:text-white text-center justify-center "
+      type="button" onclick="addQuestion()">+ Agregar pregunta </button>
+    <hr class="my-4">
+    <p class="text-start text-purple-700 font-bold text-3xl mb-4 uppercase my-10 "> + Selecciona tu empresa</p>
+
+    <select name="empresa" id="empresa" class="bg-white shadow-lg
+                            w-1/2 mx-auto rounded-md border-2 border-gray-300 p-2" required>
+      <option value="">Selecciona una empresa</option>
+    </select>
+
+    <button
+      class="bg-purple-500 m-4 px-4 py-2 rounded-md w-2/4 mx-auto flex text-white mt-10  font-bold  hover:bg-purple-400 hover:text-white text-center justify-center "
+      onclick="sendForm()" type="submit">+ Crear encuesta </button>
+  </div>
+  </form>
+</div>
+<footer id="footer"></footer>
+
 
 </body>
 

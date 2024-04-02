@@ -5,6 +5,7 @@ require_once __DIR__ . "/dao/consultarPregunta.php";
 
 ejecuta(function () {
   $lista = consultarPregunta();
+  return $lista;
   $render = "";
   foreach ($lista as $it) {
     $id = htmlentities($it->id);

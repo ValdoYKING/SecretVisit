@@ -46,14 +46,13 @@
   <mi-nav isAutorizate=`${isAutorizate}` id="nav"></mi-nav>
 
   <main id="main" hidden>
-
-    <h1>Solo Analistas :v</h1>
+  </main>
 
 
     <button type="button" onclick="ejecuta('srv/srvSaludoCliente.php')
      .then(saludo => alert(saludo))
      .catch(muestraError)">
-      Ejecuta servicio
+   
     </button>
     </p>
     <button data-drawer-target="default-sidebar" data-drawer-toggle="default-sidebar" aria-controls="default-sidebar"
@@ -181,12 +180,12 @@
           </i>
         </p>
         <button class="bg-purple-500 text-white text-sm font-bold rounded-lg p-2 m-2 
-            justify-rcenter item-center w-1/4 mx-auto" onclick="location.href='registrarEmpresa.html'">
-          + Crear Empressa
+            justify-rcenter item-center lg:w-1/4  sm:w-2/4   mx-auto" onclick="location.href='registrarEmpresa.html'">
+          + Crear Empresa
         </button>
         <button class="bg-purple-500 text-white text-sm font-bold rounded-lg p-2 m-2 
-         justify-rcenter item-center w-1/4 mx-auto" onclick="location.href='listaEmpresas.html'">
-          + Ver mis Empressa
+         justify-rcenter item-center lg:w-1/4  sm:w-2/4 mx-auto" onclick="location.href='listaEmpresas.html'">
+          + Ver   Empresas
         </button>
 
 
@@ -202,12 +201,12 @@
           </i>
         </p>
         <button class="bg-purple-500 text-white text-sm font-bold rounded-lg p-2 m-2 
-           justify-rcenter item-center w-1/4 mx-auto" onclick="location.href='creaCuestionario.html'">
+           justify-rcenter item-center  lg:w-1/4  sm:w-2/4  mx-auto" onclick="location.href='creaCuestionario.html'">
           + Crear Nueva Encuesta
         </button>
         <button class="bg-purple-500 text-white text-sm font-bold rounded-lg p-2 m-2 
-          justify-rcenter item-center w-1/4 mx-auto" onclick="location.href='listasEncuestas.html'">
-          + Ver mis Encuesta
+          justify-rcenter item-center lg:w-1/4  sm:w-2/4  mx-auto" onclick="location.href='listasEncuestas.html'">
+          + Ver Encuestas
         </button>
 
 
@@ -221,7 +220,7 @@
     </div>
     </div>
     </div>
-  </main>
+
   <footer id="footer"></footer>
 </body>
 <script>
