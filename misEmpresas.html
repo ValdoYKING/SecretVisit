@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lista</title>
+
+  <script type="module" src="lib/js/ejecuta.js"></script>
+  <script type="module" src="lib/js/muestraError.js"></script>
+  <script type="module" src="lib/js/muestraInnerHtml.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script type="module" src="./js/custom/mi-nav-analista.js"></script>
+    <script type="module" src="lib/js/ejecuta.js"></script>
+    <script type="module" src="lib/js/muestraError.js"></script>
+    <script type="module" src="lib/js/submitForma.js"></script>
+    <script type="module" src="./js/Sesion.js"></script>
+    <script type="module" src="lib/js/muestraInnerHtml.js"></script>
+    <script type="module" src="lib/js/muestraObjeto.js"></script>
+    
+    <script type="module" src="./js/custom/footer.js"></script>
+
+  <script type="module" src="./js/custom/footer.js"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            clifford: '#da373d',
+          }
+        }
+      }
+    }
+  </script>
+
+    
+  
+</head>
+
+<body onload="cargarSesion()">
+
+  <mi-nav id="nav"></mi-nav>
+
+  <main id="main" hidden></main>
+
+  <div class="container mx-auto px-4 sm:px-8 md:px-16 lg:px-20 py-8 ">
+    <div class="py-8 md:ml-32 lg:ml-44">
+      <h2 class="text-4xl font-bold text-purple-800 mb-2">Lista de<span class="text-black"> Empresas</span></h2>
+      <button class="bg-gray-500 hover:bg-black-700 border-white text-white font-bold border-sm py-2 px-2 rounded" onclick="location.href ='analista.html'">
+        Volver a mi perfil
+      </button>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-4 lg:pl-48" id="lista"></div>
+  </div>
+
+  <div id="idUsuarioDisplay"></div>
+  <p style="display: none;">CUE: <span id="cueDisplay"></span></p>
+  <p style="display: none;">Rol: <span id="rolDisplay"></span></p>
+  <input type="hidden" name="cue" id="cueInput" value="">
+
+  <footer id="footer"></footer>
+
+  <script>
+    async function cargarSesion() {
+      try {
+        const respuesta = await fetch('srv/srvSesion.php');
+        const sesion = await respuesta.json();
+        const cueDisplay = document.getElementById('cueDisplay');
+        const rolDisplay = document.getElementById('rolDisplay');
+        const idUsuarioDisplay = document.getElementById('idUsuarioDisplay');
+        cueDisplay.textContent = sesion.cue;
+        rolDisplay.textContent = sesion.rolIds.join(', ');
+        idUsuarioDisplay.textContent = sesion.idUsuario;
+        document.getElementById('cueInput').value = sesion.cue;
+
+        // Verifica si sesion.idUsuario está definido
+        if (sesion.idUsuario) {
+          // Coloca aquí el código que depende de sesion.idUsuario
+          // Por ejemplo, puedes llamar a la función loadData() aquí
+          loadData();
+        }
+
+      } catch (error) {
+        console.error('Error al cargar la sesión:', error);
+      }
+    }
+
+    const loadData = async () => {
+      try {
+        const idUsuario = document.getElementById('idUsuarioDisplay').textContent;
+        const response = await fetch('srv/srvConsultarEmpresasAnalista.php', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ idUsuario: idUsuario })
+        });
+        
+        if (!response.ok) {
+          throw new Error('Error al cargar los datos');
+        }
+    
+        const data = await response.json();
+        const lista = document.getElementById('lista');
+        if (data.length === 0) {
+          lista.innerHTML = '<p>No hay empresas registradas</p>';
+          return;
+        }
+        lista.innerHTML = ''; // Limpiamos el contenido previo de la lista
+        data.forEach(empresa => {
+          lista.innerHTML += `
+            <div class="w-6/6 flex flex-row justify-center shadow-lg p-6 bg-white rounded-lg p-4">
+              <div class="flex flex-col items-center justify-end">
+                <p class="text-xl text-center font-bold text-gray-800">Nombre de la empresa: ${empresa.nombre}</p>
+                <p class="text-md text-center text-gray-800">Dirección: ${empresa.direccion}</p>
+                <p>Teléfono: ${empresa.telefono}</p>
+                <p>Calificación: ${empresa.calificacion}</p>
+              </div>
+            </div>
+          `;
+        });
+        console.log(data);
+      } catch (error) {
+        console.error('Ocurrió un error:', error);
+      }
+    };
+    
+  </script>
+
+</body>
+
+
+</html>

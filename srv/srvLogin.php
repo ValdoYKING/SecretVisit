@@ -4,6 +4,7 @@ require_once __DIR__ . "/../lib/php/ejecuta.php";
 require_once __DIR__ . "/../lib/php/leeTexto.php";
 require_once __DIR__ . "/const/CUE.php";
 require_once __DIR__ . "/const/ROL_IDS.php";
+require_once __DIR__ . "/const/ID_USUARIO.php";
 require_once __DIR__ . "/modelo/Rol.php";
 require_once __DIR__ . "/dao/usuarioVerifica.php";
 require_once __DIR__ . "/dao/obtenerRolUsuario.php";
@@ -24,6 +25,7 @@ ejecuta(function () {
         }
         $_SESSION[CUE] = $cue;
         $_SESSION[ROL_IDS] = $rolIds;
+        $_SESSION[ID_USUARIO] = $usuario->id;
 
 
         $rol = obtenerRolUsuario($usuario->id); 

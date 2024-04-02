@@ -23,17 +23,7 @@
   </script>
   <title>Registarme</title>
 </head>
-<body onload="ejecuta('srv/srvSesion.php')
-  .then(objeto => {
-   const sesion = new Sesion(objeto)
-   if (sesion.cue === '') {
-    nav.sesion = sesion
-    registro.hidden = false
-   } else {
-    location.href = 'login.html'
-   }
-  })
-  .catch(muestraError)">
+<body>
 
   <mi-nav id="nav"></mi-nav>
   <div class="flex flex-col items-center justify-center  h-screen

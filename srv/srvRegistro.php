@@ -48,7 +48,7 @@ ejecuta(function () {
     /* $usuarioNuevo = new Usuario($cue, $match, [], 0); */
     $usuarioNuevo = new Usuario($cue, $correo, $match, [], 0);
 
-    $usuarioNuevo->roles = [$analista];
+    $usuarioNuevo->roles = [$mysteryShopper];
 
     // Agrega el rol correspondiente al usuario según el valor recibido del formulario
 

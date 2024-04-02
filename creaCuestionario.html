@@ -33,13 +33,6 @@
   </script>
 </head>
 
-<<<<<<< Updated upstream
-<body>
-   
-<body onload="loadData()">
-=======
-
->>>>>>> Stashed changes
 
 <script>
   const render = (array) => {
@@ -157,7 +150,6 @@
           select.appendChild(option);
         }
 
-<<<<<<< Updated upstream
 
           
 
@@ -237,46 +229,6 @@ async function cargarEmpresas() {
     consultarpregunta()
   }
   }
-=======
-      } catch (error) {
-        muestraError(error);
-      }
-
-    }
-
-
-  }
-
-  async function sendForm() {
-    const empresa = document.getElementById('empresa').value;
-    const preguntas1 = document.getElementsByName('cue');
-
-    const usuario = 1;
-    const data = {
-      empresa,
-      preguntas: listOfQuestions[0]
-    };
-    console.log(data);
-    /*const request = {
-     method: 'POST',
-     headers: {
-       'Content-Type': 'application/json',
-     },
-     body: JSON.stringify(data),
-   };
-
-   try {
-     const response = await fetch(url, request);
-     const result = await response.json();
-     return result;
-   } catch (error) {
-     muestraError(error);
-   } */
-  }
-
-
-
->>>>>>> Stashed changes
 </script>
 
 <body onload="loadData()"></body>
@@ -291,22 +243,6 @@ async function cargarEmpresas() {
 
   <div>
 
-<<<<<<< Updated upstream
-  <form id="cuestionario" onsubmit="submitForma('srv/srvCrearCuestionario.php' + parametros, event, cuestionario)
-  .then(modelo => location.href = 'creaCuestionario.html')
-    .catch(muestraError)">
-           <label for="empresaId">Seleccionar Empresa:</label>
-           <select name="empresaId" id="empresaId">
-               <!-- Aquí se cargarán las opciones de las empresas -->
-           </select>
-            <div>
-            
-            
-        <label for="pregunta" class="text-black font-bold mb-2 uppercase text-start" >
-          <p> Numero de preguntas:  <span id="contadorPreguntas">0</span></p>
-            </div>
-
-=======
 
     <label for="pregunta" class="text-purple-700 font-bold mb-2 uppercase text-start">
       <p class="text-start text-purple-700 font-bold text-3xl mb-4 uppercase my-10 "> + Selecciona tus preguntas
@@ -317,7 +253,6 @@ async function cargarEmpresas() {
     *Selecciona las preguntas que deseas agregar a tu cuestionario e indica la respuesta correcta si es verdadera o
     falsa.
   </p>
->>>>>>> Stashed changes
   <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
 
@@ -332,15 +267,6 @@ async function cargarEmpresas() {
       <input type="text" name="cue" class="text-black font-bold mb-2 uppercase text-start">
     </tbody>
   </table>
-<<<<<<< Updated upstream
-  <p style="display: none;">CUE: <span id="cueDisplay"></span></p>
-  <p style="display: none;">Rol: <span id="rolDisplay"></span></p>
-  <input type="hidden" name="cue" id="cueInput" value="">
-     <button
-        class="bg-purple-500 m-4 px-4 py-2 rounded-md w-2/4 mx-auto flex text-white mt-10  font-bold  hover:bg-purple-400 hover:text-white text-center justify-center "
-       type="submit" >+ Crear  </button>
-=======
->>>>>>> Stashed changes
 
 
   <hr class="my-8">
