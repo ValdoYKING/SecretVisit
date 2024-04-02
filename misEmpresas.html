@@ -73,11 +73,8 @@
         rolDisplay.textContent = sesion.rolIds.join(', ');
         idUsuarioDisplay.textContent = sesion.idUsuario;
         document.getElementById('cueInput').value = sesion.cue;
-
-        // Verifica si sesion.idUsuario está definido
+        
         if (sesion.idUsuario) {
-          // Coloca aquí el código que depende de sesion.idUsuario
-          // Por ejemplo, puedes llamar a la función loadData() aquí
           loadData();
         }
 
