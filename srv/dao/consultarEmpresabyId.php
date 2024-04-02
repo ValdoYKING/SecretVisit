@@ -9,7 +9,15 @@ function consultarEmpresabyId($id): array
 {
  $con = AccesoBd::getCon();
  $stmt = $con->query(
-  "SELECT * FROM 'EMPRESA' WHERE ID_ANALISTA	= '$id'"
+  "SELECT 
+   EMP_ID as id,
+   EMP_NOMBRE as nombre,
+   EMP_DIRECCION as direccion,
+   EMP_CALIFICACION as calificacion,
+   ID_ANALISTA as analistaid,
+   ID_ENC as encid
+  FROM 'EMPRESA' 
+   WHERE ID_ANALISTA = '$id'"
  );
  $resultado = $stmt -> fetchAll(
   PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE,

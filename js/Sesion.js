@@ -1,5 +1,6 @@
 import { CUE } from "./const/CUE.js"
 import { ROL_IDS } from "./const/ROL_IDS.js"
+import { IDUSU } from "./const/IDUSU.js"
 
 export class Sesion {
 
@@ -20,6 +21,11 @@ export class Sesion {
   /** @readonly */
   this.rolIds = new Set(rolIds)
 
+    /** @readonly */
+    this.idusu = objeto[IDUSU]
+  if (!Number.isInteger(this.idusu)) {
+
+  }
  }
 
 }

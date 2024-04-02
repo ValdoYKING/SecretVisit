@@ -14,7 +14,7 @@
   <script type="module" src="lib/js/submitForma.js"></script>
   <script type="module" src="lib/js/muestraInnerHtml.js"></script>
   <script type="module" src="lib/js/muestraObjeto.js"></script>
-
+  <script type="module" src="./js/Sesion.js"></script>
   <script type="module" src="./js/custom/footer.js"></script>
 
   <script>
@@ -33,15 +33,13 @@
   </script>
 </head>
 
-<<<<<<< Updated upstream
-<body>
    
 <body onload="loadData()">
-=======
 
->>>>>>> Stashed changes
 
+  
 <script>
+
   const render = (array) => {
     //renderizar las preguntas
     const lista = document.getElementById('lista');
@@ -53,7 +51,6 @@
       const input2 = document.createElement('input');
       //mostrar como un select 
       const select = document.createElement('select');
-
 
       const button = document.createElement('button');
 
@@ -103,8 +100,21 @@
   }
 
   const loadData = async () => {
+
+    async function sesion() {
+      try {
+        const objeto = await ejecuta('srv/srvSesion.php');
+        const sesion = new Sesion(objeto);
+        const idusu = sesion.idusu;
+        nav.sesion = sesion;
+        console.log(sesion);
+        await getCompanys(idusu); // Llamada a otra función con idusu como argumento
+      } catch (error) {
+        muestraError(error);
+      }
+    }
+    await sesion()
     await getQuestions()
-    await getCompanys()
     async function getQuestions() {
       try {
         const response = await fetch('srv/srvConsultarPreguntas.php');
@@ -119,24 +129,20 @@
           option.textContent = 'No hay preguntas';
           lista.appendChild(option);
         }
-
-
       } catch (error) {
         muestraError(error);
       }
     }
 
 
-    async function getCompanys(id) {
-
-      id = 2;
+    async function getCompanys(idusu) {
       const url = 'srv/srvConsultarEmpresabyId.php';
       const request = {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ id }),
+        body: JSON.stringify({ id:idusu }),
       };
       try {
         const response = await fetch(url, request);
@@ -147,8 +153,8 @@
         if (data.length > 0) {
           data.forEach((empresa) => {
             const option = document.createElement('option');
-            option.value = empresa.EMP_ID;
-            option.textContent = empresa.EMP_NOMBRE;
+            option.value = empresa.id;
+            option.textContent = empresa.nombre;
             select.appendChild(option);
           });
         } else {
@@ -156,101 +162,15 @@
           option.textContent = 'No hay empresas';
           select.appendChild(option);
         }
-
-<<<<<<< Updated upstream
-
-          
-
-async function cargarEmpresas() {
-            try {
-                const respuesta = await fetch('srv/srvObtenerEmpresas.php');
-                const empresas = await respuesta.json();
-                const select = document.getElementById('empresaId');
-                select.innerHTML = ''; // Limpiar contenido anterior
-                empresas.forEach(empresa => {
-                    const option = document.createElement('option');
-                    option.value = empresa.id;
-                    option.textContent = empresa.nombre;
-                    select.appendChild(option);
-                });
-            } catch (error) {
-                console.error('Error al cargar las empresas:', error);
-            }
-        }
-
-  async function cargarPreguntas() {
-            try {
-                const respuesta = await fetch('srv/srvObtenerPreguntas.php');
-                const preguntas = await respuesta.json();
-                const preguntasContainer = document.getElementById('preguntasContainer');
-                preguntasContainer.innerHTML = ''; // Limpiar contenido anterior
-                preguntas.forEach(pregunta => {
-                    const checkbox = document.createElement('input');
-                    checkbox.type = 'checkbox';
-                    checkbox.name = 'preguntaId[]'; // Cambiar el nombre para enviarlo como un arreglo
-                    checkbox.value = pregunta.id;
-                    const th = document.createElement('th');
-                    const th2 = document.createElement('th');
-                    const p = document.createElement('p');
-                    p.textContent = "categoria";
-            th.textContent = pregunta.pregunta ;
-            th2.textContent = pregunta.id; // Corrección aquí
-                    const tr = document.createElement('tr');
-                    tr.appendChild(th2);
-                    tr.appendChild(th).appendChild(p);
-                    tr.appendChild(checkbox);
-                    checkbox.addEventListener('change',function() {
-                        if (this.checked) { 
-                            preguntasSeleccionadas++
-                        } else {
-                            preguntasSeleccionadas--
-                        }
-                        contador();
-                    } );
-                    preguntasContainer.appendChild(tr);
-                });
-            } catch (error) {
-                console.error('Error al cargar las preguntas:', error);
-            }
-        }
-  
-  function consultarpregunta() {
-    fetch('srv/srvConsultarPreguntas.php')
-    .then(response => response.text() )
-    .then(render => muestraInnerHtml('lista',render))
-    .catch(error => muestraError(error));
-  }
-  
-
-  function buscaEmpresa(parametros){
-    fetch('srv/srvBusquedaEmpresa.php' + parametros)
-    .then(render => muestraObjeto('cuestionario',render))
-    .catch(error => muestraError(error));
-  }
-     <mi-nav id="nav"></mi-nav>
-
-  window.onload = function() {
-  
-   window.onload = function() {
-    let parametros = '?parametro1=valor1&parametro2valor2';
-    buscaEmpresa(parametros)
-    consultarpregunta()
-  }
-  }
-=======
       } catch (error) {
         muestraError(error);
       }
-
     }
-
-
   }
 
   async function sendForm() {
     const empresa = document.getElementById('empresa').value;
     const preguntas1 = document.getElementsByName('cue');
-
     const usuario = 1;
     const data = {
       empresa,
@@ -273,13 +193,8 @@ async function cargarEmpresas() {
      muestraError(error);
    } */
   }
-
-
-
->>>>>>> Stashed changes
 </script>
 
-<body onload="loadData()"></body>
 <mi-nav id="nav"></mi-nav>
 <div class="container mx-auto shadow-lg p-6 bg-white rounded-lg lg:w-full md:w-2/3 sm:w-3/4 w-11/12 mx-auto">
 
@@ -291,33 +206,23 @@ async function cargarEmpresas() {
 
   <div>
 
-<<<<<<< Updated upstream
   <form id="cuestionario" onsubmit="submitForma('srv/srvCrearCuestionario.php' + parametros, event, cuestionario)
   .then(modelo => location.href = 'creaCuestionario.html')
-    .catch(muestraError)">
-           <label for="empresaId">Seleccionar Empresa:</label>
-           <select name="empresaId" id="empresaId">
-               <!-- Aquí se cargarán las opciones de las empresas -->
-           </select>
-            <div>
-            
-            
+    .catch(muestraError)">   
+    <div>      
+      <label for="pregunta" class="text-purple-700 font-bold mb-2 uppercase text-start">
+        <p class="text-start text-purple-700 font-bold text-3xl mb-4 uppercase my-10 "> + Selecciona tus preguntas
+        </p>
+        <input hidden type="number" id="numPreguntas" name="numPreguntas" min="1">
+      </div>
+      <div>
         <label for="pregunta" class="text-black font-bold mb-2 uppercase text-start" >
           <p> Numero de preguntas:  <span id="contadorPreguntas">0</span></p>
-            </div>
-
-=======
-
-    <label for="pregunta" class="text-purple-700 font-bold mb-2 uppercase text-start">
-      <p class="text-start text-purple-700 font-bold text-3xl mb-4 uppercase my-10 "> + Selecciona tus preguntas
-      </p>
-      <input hidden type="number" id="numPreguntas" name="numPreguntas" min="1">
-  </div>
+      </div> 
   <p>
     *Selecciona las preguntas que deseas agregar a tu cuestionario e indica la respuesta correcta si es verdadera o
     falsa.
   </p>
->>>>>>> Stashed changes
   <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
 
@@ -332,15 +237,12 @@ async function cargarEmpresas() {
       <input type="text" name="cue" class="text-black font-bold mb-2 uppercase text-start">
     </tbody>
   </table>
-<<<<<<< Updated upstream
   <p style="display: none;">CUE: <span id="cueDisplay"></span></p>
   <p style="display: none;">Rol: <span id="rolDisplay"></span></p>
   <input type="hidden" name="cue" id="cueInput" value="">
      <button
         class="bg-purple-500 m-4 px-4 py-2 rounded-md w-2/4 mx-auto flex text-white mt-10  font-bold  hover:bg-purple-400 hover:text-white text-center justify-center "
        type="submit" >+ Crear  </button>
-=======
->>>>>>> Stashed changes
 
 
   <hr class="my-8">

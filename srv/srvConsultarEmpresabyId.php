@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $data = json_decode(file_get_contents('php://input'), true);
     if (isset($data['id']) ) {
         $id = $data['id'];
-                      $response=  consultarEmpresabyId($id,);
+                      $response=  consultarEmpresabyId($id);
                         echo json_encode($response);
         
     } else {
