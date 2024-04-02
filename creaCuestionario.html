@@ -52,9 +52,9 @@
       }
     }
     async function getCompanys(id) {
-        //send id via post to get the company
-        id = 1;
-        const url = 'srv/srvGetCompanysById.php';
+      
+        id = 2;
+        const url = 'srv/srvConsultarEmpresabyId.php';
         const request = {
           method: 'POST',
           headers: {
@@ -65,9 +65,24 @@
         try {
           const response = await fetch(url, request);
           const data = await response.json();
+          //RENDERIZAR LOS SELECT CON LOS DATOS DE LA EMPRESA
+          const select = document.getElementById('empresa');
           console.log(data);
+            if (data.length === 0) {
+          data.forEach((empresa) => {
+            const option = document.createElement('option');
+            option.value = empresa.EMP_ID;
+            option.textContent = empresa.EMP_NOMBRE;
+            select.appendChild(option);
+          });
+        } else {
+          const option = document.createElement('option');
+          option.textContent = 'No hay empresas';
+          select.appendChild(option);
+        }
 
-    
+
+          
 
 async function cargarEmpresas() {
             try {
@@ -152,6 +167,14 @@ async function cargarEmpresas() {
   Volver
 </button>
       <h1 class="text-purple-700 font-bold text-start text-3xl mb-4 uppercase my-10 ">+ Crear un Cuestionario</h1>
+      
+        <select name="empresa" id="empresa" class="bg-white shadow-lg
+                w-1/2 mx-auto rounded-md border-2 border-gray-300 p-2" required>
+          <option value="">Selecciona una empresa</option>
+        </select>
+
+
+
   <form id="cuestionario" onsubmit="submitForma('srv/srvCrearCuestionario.php' + parametros, event, cuestionario)
   .then(modelo => location.href = 'creaCuestionario.html')
     .catch(muestraError)">
@@ -192,7 +215,7 @@ async function cargarEmpresas() {
   </form>
 
 
-  <div class="container 3/4 mx-auto"
+  <div class="container 3/4 mx-auto">
     
    <h1 class="text-black font-bold text-center text-lg mb-4">¿Qué pregunta deseas ingresar?</h1>
           <form class=" mx-auto" id="forma" onsubmit="submitForma('srv/srvRegistroPregunta.php',event,forma)
