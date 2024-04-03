@@ -3,18 +3,16 @@
 require_once __DIR__ . "/modelo/Encuesta_Pregunta.php";
 require_once __DIR__ . "/modelo/Pregunta.php";
 require_once __DIR__ . "/dao/EncuestaPreguntaAgregar.php";
+require_once __DIR__ . "/dao/BuscaEncuesta.php";
 
-function agregarPreguntasEncuesta(Encuesta $encuesta, array $preguntaIds, Usuario $usuario)
+function agregarPreguntasEncuesta(int $idemp, array $preguntaIds, int $idana)
 {
-    foreach ($preguntaIds as $preguntaId) {
-        $pregunta = new Pregunta();
-        $pregunta->id = $preguntaId;
+    $encu =  BuscaEncuestaidEmpresa($idemp);
+    $idEncuesta = $encu->id;
+    foreach ($preguntaIds as $pregunta) {
+        
 
-        $encuestaPregunta = new Encuesta_Pregunta();
-        $encuestaPregunta->encuesta = $encuesta;
-        $encuestaPregunta->pregunta = $pregunta;
-
-        agregarEncuestaPregunta($encuestaPregunta);
+        agregarEncuestaPregunta($idEncuesta ,$pregunta, "",$idana);
     }
 }
 

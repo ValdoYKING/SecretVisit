@@ -12,24 +12,49 @@ require_once __DIR__ . "/dao/consultarEnc_Pre.php";
 require_once __DIR__ . "/agregarRespuestaEncuesta.php";
 
 
- // Agrega la inclusión del archivo de actualización
 
+/* 
+[5:28 p. m., 2/4/2024] Oscar Varela: en el arreglo de preguntas va id, pregunta, respuesta
+[5:28 p. m., 2/4/2024] Oscar Varela: el id es int, preunta string, respuesta, string
+*/
 // Función para procesar las respuestas enviadas por el formulario y actualizarlas en la base de datos
-ejecuta(function ()
-{
+
+/*     $registros = [
+        ["idU" => 2, "idE" => 2, "pregunta" => "¿Cuál es tu nombre?", "respuesta" => "Mi nombre es Juan."],
+        ["idU" => 2, "idE" => 2, "pregunta" => "¿Cuál es tu edad?", "respuesta" => "Tengo 25 años."]
+      ];
+      
     $idT = leeTexto("empid");
     $id = intval($idT);
+ */
 
-    $MOencuesta = BuscaEncuestaidEmpresa($id);
-    $idEnc = $MOencuesta->id;
-    $dato[] = $_POST['preguntaId'];
 
+ 
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $data = json_decode(file_get_contents('php://input'), true);
+    if (isset($data['id']) ) {
+        $id = $data['id'];
+                      $response=  consultarEmpresabyId($id);
+                        echo json_encode($response);
+        
+    } else {
+        $response = array('status' => 'error', 'message' => 'Faltan datos en la solicitud');
+        echo json_encode($response);
+    }
+} else {
+    $response = array('status' => 'error', 'message' => 'Se esperaba una solicitud POST');
+    echo json_encode($response);
+}
+/* 
+if (isset($_POST['preguntaId'], $_POST['respuestas'])) {
+    $preguntaIds = $_POST[''];
     
-    /*
-    if (isset($_POST['preguntaId'], $_POST['respuestas'])) {
-        $preguntaIds = $_POST['preguntaId'];
+    $respuestas = $_POST['respuestas'];
     
-        $respuestas = $_POST['respuestas'];
+        $MOencuesta = BuscaEncuestaidEmpresa($id);
+        $idEnc = $MOencuesta->id;
+        $dato[] = $_POST['preguntaId'];
+        
 
         $encPre = new Encuesta_Pregunta();
         $encPre->encuesta->id = $idEnc;
@@ -50,7 +75,5 @@ ejecuta(function ()
 } else {
     return "Algo salio mas cheque bien sus respuestas";
 }
-*/
-}
-);
+ */
 ?>
