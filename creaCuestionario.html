@@ -10,12 +10,13 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script type="module" src="./js/custom/mi-nav.js"></script>
   <script type="module" src="lib/js/ejecuta.js"></script>
-  <script type="module" src="lib/js/muestraError.js"></script>
+
   <script type="module" src="lib/js/submitForma.js"></script>
   <script type="module" src="lib/js/muestraInnerHtml.js"></script>
   <script type="module" src="lib/js/muestraObjeto.js"></script>
   <script type="module" src="./js/Sesion.js"></script>
   <script type="module" src="./js/custom/footer.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
   <script>
     tailwind.config = {
@@ -33,267 +34,288 @@
   </script>
 </head>
 
-   
+
 <body onload="loadData()">
+  <script>
 
+    const render = (array) => {
+     
+      const lista = document.getElementById('lista');
+      array.forEach((pregunta) => {
+        const tr = document.createElement('tr');
+        const td2 = document.createElement('td');
+        const td3 = document.createElement('td');
+        //tipo text
+        const input2 = document.createElement('input');
+        //mostrar como un select 
+        const select = document.createElement('select');
 
-  
-<script>
+        const button = document.createElement('button');
 
-  const render = (array) => {
-    //renderizar las preguntas
-    const lista = document.getElementById('lista');
-    array.forEach((pregunta) => {
-      const tr = document.createElement('tr');
-      const td2 = document.createElement('td');
-      const td3 = document.createElement('td');
-      //tipo text
-      const input2 = document.createElement('input');
-      //mostrar como un select 
-      const select = document.createElement('select');
+        input2.type = 'text';
+        input2.value = pregunta.pregunta;
+        input2.name = 'cue';
+        input2.classList.add('bg-white', 'shadow-lg', 'w-full', 'mx-auto', 'p-1', 'm-2', 'rounded-md', 'border-2', 'border-gray-300');
+        select.name = 'respuesta';
+        select.classList.add('bg-white', 'shadow-lg', 'w-full', 'mx-auto', 'p-1', 'm-2', 'rounded-md', 'border-2', 'border-gray-300');
+        const option1 = document.createElement('option');
+        option1.value = '1';
+        option1.textContent = 'Verdadero';
+        const option2 = document.createElement('option');
+        option2.value = '0';
+        option2.textContent = 'Falso';
+        const option3 = document.createElement('option');
+        option3.value = '2';
+        option3.textContent = pregunta.respuesta === 'Verdadero' ? 'Verdadero' : 'Falso';
 
-      const button = document.createElement('button');
-
-      input2.type = 'text';
-      input2.value = pregunta.pregunta;
-      input2.name = 'cue';
-      input2.readOnly = true;
-      input2.classList.add('bg-white', 'shadow-lg', 'w-full', 'mx-auto', 'p-1', 'm-2', 'rounded-md', 'border-2', 'border-gray-300');
-      select.name = 'respuesta';
-      select.classList.add('bg-white', 'shadow-lg', 'w-full', 'mx-auto', 'p-1', 'm-2', 'rounded-md', 'border-2', 'border-gray-300');
-      const option1 = document.createElement('option');
-      option1.value = '1';
-      option1.textContent = 'Verdadero';
-      const option2 = document.createElement('option');
-      option2.value = '0';
-      option2.textContent = 'Falso';
-      select.appendChild(option1);
-      select.appendChild(option2);
-      select.value = pregunta.respuesta;
-
-      button.textContent = 'Eliminar';
-      button.classList.add('bg-red-500', 'hover:bg-red-700', 'text-white', 'font-bold', 'py-2', 'px-4', 'rounded');
-      button.onclick = () => {
-        const index = listOfQuestions[0].findIndex((item) => item.id === pregunta.id);
-        listOfQuestions[0].splice(index, 1);
-        lista.removeChild(tr);
-      }
-
-      td2.appendChild(input2);
-      td3.appendChild(select);
-      tr.appendChild(td2);
-      tr.appendChild(td3);
-      tr.appendChild(button);
-      lista.appendChild(tr);
-    });
-
-  }
-
-  const listOfQuestions = [];
-  const addQuestion = () => {
-    const pregunta = document.getElementById('pregunta').value;
-    const newQuestion = { pregunta, id:listOfQuestions[0].length + 1 };
-
-    listOfQuestions[0].push(newQuestion);
-    render([newQuestion]);
-
-  }
-
-  const loadData = async () => {
-
-    async function sesion() {
-      try {
-        const objeto = await ejecuta('srv/srvSesion.php');
-        const sesion = new Sesion(objeto);
-        const idusu = sesion.idusu;
-        nav.sesion = sesion;
-        console.log(sesion);
-        await getCompanys(idusu); // Llamada a otra función con idusu como argumento
-      } catch (error) {
-        muestraError(error);
-      }
-    }
-    await sesion()
-    await getQuestions()
-    async function getQuestions() {
-      try {
-        const response = await fetch('srv/srvConsultarPreguntas.php');
-        const data = await response.json();
-
-        listOfQuestions.push(data);
-        const lista = document.getElementById('lista');
-        if (data.length > 0) {
-          render(data);
-        } else {
-          const option = document.createElement('option');
-          option.textContent = 'No hay preguntas';
-          lista.appendChild(option);
+        option1.selected = pregunta.respuesta === 'Verdadero';
+        option2.selected = pregunta.respuesta === 'Falso';
+        select.appendChild(option1);
+        select.appendChild(option2);
+        button.textContent = 'Eliminar';
+        button.classList.add('bg-red-500', 'hover:bg-red-700', 'text-white', 'font-bold', 'py-2', 'px-4', 'rounded');
+        button.onclick = () => {
+          const index = listOfQuestions[0].findIndex((item) => item.id === pregunta.id);
+          listOfQuestions[0].splice(index, 1);
+          lista.removeChild(tr);
+          countQuestions();
         }
-      } catch (error) {
-        muestraError(error);
+
+        td2.appendChild(input2);
+        td3.appendChild(select);
+        tr.appendChild(td2);
+        tr.appendChild(td3);
+        tr.appendChild(button);
+        lista.appendChild(tr);
+      });
+      countQuestions();
+    }
+
+    const listOfQuestions = [];
+    const addQuestion = () => {
+
+      const pregunta = document.getElementById('pregunta').value;
+      const valueAnswer = document.getElementById('respuesta').value;
+
+      const newQuestion = { id:listOfQuestions[0].length + 1, pregunta, respuesta: valueAnswer };
+
+      listOfQuestions[0].push(newQuestion);
+      countQuestions();
+      render([newQuestion]);
+
+    }
+    const countQuestions = () => {
+      const counter = document.getElementById('contadorPreguntas');
+      counter.textContent = listOfQuestions[0].length;
+    }
+
+    const loadData = async () => {
+
+      async function sesion() {
+        try {
+          const objeto = await ejecuta('srv/srvSesion.php');
+          const sesion = new Sesion(objeto);
+          const idusu = sesion.idusu;
+          nav.sesion = sesion;
+          await getCompanys(idusu); // Llamada a otra función con idusu como argumento
+        } catch (error) {
+          console.error(error);
+        }
+      }
+      await sesion()
+      await getQuestions()
+      async function getQuestions() {
+        try {
+          const response = await fetch('srv/srvConsultarPreguntas.php');
+          const data = await response.json();
+          listOfQuestions.push(data);
+          const lista = document.getElementById('lista');
+          if (data.length > 0) {
+            render(data);
+          } else {
+            const option = document.createElement('option');
+            option.textContent = 'No hay preguntas';
+            lista.appendChild(option);
+          }
+        } catch (error) {
+          muestraError(error);
+        }
+      }
+
+
+      async function getCompanys(idusu) {
+        const url = 'srv/srvConsultarEmpresabyId.php';
+        const request = {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ id: idusu }),
+        };
+        try {
+          const response = await fetch(url, request);
+          const data = await response.json();
+          //RENDERIZAR LOS SELECT CON LOS DATOS DE LA EMPRESA
+          const select = document.getElementById('empresa');
+
+          if (data.length > 0) {
+            data.forEach((empresa) => {
+              const option = document.createElement('option');
+              option.value = empresa.id
+              option.textContent = empresa.nombre;
+              select.appendChild(option);
+            });
+          } else {
+            const option = document.createElement('option');
+            option.textContent = 'No hay empresas';
+            select.appendChild(option);
+          }
+        } catch (error) {
+          muestraError(error);
+        }
       }
     }
 
+    async function sendForm() {
+      const empresa = document.getElementById('empresa').value;
+        if (empresa === '') {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Selecciona una empresa para continuar',
+        })
+        return
+      }
+      if (listOfQuestions[0].length === 0) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Agrega al menos una pregunta para continuar',
+        })
+        return
+      }
 
-    async function getCompanys(idusu) {
-      const url = 'srv/srvConsultarEmpresabyId.php';
+      console.log(listOfQuestions[0]);
+      const data = {
+        empresa,
+        sesion: nav.sesion,
+        preguntas: listOfQuestions[0]
+      };
       const request = {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ id:idusu }),
+        body: JSON.stringify(data),
       };
+      const url = 'srv/srvCrearCuestionario.php';
+
       try {
         const response = await fetch(url, request);
-        const data = await response.json();
-        //RENDERIZAR LOS SELECT CON LOS DATOS DE LA EMPRESA
-        const select = document.getElementById('empresa');
-
-        if (data.length > 0) {
-          data.forEach((empresa) => {
-            const input = document.querySelector('#idana');
-            input.value = empresa.analistaid
-            const option = document.createElement('option');
-            option.value = empresa.id;
-            option.textContent = empresa.nombre;
-            select.appendChild(option);
-          });
-        } else {
-          const option = document.createElement('option');
-          option.textContent = 'No hay empresas';
-          select.appendChild(option);
-        }
+        const result = await response.json();
+        return result;
       } catch (error) {
-        muestraError(error);
+          console.error(error);
       }
     }
-  }
+  </script>
 
-  async function sendForm() {
-    const empresa = document.getElementById('empresa').value;
-    const idusu = document.querySelector('#idana').value; // Suponiendo que solo necesitas el primer elemento
-    const data = {
-      idusu,
-      empresa,
-      preguntas: listOfQuestions[0]
-    };
-    const url = 'srv/srvCrearCuestionario.php';
-    const request = {
-     method: 'POST',
-     headers: {
-       'Content-Type': 'application/json',
-      },
-     body: JSON.stringify({data:data}),
-   };
+  <mi-nav id="nav"></mi-nav>
+  <div class="container mx-auto shadow-lg p-6 bg-white rounded-lg lg:w-full md:w-2/3 sm:w-3/4 w-11/12 mx-auto">
 
-   try {
-     const response = await fetch(url, request);
-
-     if (!response.ok) {
-       throw new Error('Error en la solicitud: ' + response.status);
-      }
-      console.log(data);
-     const result = await response.json();
-     return result;
-   } catch (error) {
-     muestraError(error);
-   } 
-}
-
-</script>
-
-<mi-nav id="nav"></mi-nav>
-<div class="container mx-auto shadow-lg p-6 bg-white rounded-lg lg:w-full md:w-2/3 sm:w-3/4 w-11/12 mx-auto">
-
-  <button class=" bg-gray-500 hover:bg-black-700 border-white text-white font-bold border-sm py-2 px-2 rounded"
-    onclick="location.href ='analista.html'">
-    Volver
-  </button>
+    <button class=" bg-gray-500 hover:bg-black-700 border-white text-white font-bold border-sm py-2 px-2 rounded"
+      onclick="location.href ='analista.html'">
+      Volver
+    </button>
 
 
-  <div>
-
-  <form id="cuestionario">   
-    <div>      
-      <label for="pregunta" class="text-purple-700 font-bold mb-2 uppercase text-start">
-        <p class="text-start text-purple-700 font-bold text-3xl mb-4 uppercase my-10 "> + Selecciona tus preguntas
+    <div>
+<!-- 
+      <form id="cuestionario" onsubmit="submitForma('srv/srvCrearCuestionario.php' + parametros, event, cuestionario)
+  .then(modelo => location.href = 'creaCuestionario.html')
+    .catch(muestraError)"> -->
+    <div id="cuestionario">
+        <div>
+          <label for="pregunta" class="text-purple-700 font-bold mb-2 uppercase text-start">
+            <p class="text-start text-purple-700 font-bold text-3xl mb-4 uppercase my-10 "> + Selecciona tus preguntas
+            </p>
+            <input hidden type="number" id="numPreguntas" name="numPreguntas" min="1">
+        </div>
+        <div>
+          <label for="pregunta" class="text-black font-bold mb-2 uppercase text-start">
+            <p> Numero de preguntas: <span id="contadorPreguntas">0</span></p>
+        </div>
+        <p>
+          *Selecciona las preguntas que deseas agregar a tu cuestionario e indica la respuesta correcta si es verdadera
+          o
+          falsa.
         </p>
-        <input hidden type="number" id="numPreguntas" name="numPreguntas" min="1">
-      </div>
-      <div>
-        <label for="pregunta" class="text-black font-bold mb-2 uppercase text-start" >
-          <p> Numero de preguntas:  <span id="contadorPreguntas">0</span></p>
-      </div> 
-  <p>
-    *Selecciona las preguntas que deseas agregar a tu cuestionario e indica la respuesta correcta si es verdadera o
-    falsa.
-  </p>
-  <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+        <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+          <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
 
-      <tr>
-        <td class="px-6 py-4"> Pregunta </td>
-        <td class="px-6 py-4 text-start"> Respuesta</td>
-        <td class="px-6 py-4 text-start"> Acción</td>
-      </tr>
-    </thead>
-    <tbody id="lista" class="divide-y divide-gray-200 ">
-      <!-- <input type="text" name="id" id="" class="text-black font-bold mb-2 uppercase text-start">
-      <input type="text" name="cue" class="text-black font-bold mb-2 uppercase text-start"> -->
-    </tbody>
-  </table>
-  <p style="display: none;">CUE: <span id="cueDisplay"></span></p>
-  <p style="display: none;">Rol: <span id="rolDisplay"></span></p>
-  <input type="hidden" name="cue" id="cueInput" value="">
-<!--      <button
-        class="bg-purple-500 m-4 px-4 py-2 rounded-md w-2/4 mx-auto flex text-white mt-10  font-bold  hover:bg-purple-400 hover:text-white text-center justify-center "
-       type="button" >+ Crear  </button> -->
+            <tr>
+              <td class="px-6 py-4"> Pregunta </td>
+              <td class="px-6 py-4 text-start"> Respuesta</td>
+              <td class="px-6 py-4 text-start"> Acción</td>
+            </tr>
+          </thead>
+          <tbody id="lista" class="divide-y divide-gray-200 ">
+            <input type="text" name="id" id="" class="text-black font-bold mb-2 uppercase text-start">
+            <input type="text" name="cue" class="text-black font-bold mb-2 uppercase text-start">
+          </tbody>
+        </table>
+        <p style="display: none;">CUE: <span id="cueDisplay"></span></p>
+        <p style="display: none;">Rol: <span id="rolDisplay"></span></p>
+        <input type="hidden" name="cue" id="cueInput" value="">
+        <!--    <button
+          class="bg-purple-500 m-4 px-4 py-2 rounded-md w-2/4 mx-auto flex text-white mt-10  font-bold  hover:bg-purple-400 hover:text-white text-center justify-center "
+          type="submit">+ Crear </button>
+ -->
 
-
-  <hr class="my-8">
-  <p class="text-start text-purple-700 font-bold text-3xl mb-4 uppercase my-10 "> + Añade más preguntas</p>
+        <hr class="my-8">
+        <p class="text-start text-purple-700 font-bold text-3xl mb-4 uppercase my-10 "> + Añade más preguntas</p>
 
 
 
-  <div class="container 3/4 mx-auto">
+        <div class="container 3/4 mx-auto">
 
-    <h1 class="text-black font-bold text-start text-lg mb-4">¿Qué pregunta deseas ingresar?</h1>
+          <h1 class="text-black font-bold text-start text-lg mb-4">¿Qué pregunta deseas ingresar?</h1>
 
 
 
 
-    <input type="text" name="pregunta" id="pregunta" class="bg-white shadow-lg
+          <input type="text" name="pregunta" id="pregunta" class="bg-white shadow-lg
                             w-full mx-auto 
                             p-1 m-2
                             rounded-md border-2 border-gray-300 ">
 
-    <p class="text-black font-bold text-start text-lg mb-4">¿Cuál es la respuesta correcta?</p>
-    <select name="respuesta" id="respuesta" class="bg-white shadow-lg
+          <p class="text-black font-bold text-start text-lg mb-4">¿Cuál es la respuesta correcta?</p>
+          <select name="respuesta" id="respuesta" class="bg-white shadow-lg
                             w-full mx-auto 
                             p-1 m-2
                             rounded-md border-2 border-gray-300 ">
-      <option value="1">Verdadero</option>
-      <option value="0">Falso</option>
-    </select>
-    <button
-      class="bg-purple-500 m-4 px-4 py-2 text-md rounded-md w-2/4 mx-auto flex text-white mt-10  font-bold  hover:bg-purple-400 hover:text-white text-center justify-center "
-      type="button" onclick="addQuestion()">+ Agregar pregunta </button>
-    <hr class="my-4">
-    <p class="text-start text-purple-700 font-bold text-3xl mb-4 uppercase my-10 "> + Selecciona tu empresa</p>
-    <input type="text" name="idana" id="idana">
-    <select name="empresa" id="empresa" class="bg-white shadow-lg
+            <option value="Verdadero">Verdadero</option>
+            <option value="Falso">Falso</option>
+          </select>
+          <button
+            class="bg-purple-500 m-4 px-4 py-2 text-md rounded-md w-2/4 mx-auto flex text-white mt-10  font-bold  hover:bg-purple-400 hover:text-white text-center justify-center "
+            type="button" onclick="addQuestion()">+ Agregar pregunta </button>
+          <hr class="my-4">
+          <p class="text-start text-purple-700 font-bold text-3xl mb-4 uppercase my-10 "> + Selecciona tu empresa</p>
+
+          <select name="empresa" id="empresa" class="bg-white shadow-lg
                             w-1/2 mx-auto rounded-md border-2 border-gray-300 p-2" required>
-      <option value="">Selecciona una empresa</option>
-    </select>
+            <option value="">Selecciona una empresa</option>
+          </select>
 
-    <button
-      class="bg-purple-500 m-4 px-4 py-2 rounded-md w-2/4 mx-auto flex text-white mt-10  font-bold  hover:bg-purple-400 hover:text-white text-center justify-center "
-      onclick="sendForm()" type="button" > + Crear encuesta </button>
+          <button
+            class="bg-purple-500 m-4 px-4 py-2 rounded-md w-2/4 mx-auto flex text-white mt-10  font-bold  hover:bg-purple-400 hover:text-white text-center justify-center "
+            onclick="sendForm()" type="submit">+ Crear encuesta </button>
+        </div>
+      </div>
+    </div>
   </div>
-  </form>
-</div>
-<footer id="footer"></footer>
+  <footer id="footer"></footer>
 
 
 </body>
