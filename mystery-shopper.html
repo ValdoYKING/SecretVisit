@@ -4,7 +4,7 @@
 <head>
 
  <meta charset="UTF-8">
- <meta name="viewport" content="width=device-width">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
  <title>Solo Myastery's Shopper's</title>
 
@@ -13,9 +13,9 @@
  <script type="module" src="./js/const/ROL_MYSTERY_SHOPPER.js"></script>
  <script type="module" src="./js/custom/mi-nav-mystery.js"></script>
  <script type="module" src="./js/Sesion.js"></script>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script type="module" src="./js/custom/footer.js">
-  <script>
+ <script src="https://cdn.tailwindcss.com"></script>
+ <script type="module" src="./js/custom/footer.js"></script>
+ <script>
     tailwind.config = {
       theme: {
         extend: {
@@ -25,17 +25,18 @@
         }
       }
     }
-  </script>
+ </script>
 </head>
 
 <body onload="ejecuta('srv/srvSesion.php')
   .then(objeto => {
-   const sesion = new Sesion(objeto)
+   const sesion = new Sesion(objeto);
    if (sesion.rolIds.has(ROL_MYSTERY_SHOPPER)) {
-    nav.sesion = sesion
-    main.hidden = false
+    nav.sesion = sesion;
+    main.hidden = false;
+    loadData(); // Llamamos a la función loadData al cargar la página
    } else {
-    location.href = 'index.html'
+    location.href = 'index.html';
    }
   })
   .catch(muestraError)">
@@ -44,17 +45,6 @@
 
  <main id="main" hidden>
 
-  <h1>Solo Mystery Shopper</h1>
-
-  <p>Hola.</p>
-
-  <p>
-   <button type="button" onclick="ejecuta('srv/srvSaludoCliente.php')
-     .then(saludo => alert(saludo))
-     .catch(muestraError)">
-    Ejecuta servicio
-   </button>
-  </p>
 
     <aside id="default-sidebar"
       class="fixed top-0 left-0 z-60 w-2/8 h-screen transition-transform -translate-x-full sm:translate-x-0"
@@ -90,7 +80,7 @@
                 class="flex-shrink-0 w-5 h-5 text-white-500 transition duration-75 text-white-400 group-hover:text-white-900 group-hover:text-white"
                 aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                 <path
-                  d="m17.418 3.623-.018-.008a6.713 6.713 0 0 0-2.4-.569V2h1a1 1 0 1 0 0-2h-2a1 1 0 0 0-1 1v2H9.89A6.977 6.977 0 0 1 12 8v5h-2V8A5 5 0 1 0 0 8v6a1 1 0 0 0 1 1h8v4a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-4h6a1 1 0 0 0 1-1V8a5 5 0 0 0-2.582-4.377ZM6 12H4a1 1 0 0 1 0-2h2a1 1 0 0 1 0 2Z" />
+                  d="m17.418 3.623-.018-.008a6.713 6.713 0 0 0-2.4-.569V2h1a1 1 0 1 0 0-2h-2a1 1 0 0 0-1 1v2H9.89A6.977 6.977 0 0 1 12 8v5h-2V8A5 5 0 1 0 0 8v6a1 1 0 0 0 1 1h8v4a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-4h6a1 1 0 0 0 1-1V8a5 5 0 0 0-2.582-4.377ZM6 12H4a1 1 0 0 1 0-2h2a1 1 0 0 1 0 2Zm0-5a2 2 0 1 1 4 0v1H7V4Zm6 5a1 1 0 1 1-2 0V7h2v2Z" />
               </svg>
               <span class="flex-1 ms-3 whitespace-nowrap">Notificaciones</span>
 
@@ -122,19 +112,7 @@
           </li>
           <li>
             <a href="#"
-              class="flex items-center p-2 text-white-900 rounded-lg text-white hover:bg-white-100 hover:bg-white-700 group">
-              <!-- <svg
-                class="flex-shrink-0 w-5 h-5 text-white-500 transition duration-75 text-white-400 group-hover:text-white-900 group-hover:text-white"
-                aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 16">
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M1 8h11m0 0L8 4m4 4-4 4m4-11h3a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-3" />
-              </svg> -->
-             <!--  <span class="flex-1 ms-3 whitespace-nowrap">Sign In</span> -->
-
-            </a>
-          </li>
-          <li>
-            <a href="#" class="flex items-center p-2 text-white-900
+              class="flex items-center p-2 text-white-900
               bg-red-600 hover:bg-red-400
               rounded-lg text-white hover:bg-white-100 hover:bg-white-700 group"
 
@@ -167,92 +145,71 @@
         </p>
 
       </div>
-      <div class="grid gap-4 mb-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+      <div class="grid gap-4 mb-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4" id="lista">
 
-        <div
-          class="flex items-center justify-center rounded bg-white-50 h-28 bg-white shadow-lg hover:bg-purple-400 hover:text-white hover:cursor-pointer">
-          <img src="https://applicantes.com/wp-content/uploads/2023/03/crear-logotipo-empresa-financiera.jpeg"
-            alt="profile" class="w-26 h-20 rounded-full">
-          <div class="ms-4">
-            <p class="text-md font-bold text-white-400 ">Empresa 1</p>
-            <p class="text-purple-500">10 <span class="text-black  preguntas">preguntas</span>
-            <p class="text-sm text-purple-700">5 <span class="text-black">min restantes</span></p>
-            <button
-              class="flex w-full m-auto  
-              justify-center text-center bg-purple-500 hover:bg-white-700 text-white  rounded-lg font-bold rounded shadow-lg hover:bg-white hover:text-purple-400"
-              type="submit">
-              Ver</button>
-          </div>
-        </div>
-        <div
-          class="flex items-center justify-center rounded bg-white-50 h-28 bg-white shadow-lg hover:bg-purple-400 hover:text-white hover:cursor-pointer">
-          <img src="https://applicantes.com/wp-content/uploads/2023/03/crear-logotipo-empresa-financiera.jpeg"
-            alt="profile" class="w-26 h-20 rounded-full">
-          <div class="ms-4">
-            <p class="text-md font-bold text-white-400 ">Empresa 1</p>
-            <p class="text-purple-500">10 <span class="text-black  preguntas">preguntas</span>
-            <p class="text-sm text-purple-700">5 <span class="text-black">min restantes</span></p>
-            <button
-              class="flex w-full m-auto  
-                  justify-center text-center bg-purple-500 hover:bg-white-700 text-white  rounded-lg font-bold rounded shadow-lg hover:bg-white hover:text-purple-400"
-              type="submit">
-              Ver</button>
-          </div>
-        </div>
-        <div
-          class="flex items-center justify-center rounded bg-white-50 h-28 bg-white shadow-lg hover:bg-purple-400 hover:text-white hover:cursor-pointer">
-          <img src="https://applicantes.com/wp-content/uploads/2023/03/crear-logotipo-empresa-financiera.jpeg"
-            alt="profile" class="w-26 h-20 rounded-full">
-          <div class="ms-4">
-            <p class="text-md font-bold text-white-400 ">Empresa 1</p>
-            <p class="text-purple-500">10 <span class="text-black  preguntas">preguntas</span>
-            <p class="text-sm text-purple-700">5 <span class="text-black">min restantes</span></p>
-            <button
-              class="flex w-full m-auto  
-                  justify-center text-center bg-purple-500 hover:bg-white-700 text-white  rounded-lg font-bold rounded shadow-lg hover:bg-white hover:text-purple-400"
-              type="submit">
-              Ver</button>
-          </div>
-        </div>
-        <div
-          class="flex items-center justify-center rounded bg-white-50 h-28 bg-white shadow-lg hover:bg-purple-400 hover:text-white hover:cursor-pointer">
-          <img src="https://applicantes.com/wp-content/uploads/2023/03/crear-logotipo-empresa-financiera.jpeg"
-            alt="profile" class="w-26 h-20 rounded-full">
-          <div class="ms-4">
-            <p class="text-md font-bold text-white-400 ">Empresa 1</p>
-            <p class="text-purple-500">10 <span class="text-black  preguntas">preguntas</span>
-            <p class="text-sm text-purple-700">5 <span class="text-black">min restantes</span></p>
-            <button
-              class="flex w-full m-auto  
-                  justify-center text-center bg-purple-500 hover:bg-white-700 text-white  rounded-lg font-bold rounded shadow-lg hover:bg-white hover:text-purple-400"
-              type="submit">
-              Ver</button>
-          </div>
-        </div>
-      </div>
-        <div class="flex items-center justify-center rounded bg-white-50 h-60 bg-white shadow-lg hover:bg-purple-400 hover:text-white hover:cursor-pointer">
-          <img src="https://applicantes.com/wp-content/uploads/2023/03/crear-logotipo-empresa-financiera.jpeg"
-            alt="profile" class="w-26 h-20 rounded-full">
-          <div class="ms-4">
-            <p class="text-md font-bold text-white-400 ">Empresa 12</p>
-            <p class="text-purple-500">10 <span class="text-black  preguntas">preguntas</span>
-            <p class="text-sm text-purple-700">5 <span class="text-black">min restantes</span></p>
-            <button
-              class="flex w-full m-auto  
-                justify-center text-center bg-purple-500 hover:bg-white-700 text-white  rounded-lg font-bold rounded shadow-lg hover:bg-white hover:text-purple-400"
-              type="submit">
-              Ver</button>
-          </div>
-        </div>
-       </div>
-
-
-
+        <!-- Aquí se agregarán dinámicamente los elementos de las empresas -->
 
       </div>
-    </div>
     </div>
  </main>
+
+ <script>
+  const loadData = async () => {
+    try {
+      const response = await fetch('srv/srvMuestraEncuestasMystery.php');
+      const data = await response.json(); // Obtener la respuesta como un objeto JSON
+      if (data.length === 0) {
+        lista.innerHTML = '<p>No hay empresas registradas</p>';
+        return;
+      }
+  
+      lista.innerHTML = ''; // Limpiamos el contenido previo de la lista
+      data.forEach(encuesta => {
+        const divEncuesta = document.createElement('div');
+        divEncuesta.classList.add('flex', 'items-center', 'justify-center', 'rounded', 'bg-white-50', 'h-28', 'bg-white', 'shadow-lg', 'hover:bg-purple-400', 'hover:text-white', 'hover:cursor-pointer', 'mb-4');
+  
+        const imgEmpresa = document.createElement('img');
+        imgEmpresa.src = "#" // URL de la imagen de la empresa
+        imgEmpresa.alt = 'Logo de la empresa';
+        imgEmpresa.classList.add('w-26', 'h-20', 'rounded-full');
+  
+        const divInfo = document.createElement('div');
+        divInfo.classList.add('ms-4');
+  
+        const nombreEmpresa = document.createElement('p');
+        nombreEmpresa.classList.add('text-md', 'font-bold', 'text-white-400');
+        nombreEmpresa.textContent = encuesta.nombreEmpresa; // Nombre de la empresa
+  
+        const cantidadPreguntas = document.createElement('p');
+        cantidadPreguntas.classList.add('text-purple-500');
+        cantidadPreguntas.innerHTML = `${encuesta.totalPreguntas} <span class="text-black preguntas">preguntas</span>`; // Total de preguntas
+  
+        const tiempoRestante = document.createElement('p');
+        tiempoRestante.classList.add('text-sm', 'text-purple-700');
+        tiempoRestante.innerHTML = `${encuesta.totalPreguntas} <span class="text-black">min restantes</span>`; // Tiempo restante
+  
+        const botonVer = document.createElement('button');
+        botonVer.classList.add('flex', 'w-full', 'm-auto', 'justify-center', 'text-center', 'bg-purple-500', 'hover:bg-white-700', 'text-white', 'rounded-lg', 'font-bold', 'rounded', 'shadow-lg', 'hover:bg-white', 'hover:text-purple-400');
+        botonVer.type = 'submit';
+        botonVer.textContent = 'Ver';
+  
+        divInfo.appendChild(nombreEmpresa);
+        divInfo.appendChild(cantidadPreguntas);
+        
+        divInfo.appendChild(botonVer);
+  
+        
+        divEncuesta.appendChild(divInfo);
+  
+        lista.appendChild(divEncuesta);
+      });
+    } catch (error) {
+      console.error('Error al cargar los datos:', error);
+    }
+  };
+
+  
+ </script>
 
 </body>
 
