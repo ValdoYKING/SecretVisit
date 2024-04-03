@@ -92,7 +92,7 @@
   const listOfQuestions = [];
   const addQuestion = () => {
     const pregunta = document.getElementById('pregunta').value;
-    const newQuestion = { pregunta, id: listOfQuestions[0].length + 1 };
+    const newQuestion = { pregunta, id:listOfQuestions[0].length + 1 };
 
     listOfQuestions[0].push(newQuestion);
     render([newQuestion]);
@@ -152,6 +152,8 @@
 
         if (data.length > 0) {
           data.forEach((empresa) => {
+            const input = document.querySelector('#idana');
+            input.value = empresa.analistaid
             const option = document.createElement('option');
             option.value = empresa.id;
             option.textContent = empresa.nombre;
@@ -170,29 +172,35 @@
 
   async function sendForm() {
     const empresa = document.getElementById('empresa').value;
-    const preguntas1 = document.getElementsByName('cue');
-    const usuario = 1;
+    const idusu = document.querySelector('#idana').value; // Suponiendo que solo necesitas el primer elemento
     const data = {
+      idusu,
       empresa,
       preguntas: listOfQuestions[0]
     };
-    console.log(data);
-    /*const request = {
+    const url = 'srv/srvCrearCuestionario.php';
+    const request = {
      method: 'POST',
      headers: {
        'Content-Type': 'application/json',
-     },
-     body: JSON.stringify(data),
+      },
+     body: JSON.stringify({data:data}),
    };
 
    try {
      const response = await fetch(url, request);
+
+     if (!response.ok) {
+       throw new Error('Error en la solicitud: ' + response.status);
+      }
+      console.log(data);
      const result = await response.json();
      return result;
    } catch (error) {
      muestraError(error);
-   } */
-  }
+   } 
+}
+
 </script>
 
 <mi-nav id="nav"></mi-nav>
@@ -206,9 +214,7 @@
 
   <div>
 
-  <form id="cuestionario" onsubmit="submitForma('srv/srvCrearCuestionario.php' + parametros, event, cuestionario)
-  .then(modelo => location.href = 'creaCuestionario.html')
-    .catch(muestraError)">   
+  <form id="cuestionario">   
     <div>      
       <label for="pregunta" class="text-purple-700 font-bold mb-2 uppercase text-start">
         <p class="text-start text-purple-700 font-bold text-3xl mb-4 uppercase my-10 "> + Selecciona tus preguntas
@@ -233,16 +239,16 @@
       </tr>
     </thead>
     <tbody id="lista" class="divide-y divide-gray-200 ">
-      <input type="text" name="id" id="" class="text-black font-bold mb-2 uppercase text-start">
-      <input type="text" name="cue" class="text-black font-bold mb-2 uppercase text-start">
+      <!-- <input type="text" name="id" id="" class="text-black font-bold mb-2 uppercase text-start">
+      <input type="text" name="cue" class="text-black font-bold mb-2 uppercase text-start"> -->
     </tbody>
   </table>
   <p style="display: none;">CUE: <span id="cueDisplay"></span></p>
   <p style="display: none;">Rol: <span id="rolDisplay"></span></p>
   <input type="hidden" name="cue" id="cueInput" value="">
-     <button
+<!--      <button
         class="bg-purple-500 m-4 px-4 py-2 rounded-md w-2/4 mx-auto flex text-white mt-10  font-bold  hover:bg-purple-400 hover:text-white text-center justify-center "
-       type="submit" >+ Crear  </button>
+       type="button" >+ Crear  </button> -->
 
 
   <hr class="my-8">
@@ -275,7 +281,7 @@
       type="button" onclick="addQuestion()">+ Agregar pregunta </button>
     <hr class="my-4">
     <p class="text-start text-purple-700 font-bold text-3xl mb-4 uppercase my-10 "> + Selecciona tu empresa</p>
-
+    <input type="text" name="idana" id="idana">
     <select name="empresa" id="empresa" class="bg-white shadow-lg
                             w-1/2 mx-auto rounded-md border-2 border-gray-300 p-2" required>
       <option value="">Selecciona una empresa</option>
@@ -283,7 +289,7 @@
 
     <button
       class="bg-purple-500 m-4 px-4 py-2 rounded-md w-2/4 mx-auto flex text-white mt-10  font-bold  hover:bg-purple-400 hover:text-white text-center justify-center "
-      onclick="sendForm()" type="submit">+ Crear encuesta </button>
+      onclick="sendForm()" type="button" > + Crear encuesta </button>
   </div>
   </form>
 </div>
