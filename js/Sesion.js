@@ -1,6 +1,6 @@
-import { CUE } from "./const/CUE.js";
-import { ROL_IDS } from "./const/ROL_IDS.js";
-import { ID_USUARIO } from "./const/ID_USUARIO.js"; // Importamos la constante ID_USUARIO
+import { CUE } from "./const/CUE.js"
+import { ROL_IDS } from "./const/ROL_IDS.js"
+import { IDUSU } from "./const/IDUSU.js"
 
 export class Sesion {
 
@@ -21,11 +21,10 @@ export class Sesion {
   /** @readonly */
   this.rolIds = new Set(rolIds);
 
-  /** @readonly */
-  this.idUsuario = objeto[ID_USUARIO]; // Agregamos ID_USUARIO
-  if (typeof this.idUsuario !== "number")
-    throw new Error("ID_USUARIO debe ser un número.");
-
+    /** @readonly */
+    this.idusu = objeto[IDUSU]
+  if (!Number.isInteger(this.idusu)) 
+    throw new Error("idusu debe ser entero.");
  }
 
 }
