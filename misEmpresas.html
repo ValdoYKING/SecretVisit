@@ -71,10 +71,10 @@
         const idUsuarioDisplay = document.getElementById('idUsuarioDisplay');
         cueDisplay.textContent = sesion.cue;
         rolDisplay.textContent = sesion.rolIds.join(', ');
-        idUsuarioDisplay.textContent = sesion.idUsuario;
+        idUsuarioDisplay.textContent = sesion.id;
         document.getElementById('cueInput').value = sesion.cue;
-        
-        if (sesion.idUsuario) {
+
+        if (sesion.id) {
           loadData();
         }
 
@@ -85,13 +85,13 @@
 
     const loadData = async () => {
       try {
-        const idUsuario = document.getElementById('idUsuarioDisplay').textContent;
+        const id = document.getElementById('idUsuarioDisplay').textContent;
         const response = await fetch('srv/srvConsultarEmpresasAnalista.php', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
           },
-          body: JSON.stringify({ idUsuario: idUsuario })
+          body: JSON.stringify({ id: id })
         });
         
         if (!response.ok) {
