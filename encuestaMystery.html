@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encuesta Mystery</title>
+    <script type="module" src="lib/js/ejecuta.js"></script>
+    <script type="module" src="lib/js/muestraError.js"></script>
+    <script type="module" src="./js/const/ROL_MYSTERY_SHOPPER.js"></script>
+    <script type="module" src="./js/custom/mi-nav-mystery.js"></script>
+    <script type="module" src="./js/Sesion.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script type="module" src="./js/custom/footer.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        clifford: "#da373d",
+                    },
+                },
+            },
+        };
+    </script>
+</head>
+<body>
+    <mi-nav id="nav"></mi-nav>
+    <h1>Encuesta Mystery</h1>
+
+
+    <form id="preguntas-form" action="srv/srvTestComplete.php" method="post">
+        <div id="preguntas-container"></div>
+        <input type="hidden" id="idMystery" name="idMystery">
+        <input type="hidden" id="idEmp" name="idEmp">
+        <button type="submit">Enviar respuestas</button>
+    </form>
+
+    <script>
+        // Obtén el idEnc de la URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const idEnc = urlParams.get('idEnc');
+        
+        const loadData = async () => {
+            try {
+                const preguntasContainer = document.getElementById('preguntas-container');
+
+                // Obtener el idEnc desde la URL
+                const urlParams = new URLSearchParams(window.location.search);
+                const idEnc = urlParams.get('idEnc');
+        
+                // Hacer una solicitud AJAX a srvContestaEnc.php enviando el idEnc
+                const response = await fetch('srv/srvContestaEnc.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ idEnc: idEnc })
+                });
+        
+                const data = await response.json(); // Obtener la respuesta como un objeto JSON
+        
+                // Limpiamos el contenido previo del contenedor de preguntas
+                preguntasContainer.innerHTML = '';
+        
+                // Verificar si hay datos en la respuesta
+                if (data && data.length > 0) {
+                    data.forEach(pregunta => {
+                        const preguntaElement = document.createElement('div');
+                        preguntaElement.innerHTML = `<p><strong>ID Pregunta:</strong> ${pregunta.idPregunta}</p>
+                                                     <p><strong>Pregunta:</strong> ${pregunta.pregunta}</p>
+                                                     <label><input type="radio" name="respuestas[${pregunta.idPregunta}]" value="1"> Verdadero</label>
+                                                     <label><input type="radio" name="respuestas[${pregunta.idPregunta}]" value="0"> Falso</label>`; // Input para la respuesta, con el nombre como índice del array
+                        preguntasContainer.appendChild(preguntaElement);
+
+                         // Obtener el ID de la empresa y asignarlo al campo oculto
+                        document.getElementById('idEmp').value = pregunta.idEmp;
+                    });
+                } else {
+                    preguntasContainer.innerHTML = '<p>No hay preguntas disponibles</p>';
+                }
+
+                // Obtener el ID del Mystery y asignarlo al campo oculto
+                const respuesta = await fetch('srv/srvSesion.php');
+                const sesion = await respuesta.json();
+                document.getElementById('idMystery').value = sesion.id;
+            } catch (error) {
+                console.error('Error al cargar los datos:', error);
+            }
+        };
+        
+        // Llama a la función loadData para cargar los datos cuando se cargue la página
+        document.addEventListener('DOMContentLoaded', loadData);
+        
+    </script>
+    
+</body>
+</html>

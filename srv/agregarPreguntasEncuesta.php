@@ -18,9 +18,8 @@ function agregarPreguntasEncuesta(int $idemp, array $preguntas)
             echo json_encode($idEncuesta);
             foreach ($preguntas as $pregunta) {
 
-                $idpre = $pregunta['id'];
+            $idpre = $pregunta['id'];
             $preg = $pregunta['pregunta'];
-            $res = $pregunta['respuesta'];
             
             $bup = BuscaPreguntabyText($preg);
             echo json_encode($bup->id);
@@ -29,10 +28,10 @@ function agregarPreguntasEncuesta(int $idemp, array $preguntas)
                 $pregunta->pregunta = $preg;
                 agregarPregunta($pregunta);
                 $p = BuscaPreguntabyText($preg);   
-                agregarEncuestaPregunta($idEncuesta ,$p->id,$res,0);
+                agregarEncuestaPregunta($idEncuesta ,$p->id,"",0);
             } else {
                 $pregun = BuscaPreguntabyText($preg);
-                agregarEncuestaPregunta($idEncuesta ,$pregun->id,$res,0);
+                agregarEncuestaPregunta($idEncuesta ,$pregun->id,"",0);
             } 
         } 
     } 
