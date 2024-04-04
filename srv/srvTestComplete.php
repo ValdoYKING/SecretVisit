@@ -32,10 +32,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 }
             }
 
-            // Aquí puedes agregar cualquier otra lógica que necesites después de procesar las respuestas
-            // Por ejemplo, redireccionar a una página de éxito o mostrar un mensaje al usuario
-            echo "¡Respuestas procesadas correctamente!";
-            
+            // Redireccionar a la página mystery-shopper.html
+            header("Location: ../mystery-shopper.html");
+            exit(); // Asegura que el script se detenga después de redirigir al usuario
         } else {
             echo "No se encontró una encuesta asociada a la empresa con ID $idEmp";
         }
