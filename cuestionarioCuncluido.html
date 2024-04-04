@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width">
+  <script type="module" src="lib/js/ejecuta.js"></script>
+  <script type="module" src="lib/js/muestraError.js"></script>
+  <script type="module" src="./js/custom/mi-nav.js"></script>
+  <script type="module" src="./js/Sesion.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/qrcode-generator/umd/qrcode.js"></script>
+
+  <script src="https://cdn.rawgit.com/kazuhikoarase/qrcode-generator/master/js/qrcode.js"></script>
+
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            clifford: '#da373d',
+          }
+        }
+      }
+    }
+  </script>
+  <script>
+    const questionsData = [
+      {
+        id: 1,
+        question: '¿El trato fue bueno?',
+        options: ['Verdadero', 'Falso']
+
+      },
+      {
+        id: 2,
+        question: '¿Te ofrecieron alguna muestra del producto?',
+        options: ['Verdadero', 'Falso']
+      },
+      {
+        id: 3,
+        question: '¿Comocian las caracteristicas del producto?',
+        options: ['Verdadero', 'Falso']
+      },
+      {
+        id: 4,
+        question: '¿Te ofrecieron algun descuento?',
+        options: ['Verdadero', 'Falso']
+
+      },
+      {
+        id: 5,
+        question: '¿La variedad de productos es buena?',
+        options: ['Verdadero', 'Falso']
+      }
+    ]
+
+    const createQR = () => {
+      var container = document.getElementById("qrcode");
+
+      // Clear the container
+      container.innerHTML = '';
+
+      // Generate the QR code
+      var qr = qrcode(0, 'M');
+      qr.addData("Your text or URL here");
+      qr.make();
+
+      // Create an <img> element with the QR code
+      var qrImage = document.createElement("img");
+      qrImage.src = qr.createDataURL(8, 0);
+
+      // Append the QR code image to the container
+      container.appendChild(qrImage);
+    }
+  </script>
+
+  <title>Creacion de Cuestionario</title>
+</head>
+
+<body onload="ejecuta('srv/srvSesion.php')
+  .then(objeto => {
+   const sesion = new Sesion(objeto)
+   nav.sesion = sesion
+  })
+  .catch(muestraError)
+   createQR()
+ 
+  
+  ">
+
+  <mi-nav id="nav" class="hidden"></mi-nav>
+  <div class="flex flex-row items-center mt-10
+      justify-center h-screen h-auto">
+
+    <div class="flex flex-col justify-center uppercase ">
+      <h1 class="text-4xl font-bold text-gray-800 m-4">Felicidades
+        <span class="text-purple-500"> Mystery Shopper</span>
+        <h2 class="text-xl font-bold text-gray-800 m-4">Escanea el codigo QR
+          <span class="text-purple-500"> para recibir tu recompensa</span>
+        </h2>
+
+        <div id="qrcode" class="flex flex-col items-center justify-center w-6/6 shadow-lg  bg-white rounded-lg p-24">
+        </div>
+        <button class="bg-purple-900 text-white px-4 py-2 mt-4 rounded-xl  w-1/4 m-2"
+          onclick="location.href='mystery-shopper.html'">
+          Volver atras
+        </button>
+    </div>
+
+
+  </div>
+  </div>
+
+  </div>
+</body>
+
+</html>
