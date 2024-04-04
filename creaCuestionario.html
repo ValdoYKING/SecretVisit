@@ -161,7 +161,6 @@
           const data = await response.json();
           //RENDERIZAR LOS SELECT CON LOS DATOS DE LA EMPRESA
           const select = document.getElementById('empresa');
-
           if (data.length > 0) {
             data.forEach((empresa) => {
               const option = document.createElement('option');
@@ -210,7 +209,7 @@
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(data),
+        body: JSON.stringify({data:data}),
       };
       const url = 'srv/srvCrearCuestionario.php';
 
@@ -307,11 +306,11 @@
           <hr class="my-4">
           <p class="text-start text-purple-700 font-bold text-3xl mb-4 uppercase my-10 "> + Selecciona tu empresa</p>
 
+          <input type="text" id="idemp" name="idemp">
           <select name="empresa" id="empresa" class="bg-white shadow-lg
                             w-1/2 mx-auto rounded-md border-2 border-gray-300 p-2" required>
             <option value="">Selecciona una empresa</option>
           </select>
-
           <button
             class="bg-purple-500 m-4 px-4 py-2 rounded-md w-2/4 mx-auto flex text-white mt-10  font-bold  hover:bg-purple-400 hover:text-white text-center justify-center "
             onclick="sendForm()" type="submit">+ Crear encuesta </button>
