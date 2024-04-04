@@ -37,7 +37,8 @@
         <input type="hidden" id="idEmp" name="idEmp">
         <button type="submit"
             class="bg-clifford text-white font-bold py-2 px-4 rounded-lg hover:bg-red-700 my-4"
-        >Enviar respuestas</button>
+            onclick="enviarRespuestas()">Enviar respuestas</button>
+        
     </form>
     
   
@@ -53,6 +54,11 @@
 </body>
 <script>
     // Obtén el idEnc de la URL
+    const enviarRespuestas=()=>{
+        //moverlo a la pagina de encuesta completada
+        window.location.href = 'encuestaCompletada.html';
+
+    }
     const urlParams = new URLSearchParams(window.location.search);
     const idEnc = urlParams.get('idEnc');
 
