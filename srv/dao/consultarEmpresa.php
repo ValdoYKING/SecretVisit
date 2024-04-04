@@ -14,7 +14,8 @@ function consultarEmpresa(): array
     EMP_NOMBRE as nombre,
     EMP_DIRECCION as direccion,
     EMP_TELEFONO as telefono,
-    EMP_CALIFICACION as calificacion
+    EMP_CALIFICACION as calificacion,
+    ID_ANALISTA as idanalista
    FROM EMPRESA
    ORDER BY EMP_ID"
  );

@@ -4,16 +4,43 @@ require_once __DIR__ . "/modelo/Encuesta_Pregunta.php";
 require_once __DIR__ . "/modelo/Pregunta.php";
 require_once __DIR__ . "/dao/EncuestaPreguntaAgregar.php";
 require_once __DIR__ . "/dao/BuscaEncuesta.php";
+require_once __DIR__ . "/dao/BuscaPregunta.php";
+require_once __DIR__ . "/dao/agregarPregunta.php";
+require_once __DIR__ . "/modelo/Encuesta.php";
 
-function agregarPreguntasEncuesta(int $idemp, array $preguntaIds, int $idana)
+function agregarPreguntasEncuesta(int $idemp, array $preguntas)
 {
-    $encu =  BuscaEncuestaidEmpresa($idemp);
-    $idEncuesta = $encu->id;
-    foreach ($preguntaIds as $pregunta) {
+    try{
+        $encu = BuscaEncuestaidEmpresa($idemp);  
         
+        if ($encu !== false) {
+            $idEncuesta = $encu->id;
+            echo json_encode($idEncuesta);
+            foreach ($preguntas as $pregunta) {
 
-        agregarEncuestaPregunta($idEncuesta ,$pregunta, "",$idana);
+            $idpre = $pregunta['id'];
+            $preg = $pregunta['pregunta'];
+            
+            $bup = BuscaPreguntabyText($preg);
+            echo json_encode($bup->id);
+            if (!$bup) {
+                $pregunta = new Pregunta();
+                $pregunta->pregunta = $preg;
+                agregarPregunta($pregunta);
+                $p = BuscaPreguntabyText($preg);   
+                agregarEncuestaPregunta($idEncuesta ,$p->id,"",0);
+            } else {
+                $pregun = BuscaPreguntabyText($preg);
+                agregarEncuestaPregunta($idEncuesta ,$pregun->id,"",0);
+            } 
+        } 
+    } 
+    } catch (Exception $e)
+    {
+        throw new Exception("El registro de la empresa ya esta", 1);
+        
     }
+
 }
 
 

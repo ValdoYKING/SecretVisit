@@ -1,15 +1,13 @@
 <?php
-/* 
 
 require_once __DIR__ . "/modelo/Encuesta_Pregunta.php";
 require_once __DIR__ . "/dao/enc_preAgregar.php";
 require_once __DIR__ . "/dao/BuscaEncuesta.php";
-require_once __DIR__ . "/dao/cuentaEncuesta.php";
 require_once __DIR__ . "/../lib/php/ejecuta.php";
 require_once __DIR__ . "/../lib/php/leeTexto.php";
 require_once __DIR__ . "/../lib/php/leeEntero.php";
-require_once __DIR__ . "/modelo/Pregunta.php";
 require_once __DIR__ . "/dao/agregarEncuesta.php";
+/* 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $json = file_get_contents('php://input');
     $data = json_decode($json, true);
@@ -32,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $response = ['success' => false, 'message' => 'Se esperaba una solicitud POST'];
     echo json_encode($response);
 }
-require_once __DIR__ . "/dao/usuarioBuscaCue.php";
+*/
 require_once __DIR__ . "/agregarPreguntasEncuesta.php";
 
 
@@ -42,16 +40,17 @@ require_once __DIR__ . "/agregarPreguntasEncuesta.php";
         if (isset($data['data']) ) {
             $datos = $data['data'];
             $idemp = $datos['empresa'];
-            $idusu = $datos['idusu'];
+            $session = $datos['sesion'];
+            $idana = $session['idusu'];
             $preguntas = $datos['preguntas'];
-            $idsPreguntas = array();
+            
+            echo json_encode($datos);  
+            /*      
 // Itera sobre el arreglo de preguntas y extrae los IDs
-            foreach ($preguntas as $pregunta) {
-            $idsPreguntas[] = $pregunta['id'];
-            }
-            agregarEncuesta($idemp,$idusu,"Recompsensa por defecto");
-            echo json_encode($idsPreguntas);  
-            agregarPreguntasEncuesta($idemp, $idsPreguntas, $idusu);     
+        
+            echo json_encode($idana);   */
+            agregarEncuesta($idemp,$idana,"Recompsensa por defecto");
+            agregarPreguntasEncuesta($idemp, $preguntas);     
         } else {
            
         }
@@ -76,11 +75,6 @@ require_once __DIR__ . "/agregarPreguntasEncuesta.php";
     } */
     // crea un nuevo objeto Usuario con los datos del formulario
 
-
     // Agrega el usuario a la base de datos
-
-
-
     //$nuevaencpre->encuesta->id = [];
-    return $datos;
 
