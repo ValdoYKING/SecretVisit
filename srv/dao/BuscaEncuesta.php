@@ -42,9 +42,9 @@ function BuscaEncuestaidEmpresa(int $id): false|Encuesta
       USU_ID as idusuario,
       ENC_RECOMPENSA as recompensa
    FROM ENCUESTA
-   WHERE EMP_ID = :id"  
+   WHERE EMP_ID = :ids"  
  );
- $stmt->execute([":id" => $id]);
+ $stmt->execute([":ids" => $id]);
  $stmt -> setFetchMode(
   PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE,
   Encuesta::class

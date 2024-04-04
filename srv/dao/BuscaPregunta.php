@@ -20,3 +20,21 @@ function BuscaPregunta(int $id): false|Pregunta
  );
  return $stmt->fetch();
 }
+
+function BuscaPreguntabyText(string $pregunta): false|Pregunta
+{
+ $con = AccesoBd::getCon();
+ $stmt = $con->prepare(
+  "SELECT
+    PRE_ID as id,
+    PRE_PREGUNTA as pregunta
+   FROM PREGUNTA
+   WHERE PRE_PREGUNTA = :pregunta"  
+ );
+ $stmt->execute([":pregunta" => $pregunta]);
+ $stmt -> setFetchMode(
+  PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE,
+  Pregunta::class
+ );
+ return $stmt->fetch();
+}
