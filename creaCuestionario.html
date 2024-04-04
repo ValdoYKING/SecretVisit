@@ -39,7 +39,7 @@
   <script>
 
     const render = (array) => {
-     
+
       const lista = document.getElementById('lista');
       array.forEach((pregunta) => {
         const tr = document.createElement('tr');
@@ -97,7 +97,7 @@
       const pregunta = document.getElementById('pregunta').value;
       const valueAnswer = document.getElementById('respuesta').value;
 
-      const newQuestion = { id:listOfQuestions[0].length + 1, pregunta, respuesta: valueAnswer };
+      const newQuestion = { id: listOfQuestions[0].length + 1, pregunta, respuesta: valueAnswer };
 
       listOfQuestions[0].push(newQuestion);
       countQuestions();
@@ -128,6 +128,10 @@
         try {
           const response = await fetch('srv/srvConsultarPreguntas.php');
           const data = await response.json();
+          data.map((item) => {
+            item.respuesta =  item.respuesta === '1' ? 'Verdadero' : 'Falso';
+          });
+         
           listOfQuestions.push(data);
           const lista = document.getElementById('lista');
           if (data.length > 0) {
@@ -178,7 +182,7 @@
 
     async function sendForm() {
       const empresa = document.getElementById('empresa').value;
-        if (empresa === '') {
+      if (empresa === '') {
         Swal.fire({
           icon: 'error',
           title: 'Oops...',
@@ -215,7 +219,7 @@
         const result = await response.json();
         return result;
       } catch (error) {
-          console.error(error);
+        console.error(error);
       }
     }
   </script>
@@ -230,11 +234,11 @@
 
 
     <div>
-<!-- 
+      <!-- 
       <form id="cuestionario" onsubmit="submitForma('srv/srvCrearCuestionario.php' + parametros, event, cuestionario)
   .then(modelo => location.href = 'creaCuestionario.html')
     .catch(muestraError)"> -->
-    <div id="cuestionario">
+      <div id="cuestionario">
         <div>
           <label for="pregunta" class="text-purple-700 font-bold mb-2 uppercase text-start">
             <p class="text-start text-purple-700 font-bold text-3xl mb-4 uppercase my-10 "> + Selecciona tus preguntas

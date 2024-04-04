@@ -25,7 +25,7 @@
       }
     }
 
-  
+
   </script>
 </head>
 
@@ -34,15 +34,15 @@
 
   <main id="main" class="container w-full mx-auto">
     <p>Bienvenido, Administrador.</p>
-    <button
-      class="bg-clifford text-white text-sm font-bold rounded-lg p-2 m-2 justify-end item-end w-1/6 mx-auto"
+    <button class="bg-clifford text-white text-sm font-bold rounded-lg p-2 m-2 justify-end item-end w-1/6 mx-auto"
       type="button" onclick="cerrarSesion()">
       Cerrar sesión
     </button>
   </main>
   <div class="p-4 container mx-auto ">
     <div class="p-4 border-white-200  border-dashed rounded-lg dark:border-white-700 shadow-xl my-2 ">
-      <h2 class="uppercase font-bold text-center text-3xl text-white-500 dark:text-white-400 my-10" >Usuarios Registrados</h2>
+      <h2 class="uppercase font-bold text-center text-3xl text-white-500 dark:text-white-400 my-10">Usuarios Registrados
+      </h2>
       <table id="tablaUsuarios" class="min-w-full divide-y divide-gray-200">
         <thead>
           <tr>
@@ -60,14 +60,14 @@
             </th>
             <th scope="col"
               class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-            Rol Actual
+              Rol Actual
             </th>
             <th scope="col"
               class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
               Actualizar Rol
             </th>
             <th scope="col"
-              class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              class="px-6 py-3 bg-gray-50 text-left text-xs text-center font-medium text-gray-500 uppercase tracking-wider">
               Acciones
             </th>
           </tr>
@@ -76,12 +76,13 @@
           <!-- Los usuarios se cargarán aquí -->
         </tbody>
       </table>
-      
+
     </div>
   </div>
   <div class="p-4 container mx-auto ">
     <div class="p-4 border-white-200  border-dashed rounded-lg dark:border-white-700 shadow-xl my-2 ">
-      <h2 class="uppercase font-bold text-center text-3xl text-white-500 dark:text-white-400 my-10" >Empresas Registradas</h2>
+      <h2 class="uppercase font-bold text-center text-3xl text-white-500 dark:text-white-400 my-10">Empresas Registradas
+      </h2>
       <table id="tablaEmpresa" class="min-w-full divide-y divide-gray-200">
         <thead>
           <tr>
@@ -100,16 +101,16 @@
 
             <th scope="col"
               class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-            Telefono
+              Telefono
             </th>
             <th scope="col"
               class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-            Calificacion
+              Calificacion
             </th>
           </tr>
         </thead>
         <tbody class="bg-white divide-y divide-gray-200">
-    
+
         </tbody>
       </table>
 
@@ -118,7 +119,8 @@
 
   <div class="p-4 container mx-auto ">
     <div class="p-4 border-white-200  border-dashed rounded-lg dark:border-white-700 shadow-xl my-2 ">
-      <h2 class="uppercase font-bold text-center text-3xl text-white-500 dark:text-white-400 my-10" >Mystery Shopper Registrados</h2>
+      <h2 class="uppercase font-bold text-center text-3xl text-white-500 dark:text-white-400 my-10">Mystery Shopper
+        Registrados</h2>
       <table id="tablaMystery" class="min-w-full divide-y divide-gray-200">
         <thead>
           <tr>
@@ -128,15 +130,14 @@
             </th>
             <th scope="col"
               class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-               Cuenta
+              Cuenta
             </th>
             <th scope="col"
               class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
               Correo electronico
             </th>
 
-            <th
-          </tr>
+            <th </tr>
         </thead>
         <tbody class="bg-white divide-y divide-gray-200">
 
@@ -145,8 +146,9 @@
 
     </div>
   </div>
-
-  <div>
+  <div class="p-4 container mx-auto ">
+  <h2 class="uppercase font-bold text-center text-3xl text-white-500 dark:text-white-400 my-10">Empresas registradas</h2>
+  <div class="p-4 border-white-200  border-dashed rounded-lg dark:border-white-700 shadow-xl my-2 ">
     <table id="tablaEncuesta">
       <thead>
         <tr>
@@ -158,6 +160,7 @@
       <tbody>
       </tbody>
     </table>
+  </div>
   </div>
   </div>
 
@@ -175,64 +178,64 @@
 
   <script>
 
-function eliminarRegistro(event, id) {
-  event.preventDefault(); // Prevenir la acción predeterminada del enlace (navegación)
-  
-  if (confirm("¿Estás seguro de que deseas eliminar este registro?")) {
-      const url = "srv/srvEliminarEncuesta.php"; // Ruta del servicio para eliminar el registro
-      const data = { id: id }; // Datos a enviar al servicio (puede variar dependiendo de la implementación del servicio)
-      fetch(url, {
-          method: "POST",
-          headers: {
-              "Content-Type": "application/json",
-          },
-          body: JSON.stringify(data),
-      })
-      .then(response => {
-          if (!response.ok) {
-              throw new Error('Error al eliminar el registro.');
-          }
-         // window.location.href = window.location.href;
-      })
-      .catch(error => {
-          console.error('Error:', error);
-      });
-  }
-  location.reload();
+    function eliminarRegistro(event, id) {
+      event.preventDefault(); // Prevenir la acción predeterminada del enlace (navegación)
 
-  }
-  
-      function updateRol(id) {
-        const rol = document.getElementById(`rol_${id}`).value;
-        const url="srv/srvCambiarRol.php"
-        fetch(url,{
+      if (confirm("¿Estás seguro de que deseas eliminar este registro?")) {
+        const url = "srv/srvEliminarEncuesta.php"; // Ruta del servicio para eliminar el registro
+        const data = { id: id }; // Datos a enviar al servicio (puede variar dependiendo de la implementación del servicio)
+        fetch(url, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-           
           },
-          body: JSON.stringify({
-            id: id,
-            rol:rol
-          })
+          body: JSON.stringify(data),
         })
-        location.reload();
+          .then(response => {
+            if (!response.ok) {
+              throw new Error('Error al eliminar el registro.');
+            }
+            // window.location.href = window.location.href;
+          })
+          .catch(error => {
+            console.error('Error:', error);
+          });
       }
+      location.reload();
+
+    }
+
+    function updateRol(id) {
+      const rol = document.getElementById(`rol_${id}`).value;
+      const url = "srv/srvCambiarRol.php"
+      fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+
+        },
+        body: JSON.stringify({
+          id: id,
+          rol: rol
+        })
+      })
+      location.reload();
+    }
     async function loadFiles() {
-      
-        async function loadUsers() {
-            try {
-                const respuesta = await fetch("srv/srvObtenerUsuarios.php");
-                const usuarios = await respuesta.json();
-                const tbody = document.querySelector("#tablaUsuarios tbody");
-                tbody.innerHTML = ""; 
-                usuarios.forEach((usuario) => {
-                    const fila = document.createElement("tr");
-                    fila.innerHTML = `
+
+      async function loadUsers() {
+        try {
+          const respuesta = await fetch("srv/srvObtenerUsuarios.php");
+          const usuarios = await respuesta.json();
+          const tbody = document.querySelector("#tablaUsuarios tbody");
+          tbody.innerHTML = "";
+          usuarios.forEach((usuario) => {
+            const fila = document.createElement("tr");
+            fila.innerHTML = `
                         <td>${usuario.id}</td>
                         <td>${usuario.cue}</td>
                         <td>${usuario.correo}</td>
-                        <td>${usuario.rol_id? usuario.rol_id: "No encontrado"}</td>
+                        <td>${usuario.rol_id ? usuario.rol_id : "No encontrado"}</td>
                         <td>
                             <select name="rol" id="rol_${usuario.id}" class="rol-select">
                                 <option value="">Seleccionar Rol</option>
@@ -241,116 +244,118 @@ function eliminarRegistro(event, id) {
                             </select>
                         </td>
 
-                      
-                       <button class="bg-green-700 text-white text-sm font-bold rounded-lg p-2 h-8 w-24" type="button" onclick="updateRol(${usuario.id})">Actualizar</button>
+                      <td class="flex justify-around">
+                       <button class="bg-green-500 text-white text-sm font-bold rounded-lg p-2 h-8 w-24" type="button" onclick="updateRol(${usuario.id})">Actualizar</button>
+                       <button class="bg-red-500 text-white text-sm font-bold rounded-lg p-2 h-8 w-24" type="button" onclick="eliminarRegistro(event, ${usuario.id})">Eliminar</button>
+                       <button class="bg-blue-500 text-white text-sm font-bold rounded-lg p-2 h-8 w-24" type="button" onclick="location.href='editarUsuario.html?id=${usuario.id}'">Editar</button>
                      
               
                         </td>
                     `;
-                    tbody.appendChild(fila);
-                });
-            } catch (error) {
-                console.error("Error al cargar usuarios:", error);
-            }
-       
+            tbody.appendChild(fila);
+          });
+        } catch (error) {
+          console.error("Error al cargar usuarios:", error);
         }
-     
 
- 
+      }
+
+
+
       async function loadCompany() {
-          try {
-              const respuesta = await fetch("srv/srvConsultarEmpresas.php");
-              const empresas = await respuesta.json();
+        try {
+          const respuesta = await fetch("srv/srvConsultarEmpresas.php");
+          const empresas = await respuesta.json();
 
-              const tbodyEmpresa = document.querySelector("#tablaEmpresa tbody");
-              tbodyEmpresa.innerHTML = "";
-            if(empresas.length>0){
-              empresas.forEach((empresa) => {
-                  let fila = document.createElement("tr");
-                  fila.innerHTML = `
+          const tbodyEmpresa = document.querySelector("#tablaEmpresa tbody");
+          tbodyEmpresa.innerHTML = "";
+          if (empresas.length > 0) {
+            empresas.forEach((empresa) => {
+              let fila = document.createElement("tr");
+              fila.innerHTML = `
                       <td>${empresa.id}</td>
                       <td>${empresa.nombre}</td>
                       <td>${empresa.direccion}</td>
                       <td>${empresa.telefono}</td>
                       <td class="rating">${showStars(empresa.calificacion)}</td>
                   `;
-                  tbodyEmpresa.appendChild(fila);
-              });
-  }
-          } catch (error) {
-              console.error('Error al cargar empresas:', error);
+              tbodyEmpresa.appendChild(fila);
+            });
           }
+        } catch (error) {
+          console.error('Error al cargar empresas:', error);
+        }
       }
 
       function showStars(rating) {
-          let stars = '';
-          for (let i = 5; i >= 1; i--) {
-              if (rating >= i) {
-                  stars += '<span class="fa fa-star checked"></span>';
-              }
-              else {
-                  stars += '<span class="fa fa-star"></span>';
-              }
+        let stars = '';
+        for (let i = 5; i >= 1; i--) {
+          if (rating >= i) {
+            stars += '<span class="fa fa-star checked"></span>';
           }
-          return stars;
+          else {
+            stars += '<span class="fa fa-star"></span>';
+          }
+        }
+        return stars;
       }
       async function loadMystery() {
-          try {
-              const respuesta = await fetch("srv/srvConsultarMysteryShoppers.php");
-              const mysterys = await respuesta.json();
-              console.log(mysterys);
+        try {
+          const respuesta = await fetch("srv/srvConsultarMysteryShoppers.php");
+          const mysterys = await respuesta.json();
+          console.log(mysterys);
 
-              const tbodyMystery = document.querySelector("#tablaMystery tbody");
-              tbodyMystery.innerHTML = "";
+          const tbodyMystery = document.querySelector("#tablaMystery tbody");
+          tbodyMystery.innerHTML = "";
 
-              if (mysterys.length > 0) {
-                  mysterys.forEach((mystery) => {
-                      let fila = document.createElement("tr");
-                      fila.innerHTML = `
+          if (mysterys.length > 0) {
+            mysterys.forEach((mystery) => {
+              let fila = document.createElement("tr");
+              fila.innerHTML = `
                           <td>${mystery.id}</td>
                           <td>${mystery.cue}</td>
                           <td>${mystery.correo}</td>
                       `;
-                      tbodyMystery.appendChild(fila);
-                  });
-              }
-          } catch (error) {
-              console.error('Error al cargar MYSTERY:', error);
+              tbodyMystery.appendChild(fila);
+            });
           }
+        } catch (error) {
+          console.error('Error al cargar MYSTERY:', error);
+        }
       }
 
 
       async function loadQuestion() {
-          try {
-              const respuesta = await fetch("srv/srvListaEncuesta.php");
-              const encuestas = await respuesta.json();
-              console.log(encuestas);
-              const tbodyencuesta = document.querySelector("#tablaEncuesta tbody");
-              tbodyencuesta.innerHTML = "";
-            if(encuestas.length>0){
-              encuestas.forEach((encuesta) => {
-                  let fila = document.createElement("tr");
-                  fila.innerHTML = `
+        try {
+          const respuesta = await fetch("srv/srvListaEncuesta.php");
+          const encuestas = await respuesta.json();
+          console.log(encuestas);
+          const tbodyencuesta = document.querySelector("#tablaEncuesta tbody");
+          tbodyencuesta.innerHTML = "";
+          if (encuestas.length > 0) {
+            encuestas.forEach((encuesta) => {
+              let fila = document.createElement("tr");
+              fila.innerHTML = `
                       <td>${encuesta.idEnc}</td>
                       <td>${encuesta.nombreEmpresa}</td>
                       <td><a href='FormEncuesta.html?empid=${encuesta.idEmp}'>C</a>
                           <a href="#" onclick="eliminarRegistro(event, ${encuesta.idEnc})">E</a>
                       </td>
                   `;
-                  tbodyencuesta.appendChild(fila);
-              });
-  }
-          } catch (error) {
-              console.error('Error al cargar encuestas:', error);
+              tbodyencuesta.appendChild(fila);
+            });
           }
+        } catch (error) {
+          console.error('Error al cargar encuestas:', error);
+        }
       }
-        await loadMystery();
-        await loadUsers();
-        await loadCompany();
-        await loadQuestion();
+      await loadMystery();
+      await loadUsers();
+      await loadCompany();
+      await loadQuestion();
     }
 
-    
+
     async function cerrarSesion() {
       try {
         const respuesta = await fetch('srv/srvLogout.php');

@@ -3,14 +3,12 @@
 
 <head>
 
- <meta charset="UTF-8">
- <meta name="viewport" content="width=device-width">
-   <script type="module" src="lib/js/ejecuta.js"></script>
-   <script type="module" src="lib/js/muestraError.js"></script>
-   <script type="module" src="./js/custom/mi-nav.js"></script>
-   <script type="module" src="./js/Sesion.js"></script>
-
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width">
+  <script type="module" src="lib/js/ejecuta.js"></script>
+  <script type="module" src="lib/js/muestraError.js"></script>
+  <script type="module" src="./js/custom/mi-nav.js"></script>
+  <script type="module" src="./js/Sesion.js"></script>
 
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -24,7 +22,64 @@
       }
     }
   </script>
-   <title>Creacion de Cuestionario</title>
+  <script>
+    const questionsData = [
+      {
+        id: 1,
+        question: '¿El trato fue bueno?',
+        options: ['Verdadero', 'Falso']
+
+      },
+      {
+        id: 2,
+        question: '¿Te ofrecieron alguna muestra del producto?',
+        options: ['Verdadero', 'Falso']
+      },
+      {
+        id: 3,
+        question: '¿Comocian las caracteristicas del producto?',
+        options: ['Verdadero', 'Falso']
+      },
+      {
+        id: 4,
+        question: '¿Te ofrecieron algun descuento?',
+        options: ['Verdadero', 'Falso']
+
+      },
+      {
+        id: 5,
+        question: '¿La variedad de productos es buena?',
+        options: ['Verdadero', 'Falso']
+      }
+    ]
+    const renderQuestions = (data) => {
+      const container = document.getElementById('container')
+      data.forEach(question => {
+        const div = document.createElement('div')
+        div.classList.add('flex', 'flex-col', 'items-center', 'justify-center', 'w-6/6', 'shadow-lg', 'p-6', 'bg-white', 'rounded-lg', 'p-4', 'm-2', 'w-full', 'h-6/6')
+        div.innerHTML = `
+        <h1 class="text-2xl font-bold text-gray-800">${question.question}</h1>
+        <select name="options" id="options" class="w-6/6 p-2 m-2">
+        ${question.options ? question.options.map(option => `<option value="${option}">${option}</option>`).join('') : '<option value="Si">Si</option><option value="No">No</option>'}
+        </select>
+        `
+        container.appendChild(div)
+      })
+
+    }
+    const sendForm = () => {
+      const options = document.querySelectorAll('#options')
+      const answers = []
+      
+      options.forEach(option => {
+        answers.push(option.value)
+      })
+
+      location.href = 'cuestionarioCuncluido.html'
+    }
+
+  </script>
+  <title>Creacion de Cuestionario</title>
 </head>
 
 <body onload="ejecuta('srv/srvSesion.php')
@@ -32,54 +87,39 @@
    const sesion = new Sesion(objeto)
    nav.sesion = sesion
   })
-  .catch(muestraError)">
+  .catch(muestraError)
+  renderQuestions(questionsData)
+  ">
 
- <mi-nav id="nav"></mi-nav>
-  <div class="flex flex-row items-center
-      justify-center h-screen">
+  <mi-nav id="nav" class="hidden"></mi-nav>
+  <div class="flex flex-row items-center mt-10
+      justify-center h-screen h-auto">
 
-    <div class="flex flex-col justify-center">
- <p class="text-2xl mb-10 font-bold text-black uppercase" >Crear un   <span class="text-purple-700">Cuestionario</p>   
-  <div class="container flex flex-col items-center w-full mx-auto" >
-    <label  for="name" class="text-black font-bold mb-2 uppercase text-start"
-      >Seleciones las preguntas</label>
-    <div> 
-<!--     <select name="" id="">
-      <option value="1">Pregunta 1</option>
-      <option value="2">Pregunta 2</option>
-      <option value="3">Pregunta 3</option>
-      <option value="4">Pregunta 4</option>
-      <option value="5">Pregunta 5</option>
+    <div class="flex flex-col justify-center uppercase ">
 
-     COnectarlo cn mmla base de datos -->
+      <h1 class="text-4xl font-bold text-gray-800 m-4">Bienvenido
+        <span class="text-purple-500"> Mystery Shopper</span>
+        <h2 class="text-xl font-bold text-gray-800 m-4">Contesta las siguientes
+          <span class="text-purple-500"> preguntas</span>
+        </h2>
+        <div id="container"
+          class="flex flex-col items-center justify-center w-6/6 shadow-lg p-6 bg-white rounded-lg p-4">
 
-   <table>
-     <thead>
-     <tr>
-       <th>Pregunta</th>
-       <th>Respuesta</th>
-       <th>Tipo</th>
-       <th>Opciones</th>
-     </tr>
-     </thead>
-     <tbody>
-       <tr>
-          <th>
-             yolo
-          </th>
-       </tr>
-     </tbody>
-   </table>
+        </div>
+        <button class="bg-purple-900 text-white px-4 py-2 mt-4 rounded-xl 
+          sm:w-1/4 md:w-3/6 lg:w-3/6 xl:w-full  justify-center mx-auto m-2" id="btnCrearCuestionario"
+          onclick="sendForm()">
+          Responder Cuestionario
+        </button>
+
     </div>
 
-      <button class="bg-purple-900 text-white px-4 py-2 mt-4 rounded-xl  w-full m-2" id="btnCrearCuestionario"
-        >
-        Crear
-      </button>
   </div>
-     </div>
-
-     </div>
+  <button class="bg-red-400 text-white px-4 py-2 mt-16 rounded-xl  w-1/4 m-2"
+    onclick="location.href='mystery-shopper.html'">
+    Volver atras
+  </button>
+  </div>
 </body>
 
 </html>
