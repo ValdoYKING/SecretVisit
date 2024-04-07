@@ -14,6 +14,8 @@
   <script type="module" src="./js/Sesion.js"></script>
   <script type="module" src="./js/custom/footer.js"></script>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
   <script>
     tailwind.config = {
       theme: {
@@ -31,6 +33,7 @@
 
 <body onload="loadFiles()">
   <mi-nav id="nav"></mi-nav>
+  <script src="path/to/chartjs/dist/chart.umd.js"></script>
 
   <main id="main" class="container w-full mx-auto">
     <p>Bienvenido, Administrador.</p>
@@ -39,6 +42,10 @@
       Cerrar sesión
     </button>
   </main>
+  <p class="text-center text-3xl text-white-500 dark:text-white-400 my-10">Panel de Administrador</p>
+  <div class="container mx-auto item-center p-20">
+    <canvas id="miGrafico" width="250" height="100"></canvas>
+  </div>
   <div class="p-4 container mx-auto ">
     <div class="p-4 border-white-200  border-dashed rounded-lg dark:border-white-700 shadow-xl my-2 ">
       <h2 class="uppercase font-bold text-center text-3xl text-white-500 dark:text-white-400 my-10">Usuarios Registrados
@@ -68,8 +75,13 @@
             </th>
             <th scope="col"
               class="px-6 py-3 bg-gray-50 text-left text-xs text-center font-medium text-gray-500 uppercase tracking-wider">
+              Estatus
+            </th>
+            <th scope="col"
+              class="px-6 py-3 bg-gray-50 text-left text-xs text-center font-medium text-gray-500 uppercase tracking-wider">
               Acciones
             </th>
+
           </tr>
         </thead>
         <tbody class="bg-white divide-y divide-gray-200">
@@ -147,20 +159,21 @@
     </div>
   </div>
   <div class="p-4 container mx-auto ">
-  <h2 class="uppercase font-bold text-center text-3xl text-white-500 dark:text-white-400 my-10">Empresas registradas</h2>
-  <div class="p-4 border-white-200  border-dashed rounded-lg dark:border-white-700 shadow-xl my-2 ">
-    <table id="tablaEncuesta">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Empresa</th>
-          <th>Opciones</th>
-        </tr>
-      </thead>
-      <tbody>
-      </tbody>
-    </table>
-  </div>
+    <h2 class="uppercase font-bold text-center text-3xl text-white-500 dark:text-white-400 my-10">Empresas registradas
+    </h2>
+    <div class="p-4 border-white-200  border-dashed rounded-lg dark:border-white-700 shadow-xl my-2 ">
+      <table id="tablaEncuesta">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Empresa</th>
+            <th>Opciones</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+    </div>
   </div>
   </div>
 
@@ -236,6 +249,7 @@
                         <td>${usuario.cue}</td>
                         <td>${usuario.correo}</td>
                         <td>${usuario.rol_id ? usuario.rol_id : "No encontrado"}</td>
+                      
                         <td>
                             <select name="rol" id="rol_${usuario.id}" class="rol-select">
                                 <option value="">Seleccionar Rol</option>
@@ -243,10 +257,17 @@
                                 <option value="Analista">Analista</option>
                             </select>
                         </td>
+                          <td>
+                            <select name="status" id="rol_${usuario.id}" class="rol-select">
+                                <option value="activo">Activa</option>
+                                <option value="Inactivo">Inactivo</option>
+                             
+                            </select>
+                        </td>
 
                       <td class="flex justify-around">
                        <button class="bg-green-500 text-white text-sm font-bold rounded-lg p-2 h-8 w-24" type="button" onclick="updateRol(${usuario.id})">Actualizar</button>
-                       <button class="bg-red-500 text-white text-sm font-bold rounded-lg p-2 h-8 w-24" type="button" onclick="eliminarRegistro(event, ${usuario.id})">Eliminar</button>
+                   
                        <button class="bg-blue-500 text-white text-sm font-bold rounded-lg p-2 h-8 w-24" type="button" onclick="location.href='editarUsuario.html?id=${usuario.id}'">Editar</button>
                      
               
@@ -367,6 +388,42 @@
         console.error('Error al cerrar sesión:', error);
       }
     }
+  </script>
+  <script>
+
+    var ctx = document.getElementById('miGrafico').getContext('2d');
+    var myChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo'],
+        datasets: [{
+          label: 'Ventas mensuales',
+          data: [12, 19, 3, 5, 2],
+          backgroundColor: [
+            'rgba(255, 99, 132, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(255, 206, 86, 0.2)',
+            'rgba(75, 192, 192, 0.2)',
+            'rgba(153, 102, 255, 0.2)'
+          ],
+          borderColor: [
+            'rgba(255, 99, 132, 1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(255, 206, 86, 1)',
+            'rgba(75, 192, 192, 1)',
+            'rgba(153, 102, 255, 1)'
+          ],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
   </script>
 </body>
 
