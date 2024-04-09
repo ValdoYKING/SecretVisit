@@ -14,23 +14,11 @@ const cerrarSesion = async () => {
   const navItems = [
     {
       name: 'Inicio',
-      url: 'index.html'
-    },
-    {
-      name: 'Nosotros',
-      url: 'nosotros.html'
-    },
-    {
-      name: 'Servicios',
-      url: 'servicios.html'
+      url: 'admin.html'
     },
     {
       name: 'Perfil',
       url: 'perfil.html'
-    },
-    {
-      name: 'Cerrar Sesión',
-      onclick: 'cerrarSesion()'
     }
   ];
   
