@@ -38,8 +38,6 @@ function BuscaEncuestaidEmpresa(int $id): false|Encuesta
     $stmt = $con->prepare(
         "SELECT
             ENC_ID as id,
-            EMP_ID as idempresa,
-            USU_ID as idusuario,
             ENC_RECOMPENSA as recompensa
          FROM ENCUESTA
          WHERE EMP_ID = :ids"
@@ -47,10 +45,21 @@ function BuscaEncuestaidEmpresa(int $id): false|Encuesta
     $stmt->execute([":ids" => $id]);
     $stmt->setFetchMode(
         PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE,
-        Encuesta::class,
-        [null, null, null, null] // Pasar valores nulos para evitar la creación de propiedades dinámicas
+        Encuesta::class
     );
-    return $stmt->fetch();
+    $encuesta = $stmt->fetch();
+
+    // Si no se encontró ninguna encuesta, devolvemos false
+    if (!$encuesta) {
+        return false;
+    }
+
+    // Creamos una instancia de Empresa y Usuario con valores nulos por ahora
+    $empresa = null;
+    $usuario = null;
+
+    // Creamos la instancia de Encuesta con los valores adecuados
+    return new Encuesta($empresa, $usuario, $encuesta->recompensa, $encuesta->id);
 }
 
 
