@@ -34,23 +34,25 @@ function BuscaEncuesta(int $id): false|Encuesta
   
 function BuscaEncuestaidEmpresa(int $id): false|Encuesta
 {
- $con = AccesoBd::getCon();
- $stmt = $con->prepare(
-  "SELECT
-      ENC_ID as id,
-      EMP_ID as idempresa,
-      USU_ID as idusuario,
-      ENC_RECOMPENSA as recompensa
-   FROM ENCUESTA
-   WHERE EMP_ID = :ids"  
- );
- $stmt->execute([":ids" => $id]);
- $stmt -> setFetchMode(
-  PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE,
-  Encuesta::class
- );
- return $stmt->fetch();
+    $con = AccesoBd::getCon();
+    $stmt = $con->prepare(
+        "SELECT
+            ENC_ID as id,
+            EMP_ID as idempresa,
+            USU_ID as idusuario,
+            ENC_RECOMPENSA as recompensa
+         FROM ENCUESTA
+         WHERE EMP_ID = :ids"
+    );
+    $stmt->execute([":ids" => $id]);
+    $stmt->setFetchMode(
+        PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE,
+        Encuesta::class,
+        [null, null, null, null] // Pasar valores nulos para evitar la creación de propiedades dinámicas
+    );
+    return $stmt->fetch();
 }
+
 
 
 function listaEncuesta() {
