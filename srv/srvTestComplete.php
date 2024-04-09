@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
 
             // Redireccionar a la página mystery-shopper.html
-            header("Location: ../mystery-shopper.html");
+            header("Location: ../cuestionarioCuncluido.html");
             exit(); // Asegura que el script se detenga después de redirigir al usuario
         } else {
             echo "No se encontró una encuesta asociada a la empresa con ID $idEmp";

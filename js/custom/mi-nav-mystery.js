@@ -3,15 +3,7 @@ const nav = document.getElementById('nav');
 const navItems = [
     {
         name: 'Inicio',
-        url: 'index.html'
-    },
-    {
-        name: 'Nosotros',
-        url: 'nosotros.html'
-    },
-    {
-        name: 'Servicios',
-        url: 'servicios.html'
+        url: 'mystery-shopper.html'
     }
 ];
 
