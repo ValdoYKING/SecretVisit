@@ -1,33 +1,33 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>Solo Mystery's Shopper's</title>
 
-    <script type="module" src="lib/js/ejecuta.js"></script>
-    <script type="module" src="lib/js/muestraError.js"></script>
-    <script type="module" src="./js/const/ROL_MYSTERY_SHOPPER.js"></script>
-    <script type="module" src="./js/custom/mi-nav-mystery.js"></script>
-    <script type="module" src="./js/Sesion.js"></script>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script type="module" src="./js/custom/footer.js"></script>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              clifford: "#da373d",
-            },
+  <script type="module" src="lib/js/ejecuta.js"></script>
+  <script type="module" src="lib/js/muestraError.js"></script>
+  <script type="module" src="./js/const/ROL_MYSTERY_SHOPPER.js"></script>
+  <script type="module" src="./js/custom/mi-nav-mystery.js"></script>
+  <script type="module" src="./js/Sesion.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script type="module" src="./js/custom/footer.js"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            clifford: "#da373d",
           },
         },
-      };
-    </script>
-  </head>
+      },
+    };
+  </script>
+</head>
 
-  <body
-    onload="ejecuta('srv/srvSesion.php')
+<body onload="ejecuta('srv/srvSesion.php')
   .then(objeto => {
    const sesion = new Sesion(objeto);
    if (sesion.rolIds.has(ROL_MYSTERY_SHOPPER)) {
@@ -38,284 +38,225 @@
     location.href = 'index.html';
    }
   })
-  .catch(muestraError)"
-  >
-    <mi-nav id="nav"></mi-nav>
+  .catch(muestraError)">
+  <mi-nav id="nav"></mi-nav>
 
-    <main id="main" hidden>
-          </main>
-      <aside
-        hidden
-        id="default-sidebar"
-        class="fixed top-0 left-0 z-60 w-2/8 h-screen transition-transform -translate-x-full sm:translate-x-0"
-        aria-label="Sidebar"
-      >
-        <div
-          class="h-full px-3 py-4 overflow-y-auto bg-purple-500 bg-purple-700"
-        >
-          <ul class="space-y-2 font-medium">
-            <li>
-              <a
-                href="#"
-                class="flex items-center p-2 text-white-900 rounded-lg text-white hover:bg-white-100 dark:hover:bg-white-700 group"
-              >
-                <p class="text-white text-4xl">Secret Visit</p>
-              </a>
-            </li>
-            <li>
-              <a
-                href="#"
-                class="flex items-center p-2 text-white-900 rounded-lg text-white hover:bg-white-100 dark:hover:bg-white-700 group"
-              >
-                <svg
-                  class="flex-shrink-0 w-5 h-5 text-white-500 transition duration-75 dark:text-white-400 group-hover:text-white-900 dark:group-hover:text-white"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="currentColor"
-                  viewBox="0 0 18 18"
-                >
-                  <path
-                    d="M6.143 0H1.857A1.857 1.857 0 0 0 0 1.857v4.286C0 7.169.831 8 1.857 8h4.286A1.857 1.857 0 0 0 8 6.143V1.857A1.857 1.857 0 0 0 6.143 0Zm10 0h-4.286A1.857 1.857 0 0 0 10 1.857v4.286C10 7.169 10.831 8 11.857 8h4.286A1.857 1.857 0 0 0 18 6.143V1.857A1.857 1.857 0 0 0 16.143 0Zm-10 10H1.857A1.857 1.857 0 0 0 0 11.857v4.286C0 17.169.831 18 1.857 18h4.286A1.857 1.857 0 0 0 8 16.143v-4.286A1.857 1.857 0 0 0 6.143 10Zm10 0h-4.286A1.857 1.857 0 0 0 10 11.857v4.286c0 1.026.831 1.857 1.857 1.857h4.286A1.857 1.857 0 0 0 18 16.143v-4.286A1.857 1.857 0 0 0 16.143 10Z"
-                  />
-                </svg>
-                <span class="flex-1 ms-3 white space-nowrap">Inicio</span>
-              </a>
-            </li>
-            <li>
-              <a
-                href="#"
-                class="flex items-center p-2 text-white-900 rounded-lg text-white hover:bg-white-100 hover:bg-white-700 group"
-              >
-                <svg
-                  class="flex-shrink-0 w-5 h-5 text-white-500 transition duration-75 text-white-400 group-hover:text-white-900 group-hover:text-white"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    d="m17.418 3.623-.018-.008a6.713 6.713 0 0 0-2.4-.569V2h1a1 1 0 1 0 0-2h-2a1 1 0 0 0-1 1v2H9.89A6.977 6.977 0 0 1 12 8v5h-2V8A5 5 0 1 0 0 8v6a1 1 0 0 0 1 1h8v4a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-4h6a1 1 0 0 0 1-1V8a5 5 0 0 0-2.582-4.377ZM6 12H4a1 1 0 0 1 0-2h2a1 1 0 0 1 0 2Zm0-5a2 2 0 1 1 4 0v1H7V4Zm6 5a1 1 0 1 1-2 0V7h2v2Z"
-                  />
-                </svg>
-                <span class="flex-1 ms-3 whitespace-nowrap"
-                  >Notificaciones</span
-                >
-              </a>
-            </li>
-            <li>
-              <a
-                href="#"
-                class="flex items-center p-2 text-white-900 rounded-lg text-white hover:bg-white-100 hover:bg-white-700 group"
-              >
-                <svg
-                  class="flex-shrink-0 w-5 h-5 text-white-500 transition duration-75 text-white-400 group-hover:text-white-900 group-hover:text-white"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="currentColor"
-                  viewBox="0 0 20 18"
-                >
-                  <path
-                    d="M14 2a3.963 3.963 0 0 0-1.4.267 6.439 6.439 0 0 1-1.331 6.638A4 4 0 1 0 14 2Zm1 9h-1.264A6.957 6.957 0 0 1 15 15v2a2.97 2.97 0 0 1-.184 1H19a1 1 0 0 0 1-1v-1a5.006 5.006 0 0 0-5-5ZM6.5 9a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9ZM8 10H5a5.006 5.006 0 0 0-5 5v2a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-2a5.006 5.006 0 0 0-5-5Z"
-                  />
-                </svg>
-                <span class="flex-1 ms-3 whitespace-nowrap">Mi perfil</span>
-              </a>
-            </li>
-            <li>
-              <a
-                href="#"
-                class="flex items-center p-2 text-white-900 rounded-lg text-white hover:bg-white-100 hover:bg-white-700 group"
-              >
-                <svg
-                  class="flex-shrink-0 w-5 h-5 text-white-500 transition duration-75 text-white-400 group-hover:text-white-900 group-hover:text-white"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="currentColor"
-                  viewBox="0 0 18 20"
-                >
-                  <path
-                    d="M17 5.923A1 1 0 0 0 16 5h-3V4a4 4 0 1 0-8 0v1H2a1 1 0 0 0-1 .923L.086 17.846A2 2 0 0 0 2.08 20h13.84a2 2 0 0 0 1.994-2.153L17 5.923ZM7 9a1 1 0 0 1-2 0V7h2v2Zm0-5a2 2 0 1 1 4 0v1H7V4Zm6 5a1 1 0 1 1-2 0V7h2v2Z"
-                  />
-                </svg>
-                <span class="flex-1 ms-3 whitespace-nowrap"
-                  >Mis recompensas</span
-                >
-              </a>
-            </li>
-            <li>
-              <a
-                href="#"
-                class="flex items-center p-2 text-white-900 bg-red-600 hover:bg-red-400 rounded-lg text-white hover:bg-white-100 hover:bg-white-700 group"
-                onclick="ejecuta('srv/srvLogout.php')
+  <main id="main" hidden>
+  </main>
+  <aside hidden id="default-sidebar"
+    class="fixed top-0 left-0 z-60 w-2/8 h-screen transition-transform -translate-x-full sm:translate-x-0"
+    aria-label="Sidebar">
+    <div class="h-full px-3 py-4 overflow-y-auto bg-purple-500 bg-purple-700">
+      <ul class="space-y-2 font-medium">
+        <li>
+          <a href="#"
+            class="flex items-center p-2 text-white-900 rounded-lg text-white hover:bg-white-100 dark:hover:bg-white-700 group">
+            <p class="text-white text-4xl">Secret Visit</p>
+          </a>
+        </li>
+        <li>
+          <a href="#"
+            class="flex items-center p-2 text-white-900 rounded-lg text-white hover:bg-white-100 dark:hover:bg-white-700 group">
+            <svg
+              class="flex-shrink-0 w-5 h-5 text-white-500 transition duration-75 dark:text-white-400 group-hover:text-white-900 dark:group-hover:text-white"
+              aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 18">
+              <path
+                d="M6.143 0H1.857A1.857 1.857 0 0 0 0 1.857v4.286C0 7.169.831 8 1.857 8h4.286A1.857 1.857 0 0 0 8 6.143V1.857A1.857 1.857 0 0 0 6.143 0Zm10 0h-4.286A1.857 1.857 0 0 0 10 1.857v4.286C10 7.169 10.831 8 11.857 8h4.286A1.857 1.857 0 0 0 18 6.143V1.857A1.857 1.857 0 0 0 16.143 0Zm-10 10H1.857A1.857 1.857 0 0 0 0 11.857v4.286C0 17.169.831 18 1.857 18h4.286A1.857 1.857 0 0 0 8 16.143v-4.286A1.857 1.857 0 0 0 6.143 10Zm10 0h-4.286A1.857 1.857 0 0 0 10 11.857v4.286c0 1.026.831 1.857 1.857 1.857h4.286A1.857 1.857 0 0 0 18 16.143v-4.286A1.857 1.857 0 0 0 16.143 10Z" />
+            </svg>
+            <span class="flex-1 ms-3 white space-nowrap">Inicio</span>
+          </a>
+        </li>
+        <li>
+          <a href="#"
+            class="flex items-center p-2 text-white-900 rounded-lg text-white hover:bg-white-100 hover:bg-white-700 group">
+            <svg
+              class="flex-shrink-0 w-5 h-5 text-white-500 transition duration-75 text-white-400 group-hover:text-white-900 group-hover:text-white"
+              aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+              <path
+                d="m17.418 3.623-.018-.008a6.713 6.713 0 0 0-2.4-.569V2h1a1 1 0 1 0 0-2h-2a1 1 0 0 0-1 1v2H9.89A6.977 6.977 0 0 1 12 8v5h-2V8A5 5 0 1 0 0 8v6a1 1 0 0 0 1 1h8v4a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-4h6a1 1 0 0 0 1-1V8a5 5 0 0 0-2.582-4.377ZM6 12H4a1 1 0 0 1 0-2h2a1 1 0 0 1 0 2Zm0-5a2 2 0 1 1 4 0v1H7V4Zm6 5a1 1 0 1 1-2 0V7h2v2Z" />
+            </svg>
+            <span class="flex-1 ms-3 whitespace-nowrap">Notificaciones</span>
+          </a>
+        </li>
+        <li>
+          <a href="#"
+            class="flex items-center p-2 text-white-900 rounded-lg text-white hover:bg-white-100 hover:bg-white-700 group">
+            <svg
+              class="flex-shrink-0 w-5 h-5 text-white-500 transition duration-75 text-white-400 group-hover:text-white-900 group-hover:text-white"
+              aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 18">
+              <path
+                d="M14 2a3.963 3.963 0 0 0-1.4.267 6.439 6.439 0 0 1-1.331 6.638A4 4 0 1 0 14 2Zm1 9h-1.264A6.957 6.957 0 0 1 15 15v2a2.97 2.97 0 0 1-.184 1H19a1 1 0 0 0 1-1v-1a5.006 5.006 0 0 0-5-5ZM6.5 9a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9ZM8 10H5a5.006 5.006 0 0 0-5 5v2a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-2a5.006 5.006 0 0 0-5-5Z" />
+            </svg>
+            <span class="flex-1 ms-3 whitespace-nowrap">Mi perfil</span>
+          </a>
+        </li>
+        <li>
+          <a href="#"
+            class="flex items-center p-2 text-white-900 rounded-lg text-white hover:bg-white-100 hover:bg-white-700 group">
+            <svg
+              class="flex-shrink-0 w-5 h-5 text-white-500 transition duration-75 text-white-400 group-hover:text-white-900 group-hover:text-white"
+              aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 20">
+              <path
+                d="M17 5.923A1 1 0 0 0 16 5h-3V4a4 4 0 1 0-8 0v1H2a1 1 0 0 0-1 .923L.086 17.846A2 2 0 0 0 2.08 20h13.84a2 2 0 0 0 1.994-2.153L17 5.923ZM7 9a1 1 0 0 1-2 0V7h2v2Zm0-5a2 2 0 1 1 4 0v1H7V4Zm6 5a1 1 0 1 1-2 0V7h2v2Z" />
+            </svg>
+            <span class="flex-1 ms-3 whitespace-nowrap">Mis recompensas</span>
+          </a>
+        </li>
+        <li>
+          <a href="#"
+            class="flex items-center p-2 text-white-900 bg-red-600 hover:bg-red-400 rounded-lg text-white hover:bg-white-100 hover:bg-white-700 group"
+            onclick="ejecuta('srv/srvLogout.php')
               .then(json => location.href = 'index.html')
-              .catch(muestraError)"
-              >
-                <span class="flex-1 ms-3 white space-nowrap"
-                  >Cerrar Sesión</span
-                >
-              </a>
-            </li>
-          </ul>
-        </div>
-      </aside>
-
-      <div class="p-4 sm:ml-64">
-        <button
-          class="bg-purple-500 text-white text-sm font-bold rounded-lg p-2 m-2 justify-end item-end w-1/6 mx-auto"
-          type="button"
-          id="logout"
-          hidden
-          onclick="ejecuta('srv/srvLogout.php')
-          .then(json => location.href = 'index.html')
-          .catch(muestraError)"
-        >
-          Terminar sesión
-        </button>
-        <div
-          class="p-4 border-white-200 border-dashed rounded-lg dark:border-white-700 shadow-xl my-2"
-        >
-          <p
-            class="text-4xl text-white-400 dark:text-white-500 uppercase font-bold"
-          >
-            Mis visitas
-            <span class="text-white-500 text-purple-500"> secretas</span>
-            <i class="fas fa-user-secret"> </i>
-            <p class="text-white-500 text-sm">Selecciona una empresa para realizar la visita</p>
-
-          </p>
-        </div>
-        <div class="flex-1 ms-3 white space-nowrap">
-          <button href="#" class="
-        bg-red-500 text-white text-sm font-bold rounded-lg p-2 m-2 w-1/4
-        " onclick="ejecuta('srv/srvLogout.php')
-                         .then(json => location.href = 'index.html')
-                         .catch(muestraError)">
-    
+              .catch(muestraError)">
             <span class="flex-1 ms-3 white space-nowrap">Cerrar Sesión</span>
-          </button>
-        </div>
-        <div
-          class="grid gap-4 mb-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-3"
-          id="lista"
-        >
-          <!-- Aquí se agregarán dinámicamente los elementos de las empresas -->
-        </div>
-      </div>
-
-    <div class=" position-absolute bottom-0 w-full">
-    
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" class="w-full" style="position: absolute; bottom: 0;">
-        <path fill="#a855f7" fill-opacity="1"
-          d="M0,288L48,272C96,256,192,224,288,197.3C384,171,480,149,576,165.3C672,181,768,235,864,250.7C960,267,1056,245,1152,250.7C1248,256,1344,288,1392,304L1440,320L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z">
-        </path>
-      </svg>
+          </a>
+        </li>
+      </ul>
     </div>
+  </aside>
 
-    <script>
-      const loadData = async () => {
-        try {
-          const response = await fetch("srv/srvMuestraEncuestasMystery.php");
-          const data = await response.json(); // Obtener la respuesta como un objeto JSON
-          if (data.length === 0) {
-            lista.innerHTML = "<p>No hay empresas registradas</p>";
-            return;
-          }
+  <div class="p-4 sm:ml-64">
+   
+    <a href="#"
+      class="flex items-center w-1/4 p-2
+        text-center
+      text-white-900 bg-red-600 hover:bg-red-400 rounded-lg text-white hover:bg-white-100 hover:bg-white-700 group"
+      onclick="ejecuta('srv/srvLogout.php')
+                          .then(json => location.href = 'index.html')
+                          .catch(muestraError)">
+      <span class="flex-1 ms-3 white space-nowrap">Cerrar Sesión</span>
+    </a>
+    <div class="p-4 border-white-200 border-dashed rounded-lg dark:border-white-700 shadow-xl my-2 w-1/2">
+     
+      <p class="text-4xl text-white-400 dark:text-white-500 uppercase font-bold">
+        Mis visitas
+        <span class="text-white-500 text-purple-500"> secretas</span>
+        <i class="fas fa-user-secret"> </i>
+      <p class="text-white-500 text-sm">Selecciona una empresa para realizar la visita</p>
 
-          lista.innerHTML = ""; // Limpiamos el contenido previo de la lista
-          data.forEach((encuesta) => {
-            const divEncuesta = document.createElement("div");
-            divEncuesta.classList.add(
-              "flex",
-              "p-4",
-              "rounded",
-              "bg-white-50",
-              "h-48",
-              "w-full",
-              "bg-white",
-              "shadow-lg",
-              "hover:bg-purple-400",
-              "hover:text-white",
-              "hover:cursor-pointer",
-              "mb-20",
-              "justify-center",
-            );
+      </p>
+    </div>
+    <div class="grid gap-4 mb-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-3" id="lista">
+      <!-- Aquí se agregarán dinámicamente los elementos de las empresas -->
+    </div>
+  </div>
 
-            const imgEmpresa = document.createElement("img");
-            imgEmpresa.src = "#"; // URL de la imagen de la empresa
-            imgEmpresa.alt = "Logo de la empresa";
-            imgEmpresa.classList.add("w-26", "h-20", "rounded-full");
+  <div class=" position-absolute bottom-0 w-full">
 
-            const divInfo = document.createElement("div");
-            divInfo.classList.add("ms-4");
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" class="w-full"
+      style="position: absolute; bottom: 0;">
+      <path fill="#a855f7" fill-opacity="1"
+        d="M0,288L48,272C96,256,192,224,288,197.3C384,171,480,149,576,165.3C672,181,768,235,864,250.7C960,267,1056,245,1152,250.7C1248,256,1344,288,1392,304L1440,320L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z">
+      </path>
+    </svg>
+  </div>
 
-            const nombreEmpresa = document.createElement("p");
-            nombreEmpresa.classList.add(
-              "text-sm",
-              "font-bold",
-              "text-white-400",
-              "w-full",
-              "h-auto",
-            );
-            nombreEmpresa.textContent = encuesta.nombreEmpresa; // Nombre de la empresa
-
-            const cantidadPreguntas = document.createElement("p");
-            cantidadPreguntas.classList.add("text-purple-500");
-            cantidadPreguntas.innerHTML = `${encuesta.totalPreguntas} <span class="text-black preguntas">preguntas</span>`; // Total de preguntas
-
-            const tiempoRestante = document.createElement("p");
-            tiempoRestante.classList.add("text-sm", "text-purple-700", "text-center");
-            tiempoRestante.innerHTML = `${encuesta.totalPreguntas} <span class="text-black">min restantes</span>`; // Tiempo restante
-
-            // Crear un formulario para enviar el idEnc
-            const form = document.createElement("form");
-            form.method = "post";
-            form.action = "srv/srvRespuestasMystery.php";
-
-            // Crear un campo oculto para enviar el idEnc
-            const inputIdEnc = document.createElement("input");
-            inputIdEnc.type = "text";
-            inputIdEnc.name = "idEnc"; // Nombre del campo
-            inputIdEnc.value = encuesta.idEnc; // Valor del idEnc que deseas enviar
-            inputIdEnc.hidden = true;
-            // Agregar el campo oculto al formulario
-            form.appendChild(inputIdEnc);
-            form.classList.add("flex", "flex-col", "w-full", "m-auto");
-            // Crear el botón dentro del formulario
-            const botonVer = document.createElement("button");
-            botonVer.classList.add(
-              "bg-purple-500",
-              "text-white",
-              "text-sm",
-              "font-bold",
-              "rounded-lg",
-              "p-2",
-              "m-2",
-              "justify-end",
-              "item-end",
-              "w-6/6",
-              "mx-auto"
-            );
-            botonVer.type = "submit";
-            botonVer.textContent = "Responder encuesta";
-
-            // Agregar el botón al formulario
-            form.appendChild(botonVer);
-
-            // Agregar el formulario al divInfo
-            divInfo.appendChild(form);
-
-            divInfo.appendChild(nombreEmpresa);
-            divInfo.appendChild(cantidadPreguntas);
-
-            //divEncuesta.appendChild(imgEmpresa);
-            divEncuesta.appendChild(divInfo);
-
-            lista.appendChild(divEncuesta);
-          });
-        } catch (error) {
-          console.error("Error al cargar los datos:", error);
+  <script>
+    const loadData = async () => {
+      try {
+        const response = await fetch("srv/srvMuestraEncuestasMystery.php");
+        const data = await response.json(); // Obtener la respuesta como un objeto JSON
+        if (data.length === 0) {
+          lista.innerHTML = "<p>No hay empresas registradas</p>";
+          return;
         }
-      };
-    </script>
-  </body>
+
+        lista.innerHTML = ""; // Limpiamos el contenido previo de la lista
+        data.forEach((encuesta) => {
+          const divEncuesta = document.createElement("div");
+          divEncuesta.classList.add(
+            "flex",
+            "p-4",
+            "rounded",
+            "bg-white-50",
+            "h-48",
+            "w-full",
+            "bg-white",
+            "shadow-lg",
+            "hover:bg-purple-400",
+            "hover:text-white",
+            "hover:cursor-pointer",
+            "mb-20",
+            "justify-center",
+          );
+
+          const imgEmpresa = document.createElement("img");
+          imgEmpresa.src = "#"; // URL de la imagen de la empresa
+          imgEmpresa.alt = "Logo de la empresa";
+          imgEmpresa.classList.add("w-26", "h-20", "rounded-full");
+
+          const divInfo = document.createElement("div");
+          divInfo.classList.add("ms-4");
+
+          const nombreEmpresa = document.createElement("p");
+          nombreEmpresa.classList.add(
+            "text-sm",
+            "font-bold",
+            "text-white-400",
+            "w-full",
+            "h-auto",
+          );
+          nombreEmpresa.textContent = encuesta.nombreEmpresa; // Nombre de la empresa
+
+          const cantidadPreguntas = document.createElement("p");
+          cantidadPreguntas.classList.add("text-purple-500");
+          cantidadPreguntas.innerHTML = `${encuesta.totalPreguntas} <span class="text-black preguntas">preguntas</span>`; // Total de preguntas
+
+          const tiempoRestante = document.createElement("p");
+          tiempoRestante.classList.add("text-sm", "text-purple-700", "text-center");
+          tiempoRestante.innerHTML = `${encuesta.totalPreguntas} <span class="text-black">min restantes</span>`; // Tiempo restante
+
+          // Crear un formulario para enviar el idEnc
+          const form = document.createElement("form");
+          form.method = "post";
+          form.action = "srv/srvRespuestasMystery.php";
+
+          // Crear un campo oculto para enviar el idEnc
+          const inputIdEnc = document.createElement("input");
+          inputIdEnc.type = "text";
+          inputIdEnc.name = "idEnc"; // Nombre del campo
+          inputIdEnc.value = encuesta.idEnc; // Valor del idEnc que deseas enviar
+          inputIdEnc.hidden = true;
+          // Agregar el campo oculto al formulario
+          form.appendChild(inputIdEnc);
+          form.classList.add("flex", "flex-col", "w-full", "m-auto");
+          // Crear el botón dentro del formulario
+          const botonVer = document.createElement("button");
+          botonVer.classList.add(
+            "bg-purple-500",
+            "text-white",
+            "text-sm",
+            "font-bold",
+            "rounded-lg",
+            "p-2",
+            "m-2",
+            "justify-end",
+            "item-end",
+            "w-6/6",
+            "mx-auto"
+          );
+          botonVer.type = "submit";
+          botonVer.textContent = "Responder encuesta";
+
+          // Agregar el botón al formulario
+          form.appendChild(botonVer);
+
+          // Agregar el formulario al divInfo
+          divInfo.appendChild(form);
+
+          divInfo.appendChild(nombreEmpresa);
+          divInfo.appendChild(cantidadPreguntas);
+
+          //divEncuesta.appendChild(imgEmpresa);
+          divEncuesta.appendChild(divInfo);
+
+          lista.appendChild(divEncuesta);
+        });
+      } catch (error) {
+        console.error("Error al cargar los datos:", error);
+      }
+    };
+  </script>
+</body>
+
 </html>
