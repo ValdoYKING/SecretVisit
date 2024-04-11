@@ -12,9 +12,9 @@ function agregarEncuesta(int $idemp,int $idana,string $text)
     $con->beginTransaction();
     $stmt = $con->prepare(
         "INSERT INTO ENCUESTA
-        (EMP_ID, USU_ID, ENC_RECOMPENSA)
+        (EMP_ID, USU_ID, ENC_RECOMPENSA,RESPONDIDA)
         VALUES
-        (:empresaId, :usuarioId, :recompensa)"
+        (:empresaId, :usuarioId, :recompensa,0)"
     );
     $stmt->execute([
         ":empresaId" => $idemp,

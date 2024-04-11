@@ -44,6 +44,7 @@ function bdCrea(PDO $con)
             EMP_CALIFICACION INTEGER NOT NULL,
             ID_ANALISTA INTEGER NOT NULL,
             ID_ENC INTEGER NOT NULL
+            
         )'
   );
 
@@ -53,6 +54,7 @@ function bdCrea(PDO $con)
             EMP_ID INTEGER NOT NULL,
             USU_ID INTEGER NOT NULL,
             ENC_RECOMPENSA TEXT NOT NULL,
+            RESPONDIDA INTEGER NOT NULL,
             FOREIGN KEY (EMP_ID) REFERENCES EMPRESA(EMP_ID),
             FOREIGN KEY (USU_ID) REFERENCES USUARIO(USU_ID)
         )'

@@ -3,6 +3,7 @@
 require_once __DIR__ . "/modelo/Encuesta_Pregunta.php";
 require_once __DIR__ . "/modelo/Pregunta.php";
 require_once __DIR__ . "/dao/actualizaEncuestaPregunta.php";
+require_once __DIR__ . "/dao/actualizaEncuestaRes.php";
 require_once __DIR__ . "/dao/BuscaEncuesta.php";
 
 // Verifica si se recibieron datos por POST
@@ -31,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     echo "Respuesta no válida para la pregunta $idPregunta: $respuesta";
                 }
             }
-
+            actualizaEncuestaRes($idEncuesta);
             // Redireccionar a la página mystery-shopper.html
             header("Location: ../cuestionarioCuncluido.html");
             exit(); // Asegura que el script se detenga después de redirigir al usuario
