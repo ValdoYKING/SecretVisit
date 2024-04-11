@@ -72,3 +72,19 @@ function listaRespuestaMystery($encuestaId) {
     return $respuestas;
 }
 
+function respuestasTotalPreguntas() {
+  $con = AccesoBd::getCon();
+  $stmt = $con->prepare(
+      "SELECT 
+      PRE_ID,
+      COUNT(*) as totalPreguntas,
+      SUM(ENCPRE_RESPUESTA) as sumatoriaRespuestas
+      FROM ENC_PRE
+      GROUP BY PRE_ID"
+  );
+
+  $stmt->execute();
+
+  $resultados = $stmt->fetchAll(PDO::FETCH_ASSOC);
+  return $resultados;
+}
