@@ -6,6 +6,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($data['id'])) {
         $id = $data['id'];
 
+        EliminaEncPreId($id);
         EliminaEncuestaId($id);
 
         return $id;

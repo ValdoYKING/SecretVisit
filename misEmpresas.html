@@ -113,6 +113,8 @@
                 <p class="text-md text-center text-gray-800">Dirección: ${empresa.direccion}</p>
                 <p>Teléfono: ${empresa.telefono}</p>
                 <p>Calificación: ${empresa.calificacion}</p>
+                <a class="bg-green-500 text-white text-sm font-bold rounded-lg p-2 h-8 w-24"  href="ConsultarEmpresaUp.html?empId=${empresa.id}">Actualizar</a>
+                  <button class="bg-red-500 text-white text-sm font-bold rounded-lg p-2 h-8 w-24" type="button"  onclick="eliminarEmpresa(event, ${empresa.id})">Eliminar</button>      
               </div>
             </div>
           `;
@@ -123,9 +125,34 @@
       }
     };
     
+    function eliminarEmpresa(event, id) {
+      event.preventDefault(); // Prevenir la acción predeterminada del enlace (navegación)
+
+      if (confirm("¿Estás seguro de que deseas eliminar este registro?")) {
+        const url = "srv/srvEliminarEmpresa.php"; // Ruta del servicio para eliminar el registro
+        const data = { id: id }; // Datos a enviar al servicio (puede variar dependiendo de la implementación del servicio)
+        fetch(url, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        })
+          .then(response => {
+            if (!response.ok) {
+              throw new Error('Error al eliminar el registro.');
+            }
+            // window.location.href = window.location.href;
+          })
+          .catch(error => {
+            console.error('Error:', error);
+          });
+      }
+      location.reload();
+
+    }
   </script>
 
 </body>
-
 
 </html>

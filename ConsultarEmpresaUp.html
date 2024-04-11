@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Empresa</title>
+    <script type="module" src="lib/js/ejecuta.js"></script>
+    <script type="module" src="lib/js/muestraError.js"></script>
+    <script type="module" src="lib/js/muestraInnerHtml.js"></script>
+      <script type="module" src="./js/custom/mi-nav-analista.js"></script>
+      <script type="module" src="lib/js/ejecuta.js"></script>
+      <script type="module" src="lib/js/muestraError.js"></script>
+      <script type="module" src="lib/js/submitForma.js"></script>
+      <script type="module" src="./js/Sesion.js"></script>
+      <script type="module" src="lib/js/muestraInnerHtml.js"></script>
+      <script type="module" src="lib/js/muestraObjeto.js"></script>
+      
+      <script type="module" src="./js/custom/footer.js"></script>
+  
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+        theme: {
+            extend: {
+          colors: {
+            clifford: '#da373d',
+          }
+        }
+      }
+    }
+
+    </script>
+</head>
+
+<body onload="loadData()">
+  <mi-nav id="nav"></mi-nav>
+   
+<div class="container mx-auto shadow-lg p-6 bg-white rounded-lg"">
+  <button class="bg-gray-500 hover:bg-black-700 border-white text-white font-bold border-sm py-2 px-2 rounded" onclick="location.href ='analista.html'">
+    Regresar 
+  </button>
+        <form id="AcEmpresa" onsubmit="submitForma('srv/srvActualizarEmpresa.php',event, AcEmpresa)
+        .then(json => location.href = 'misEmpresas.html')
+        .catch(muestraError)" >
+          <div id="consulta"  class="container w-3/4 mx-auto">
+   
+          
+          </div> 
+        </form>
+
+    </div>
+    </div>
+  <footer id="footer"></footer>
+
+    <script>
+        
+        /* async function cargaDatos(){ 
+            try {
+                const urlParams = new URLSearchParams(location.href).searchParamas;
+                const parametro1 = urlParams.get('parametro1');
+              const empId = urlParams.get('empId'); // Supongo que necesitas el ID para buscar la empresa
+              const response = await fetch('srv/srvBusquedaEmpresa.php', {
+                  method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({ empId : empId }) // Envía el ID de la empresa al servidor
+          });
+          if (!response.ok) {
+              throw new Error('Error al cargar los datos');
+            }
+            
+            const empresa = await response.json(); // Obtener el primer registro de la respuesta
+            
+            location.log(empresa)
+            /* const contenido = document.getElementById('consulta');
+          if (Object.keys(empresa).length === 0) {
+              contenido.innerHTML = '<p>No hay empresa</p>';
+              return;
+          }
+  
+          contenido.innerHTML = `
+          <h1 class="text-purple-800 font-bold text-center text-3xl mb-4 "">
+              ACTUALIZAR EMPRESA
+          </h1>
+          <p style="display: none;">CUE: <span id="cueDisplay"></span></p>
+          <p style="display: none;">Rol: <span id="rolDisplay"></span></p>
+          <input type="hidden" name="cue" id="cueInput" value="">
+          <div class="relative my-10">
+              <input type="text" id="nombre" value="${empresa.nombre}"   name="nombre" class="block rounded-t-lg px-2.5 pb-2.5 pt-5 w-full text-sm text-gray-900 bg-gray-50 dark:bg-gray-700 border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+              <label for="floating_filled" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] start-2.5 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto">Nombre de la empresa</label>
+          </div>
+          <div class="relative my-10">
+              <input type="text" id="direccion" value="${empresa.direccion}"  name="direccion" class="block rounded-t-lg px-2.5 pb-2.5 pt-5 w-full text-sm text-gray-900 bg-gray-50 dark:bg-gray-700 border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " maxlength="10"
+              
+                  />
+              <label for="direccion" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] start-2.5 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto">Dirección de la empresa</label>
+          </div>
+          
+          <div class="relative my-10">
+              <input type="text" id="telefono" value="${empresa.telefono}"  name="telefono" class="block rounded-t-lg px-2.5 pb-2.5 pt-5 w-full text-sm text-gray-900 bg-gray-50 dark:bg-gray-700 border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+              <label for="telefono" name="telefono" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] start-2.5 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto">Telefono de la empresa</label>
+            </div>
+            <p class="text-center text-black font-bold text-md mb-4 my-10 " >Comienza a crecer con nosotros, ahora mismo estas en el punto de empezar a crear tu propia empresa, ahora mis
+              productos valen más</p>
+  
+             <button class="bg-purple-500 text-white m-4 px-4 py-2 rounded-md w-2/4 mx-auto flex text-center justify-center flex">
+               Crear empresa </button>
+            `;
+          console.log(data); 
+        } catch (error) {
+            console.error('Ocurrió un error:', error);
+        }
+    };
+    */
+  
+      async function loadData() {
+    try {
+        const urlParams = new URLSearchParams(window.location.search);
+        const id = urlParams.get('empId'); // Supongo que necesitas el ID para buscar la empresa
+        const response = await fetch('srv/srvBusquedaEmpresa.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ empId : id }) // Envía el ID de la empresa al servidor
+        });
+
+        if (!response.ok) {
+            throw new Error('Error al cargar los datos');
+        }
+
+        const empresa = await response.json(); // Obtener el primer registro de la respuesta
+        console.log(empresa);
+        
+        const contenido = document.getElementById('consulta');
+        if (Object.keys(empresa).length === 0) {
+            contenido.innerHTML = '<p>No hay empresa</p>';
+            return;
+        }
+
+        contenido.innerHTML = `
+                <h1 class="text-purple-800 font-bold text-center text-3xl mb-4">
+                    ACTUALIZAR EMPRESA
+                </h1>
+                <input type="hidden" id="idemp" name="idemp" value="${empresa.id}">
+                <div class="relative my-10">
+                    <input type="text" id="nombre" name="nombre" class="block rounded-t-lg px-2.5 pb-2.5 pt-5 w-full text-sm text-gray-900 bg-gray-50 dark:bg-gray-700 border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " value="${empresa.nombre}">
+                    <label for="nombre" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] start-2.5 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto">Nombre de la empresa</label>
+                </div>
+                <div class="relative my-10">
+                    <input type="text" id="direccion" name="direccion" class="block rounded-t-lg px-2.5 pb-2.5 pt-5 w-full text-sm text-gray-900 bg-gray-50 dark:bg-gray-700 border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " value="${empresa.direccion}" maxlength="10">
+                    <label for="direccion" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] start-2.5 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto">Dirección de la empresa</label>
+                </div>
+                <div class="relative my-10">
+                    <input type="text" id="telefono" name="telefono" class="block rounded-t-lg px-2.5 pb-2.5 pt-5 w-full text-sm text-gray-900 bg-gray-50 dark:bg-gray-700 border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " value="${empresa.telefono}">
+                    <label for="telefono" name="telefono" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] start-2.5 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto">Telefono de la empresa</label>
+                </div>
+                <p class="text-center text-black font-bold text-md mb-4 my-10">Comienza a crecer con nosotros, ahora mismo estas en el punto de empezar a crear tu propia empresa, ahora mis productos valen más</p>
+                <button class="bg-purple-500 text-white m-4 px-4 py-2 rounded-md w-2/4 mx-auto flex text-center justify-center flex" type="submit">Actualizar empresa</button>
+        `;
+        console.log(empresa);
+    } catch (error) {
+        console.error('Ocurrió un error:', error);
+    }
+}
+  
+      </script>
+    </body>
+</html>
